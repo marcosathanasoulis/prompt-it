@@ -97,9 +97,12 @@ was guessing rather than by the person who owned it.
 
 Everything else is mechanics. These are the parts that actually change output quality:
 
-**Tell the model to flag what it couldn't verify** rather than filling the gap with
-something plausible. One line in a prompt. An acknowledged gap is worth more than a
-confident invention, because someone knows to go and check it.
+**Make it separate what it verified from what it inferred** — and cite where it
+checked. This matters more than it sounds, and it is strictly better than asking for a
+confidence score. Self-reported confidence skews high and misses the failure that
+actually costs you: a chain of sound reasoning resting on one premise nobody checked.
+The model rates that highly confident and is *right to* — the reasoning was fine.
+Provenance catches it, because provenance is checkable and a feeling is not.
 
 **Say what already exists before building anything.** Models will not volunteer "do you
 already have one of these?" — you have to make them look. I've watched one propose a

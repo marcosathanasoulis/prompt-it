@@ -94,6 +94,16 @@ Present staffing as a table:
    already exists.
 3. **Offer two or three approaches with real tradeoffs**, and say which you recommend
    and why. Judging reasoning is far easier than producing a design from nothing.
+4. **Separate what you verified from what you inferred, and say where you checked.**
+   For every claim the conclusion rests on, mark it *verified* — naming the query, the
+   document or the file you read — or *inferred*, and from what. Cite sources for
+   anything external.
+
+   Do **not** substitute a confidence score. Self-reported confidence skews high and
+   tells you nothing about whether the underlying premises were ever checked. A
+   well-reasoned synthesis built on one unverified assumption will be reported as
+   confident, correctly, because the reasoning was fine. Provenance is checkable;
+   confidence is a feeling.
 
 ## Rules that matter for this kind of work
 

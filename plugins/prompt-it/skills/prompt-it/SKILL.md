@@ -89,6 +89,15 @@ Present staffing as a table:
 3. **Offer two or three approaches with real tradeoffs**, and say which you recommend
    and why. The user should be able to judge your reasoning rather than only accept or
    reject a single design.
+4. **Separate what you verified from what you inferred, and say where you checked.**
+   Mark each load-bearing claim as *verified* (with the file, command or doc you read)
+   or *inferred* (and from what). Cite sources for anything external.
+
+   Do **not** report a confidence score instead. Self-reported confidence is poorly
+   calibrated and, worse, it misses the failure that actually costs you: a chain of
+   sound reasoning resting on one premise nobody checked. The model will rate that
+   highly confident and be right to — the reasoning *was* good. Provenance catches it
+   because provenance is checkable and a feeling is not.
 
 ## Step 4 — Stop
 

@@ -2,10 +2,18 @@
   "name": "prompt-it",
   "displayName": "Prompt It",
   "description": "Turns a request into a reviewable plan before any work starts. Asks first, so it never gets in the way.",
-  "version": "1.0.0",
-  "author": { "name": "Marcos Athanasoulis" },
+  "version": "1.1.0",
+  "author": {
+    "name": "Marcos Athanasoulis"
+  },
   "homepage": "https://github.com/marcosathanasoulis/prompt-it",
   "repository": "https://github.com/marcosathanasoulis/prompt-it",
   "license": "MIT",
-  "keywords": ["planning", "workflow", "subagents", "code-review", "verification"]
+  "keywords": [
+    "planning",
+    "workflow",
+    "subagents",
+    "code-review",
+    "verification"
+  ]
 }
