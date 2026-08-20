@@ -1,0 +1,11 @@
+{
+  "name": "prompt-it-readonly",
+  "displayName": "Prompt It (read-only)",
+  "description": "Reviewable plans for research and analysis work, with a hard read-only posture. For people with code and data access who do not ship code.",
+  "version": "1.0.0",
+  "author": { "name": "Marcos Athanasoulis" },
+  "homepage": "https://github.com/marcosathanasoulis/prompt-it",
+  "repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "license": "MIT",
+  "keywords": ["planning", "research", "analysis", "read-only", "product-management"]
+}

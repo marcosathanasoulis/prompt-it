@@ -1,0 +1,20 @@
+{
+  "name": "prompt-it",
+  "owner": {
+    "name": "Marcos Athanasoulis",
+    "url": "https://github.com/marcosathanasoulis"
+  },
+  "description": "Make Claude draft a reviewable plan before it starts work — and ask first, so it never gets in the way.",
+  "plugins": [
+    {
+      "name": "prompt-it",
+      "source": "./plugins/prompt-it",
+      "description": "Plan-before-work for engineers: subagent staffing, model lanes, tests-first, and the rules that keep parallel agents from colliding."
+    },
+    {
+      "name": "prompt-it-readonly",
+      "source": "./plugins/prompt-it-readonly",
+      "description": "Read-only edition for analysts, PMs and researchers with code and data access. Same planning loop, nothing that writes."
+    }
+  ]
+}
