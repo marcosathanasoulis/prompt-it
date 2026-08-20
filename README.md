@@ -27,6 +27,63 @@ was about to use the wrong table, invent a second config file, or skip the case 
 actually cared about. Reacting to a draft is easy. Specifying from a blank page is hard.
 This moves you from the second job to the first one.
 
+## What it actually looks like
+
+Two exchanges. Same install, opposite outcomes.
+
+**You didn't want a plan:**
+
+```
+you      bump the timeout on the health check to 30s
+claude   Prompt it?
+you      no
+claude   Done — timeout is now 30s in the health check config.
+```
+
+**You did:**
+
+```
+you      add rate limiting to the search endpoint
+claude   Prompt it?
+you      yes
+claude   Written to .scratch/PROMPT-rate-limiting.md
+
+         ## Goal — reject requests over N per minute per API key
+         ## Out of scope — auth, quota accounting, the admin API
+         ## Assuming — per-key, not per-IP
+         ## Done when — the 11th request inside a minute returns 429
+
+         Two questions before I start:
+           1. What limit, and per key or per IP?
+           2. There's already a limiter in the shared utils — reuse it?
+
+         Nothing written yet. Edit that file or say go.
+```
+
+The second one is the whole product. Neither question had occurred to me when I
+typed the request, and one of them — the existing limiter — would have meant
+throwing the work away.
+
+## "My work is hard problems, not big workflows"
+
+Then this matters *more*, not less.
+
+The subagent staffing further down is optional depth for wide, parallel work. The
+loop underneath it is about something else: **on a poorly-understood problem, the
+expensive mistake is almost never bad execution — it's a wrong assumption you never
+said out loud, and neither did the model.** Making it write down what it is assuming
+before it reasons is how those surface while they are still cheap.
+
+If you already refuse to let it start before it summarizes the plan and names what
+it needs from you, you have arrived at this independently, and the only thing this
+adds is consistency — it happens every time instead of when you remember, and it
+carries the provenance rule below, which is the part that is easy to forget when the
+answer sounds good.
+
+And if one of your standing rules is some version of *"don't answer questions about
+the code from memory, go read the actual code, every time"* — that is exactly what
+the verified-versus-inferred rule is for. See [the three rules](#the-three-rules-underneath-all-of-it).
+
 ## Three versions — pick one
 
 | You are | Version | Where |
@@ -61,8 +118,9 @@ different rules. Install one.
 
 ## What the engineer version adds
 
-Subagent staffing, because most people either never delegate or delegate everything to
-the most expensive model:
+Optional depth for wide work. Skip this entirely if your tasks are deep rather than
+broad — the loop above is the part that matters. But when you do fan work out, most
+people either never delegate or delegate everything to the most expensive model:
 
 - **Split only where the split is real.** Two subtasks that must run in sequence and
   share all their context are one subtask. Most tasks don't decompose, and inventing
