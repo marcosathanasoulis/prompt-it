@@ -78,6 +78,21 @@ Present staffing as a table:
 | # | Subtask | Lane | Depends on |
 |---|---|---|---|
 
+### Optional external side lanes
+
+The generic side-lane runner is a separate, optional package. If it is already
+installed, perform only its presence-only capability check before naming an
+external executor. Name the exact originating host, provider/model, dedicated
+worktree task, and required capabilities. Capability or spend/extra-usage may
+influence that explicit choice, but never trigger automatic quota detection,
+fallback, model substitution, or an equivalence claim.
+
+If the runner, host adapter, exact route, personal credential, or capability is
+unavailable, keep the ordinary in-host staffing plan. Do not install the
+runner, block planning, or silently change an approved executor. A lane that
+becomes unavailable after approval fails closed and returns to the user for a
+staffing decision.
+
 ## Step 3 — Before proposing a design, always do these three
 
 1. **Ask the questions you need answered.** Prioritize the ones where a wrong

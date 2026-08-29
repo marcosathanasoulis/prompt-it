@@ -2,7 +2,7 @@
   "name": "prompt-it",
   "displayName": "Prompt It",
   "description": "Turns a request into a reviewable plan before any work starts. Asks first, so it never gets in the way.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "Marcos Athanasoulis"
   },

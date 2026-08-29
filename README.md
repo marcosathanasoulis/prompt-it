@@ -116,6 +116,23 @@ Claude *ask*. Both, or neither works properly.
 The two plugins are **alternatives, not companions** — they define the same skill with
 different rules. Install one.
 
+## Install (Codex / ChatGPT desktop)
+
+The Codex-native package is in `codex-plugin/`. It shares the planning
+contract with the Claude plugin but is a separate host package; neither host
+directly executes the other's skill file.
+
+Install from the public repository through Codex's GitHub skill/plugin flow, or
+clone the repository and install the `codex-plugin/skills/prompt-it` directory
+with Codex's skill installer. Restart the desktop app if the skill does not
+appear. The public Git repository is canonical; a ZIP is only a versioned
+snapshot and should retain its repository/version provenance.
+
+Prompt It does not require a cross-provider runner. When a separately installed
+side-lane package reports an exact route configured, the engineer edition may
+propose it in staffing for capability or spend reasons. When absent, Prompt It
+works exactly as before and never auto-installs, falls back, or substitutes.
+
 ## What the engineer version adds
 
 Optional depth for wide work. Skip this entirely if your tasks are deep rather than

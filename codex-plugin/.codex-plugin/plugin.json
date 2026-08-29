@@ -1,0 +1,11 @@
+{
+  "name": "prompt-it",
+  "version": "1.2.0",
+  "description": "Research and draft a reviewable execution brief before substantial work starts.",
+  "author": {"name": "Marcos Athanasoulis"},
+  "homepage": "https://github.com/marcosathanasoulis/prompt-it",
+  "repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "license": "MIT",
+  "keywords": ["planning", "verification", "staffing", "skills"],
+  "skills": "./skills/"
+}
