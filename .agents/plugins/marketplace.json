@@ -1,0 +1,20 @@
+{
+  "name": "prompt-it",
+  "interface": {
+    "displayName": "Prompt It"
+  },
+  "plugins": [
+    {
+      "name": "prompt-it",
+      "source": {
+        "source": "local",
+        "path": "./plugins/prompt-it"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer-Tools"
+    }
+  ]
+}
