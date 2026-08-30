@@ -1,0 +1,25 @@
+{
+  "name": "bring-me-back",
+  "version": "0.1.0",
+  "description": "Recover and safely resume existing Codex workspace tasks after an interruption.",
+  "author": {
+    "name": "Marcos Athanasoulis"
+  },
+  "homepage": "https://github.com/marcosathanasoulis/prompt-it",
+  "repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "license": "MIT",
+  "keywords": ["continuity", "recovery", "coordination", "sessions"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Bring Me Back",
+    "shortDescription": "Recover and resume existing workspace tasks safely.",
+    "longDescription": "Reconstruct interrupted Codex work from saved projects, tasks, and workspace evidence without duplicating workers, checkouts, authentication, or authority.",
+    "developerName": "Marcos Athanasoulis",
+    "category": "Productivity",
+    "capabilities": ["Coordination", "Session Recovery"],
+    "websiteURL": "https://github.com/marcosathanasoulis/prompt-it",
+    "defaultPrompt": [
+      "Bring me back."
+    ]
+  }
+}

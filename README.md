@@ -133,6 +133,33 @@ side-lane package reports an exact route configured, the engineer edition may
 propose it in staffing for capability or spend reasons. When absent, Prompt It
 works exactly as before and never auto-installs, falls back, or substitutes.
 
+### Companion Codex skills
+
+This repository also contains two independent, optional Codex packages:
+
+| Package | Path | Purpose |
+|---|---|---|
+| **Side Lane** | `codex-plugins/side-lane/` | Route approved work through an exact, separately configured worker route. |
+| **Bring Me Back** | `codex-plugins/bring-me-back/` | Recover and resume existing workspace tasks after an interruption. |
+
+Install either package through Codex's GitHub plugin/skill flow, or install its
+`skills/<name>` directory with the Codex skill installer. The packages are
+independent: installing Prompt It does not install Side Lane or Bring Me Back.
+
+Side Lane deliberately contains no runner, provider catalog, model default,
+credential, price assumption, or private governance. It activates only after a
+compatible `side-lane` runner and an exact route are already configured. Missing
+or ambiguous setup fails closed; the skill never installs, logs in, falls back,
+or substitutes a route on its own. See
+[`codex-plugins/side-lane/skills/side-lane/references/configuration.md`](codex-plugins/side-lane/skills/side-lane/references/configuration.md).
+
+Bring Me Back uses saved-project and task evidence to identify existing trusted
+workspace workers. Its default trusts only the current proven host and exact
+saved-project paths. Additional hosts or workspace roots require an explicit
+local allowlist; no machine name, account, or filesystem layout is built into
+the public package. See
+[`codex-plugins/bring-me-back/skills/bring-me-back/references/configuration.md`](codex-plugins/bring-me-back/skills/bring-me-back/references/configuration.md).
+
 ### Developing the Codex skill
 
 The public repository copy at `codex-plugin/skills/prompt-it/SKILL.md` is
@@ -148,6 +175,12 @@ Check for drift without changing anything:
 
 ```bash
 ./scripts/sync-codex-skill.sh --check
+```
+
+Validate every public Codex package with the standard-library checker:
+
+```bash
+python3 scripts/check-codex-packages.py
 ```
 
 Start a new Codex task after syncing so the updated skill is loaded.

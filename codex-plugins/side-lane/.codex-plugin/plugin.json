@@ -1,0 +1,25 @@
+{
+  "name": "side-lane",
+  "version": "0.1.0",
+  "description": "Route approved work through an explicitly configured external worker lane.",
+  "author": {
+    "name": "Marcos Athanasoulis"
+  },
+  "homepage": "https://github.com/marcosathanasoulis/prompt-it",
+  "repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "license": "MIT",
+  "keywords": ["routing", "workers", "review", "implementation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Side Lane",
+    "shortDescription": "Route approved work through an exact configured worker lane.",
+    "longDescription": "Qualify and run an exact external worker route without silently installing, substituting, retrying, or exposing credentials.",
+    "developerName": "Marcos Athanasoulis",
+    "category": "Developer Tools",
+    "capabilities": ["Routing", "Review", "Implementation"],
+    "websiteURL": "https://github.com/marcosathanasoulis/prompt-it",
+    "defaultPrompt": [
+      "Route this approved task through Side Lane."
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "canonical_repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "package_path": "codex-plugins/bring-me-back",
+  "version": "0.1.0"
+}
