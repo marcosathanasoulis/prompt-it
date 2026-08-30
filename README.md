@@ -133,6 +133,25 @@ side-lane package reports an exact route configured, the engineer edition may
 propose it in staffing for capability or spend reasons. When absent, Prompt It
 works exactly as before and never auto-installs, falls back, or substitutes.
 
+### Developing the Codex skill
+
+The public repository copy at `codex-plugin/skills/prompt-it/SKILL.md` is
+canonical. Do not make durable edits only in `~/.codex/skills/prompt-it`.
+
+After changing the canonical file, sync the local standalone installation:
+
+```bash
+./scripts/sync-codex-skill.sh
+```
+
+Check for drift without changing anything:
+
+```bash
+./scripts/sync-codex-skill.sh --check
+```
+
+Start a new Codex task after syncing so the updated skill is loaded.
+
 ## What the engineer version adds
 
 Optional depth for wide work. Skip this entirely if your tasks are deep rather than

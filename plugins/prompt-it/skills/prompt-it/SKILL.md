@@ -81,11 +81,18 @@ Present staffing as a table:
 ### Optional external side lanes
 
 The generic side-lane runner is a separate, optional package. If it is already
-installed, perform only its presence-only capability check before naming an
-external executor. Name the exact originating host, provider/model, dedicated
-worktree task, and required capabilities. Capability or spend/extra-usage may
-influence that explicit choice, but never trigger automatic quota detection,
-fallback, model substitution, or an equivalence claim.
+installed, perform only its documented presence-only capability check before
+naming an external executor. That check must not retrieve credential values,
+inspect or infer provider quotas, or invoke a paid model. Keep the originating
+coordinator host fixed so its connector identity is preserved; do not shell out
+to another host merely to obtain a model.
+
+Name an external lane only when the exact originating host, provider/model,
+credential presence, dedicated worktree task, and required capabilities are
+reported as configured. Unknown, stale, or missing evidence excludes a route.
+Capability or user-declared spend preferences may influence the explicit
+choice, but never trigger automatic quota detection, fallback, model
+substitution, or an equivalence claim.
 
 If the runner, host adapter, exact route, personal credential, or capability is
 unavailable, keep the ordinary in-host staffing plan. Do not install the

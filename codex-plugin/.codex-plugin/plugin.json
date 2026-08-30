@@ -7,5 +7,17 @@
   "repository": "https://github.com/marcosathanasoulis/prompt-it",
   "license": "MIT",
   "keywords": ["planning", "verification", "staffing", "skills"],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Prompt It",
+    "shortDescription": "Research and review a plan before substantial work starts.",
+    "longDescription": "Turn substantial requests into evidence-backed execution briefs with explicit staffing and approval before implementation.",
+    "developerName": "Marcos Athanasoulis",
+    "category": "Productivity",
+    "capabilities": ["Research", "Planning"],
+    "websiteURL": "https://github.com/marcosathanasoulis/prompt-it",
+    "defaultPrompt": [
+      "Prompt this task before implementation."
+    ]
+  }
 }
