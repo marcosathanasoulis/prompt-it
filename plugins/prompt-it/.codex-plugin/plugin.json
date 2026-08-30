@@ -1,0 +1,27 @@
+{
+  "name": "prompt-it",
+  "version": "1.2.0",
+  "description": "Research substantial tasks and draft an evidence-backed execution brief before implementation, after asking first.",
+  "author": {
+    "name": "Marcos Athanasoulis",
+    "url": "https://github.com/marcosathanasoulis"
+  },
+  "homepage": "https://github.com/marcosathanasoulis/prompt-it",
+  "repository": "https://github.com/marcosathanasoulis/prompt-it",
+  "license": "MIT",
+  "keywords": ["planning", "research", "staffing", "verification", "worktrees"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Prompt It",
+    "shortDescription": "Research and review the plan before work starts.",
+    "longDescription": "Ask before planning, research the approved task read-only, and produce an evidence-backed execution brief with explicit model staffing for approval.",
+    "developerName": "Marcos Athanasoulis",
+    "category": "Developer Tools",
+    "capabilities": ["Read-only research", "Execution briefs", "Model staffing"],
+    "websiteURL": "https://github.com/marcosathanasoulis/prompt-it",
+    "defaultPrompt": [
+      "Prompt this task before implementation.",
+      "Research this request and draft a brief for review."
+    ]
+  }
+}

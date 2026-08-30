@@ -2,14 +2,15 @@
 
 **A planning skill that asks before it plans.**
 
-When you give Claude a real task, it stops and asks you one question:
+When you give Codex or Claude Code a substantial new task, it stops and asks
+you one question:
 
 > **Prompt it?**
 
-Say **no** and it gets on with the work, exactly as it would have anyway. Say **yes**
-and it writes you a plan first — what it's going to do, what it's deliberately *not*
-going to do, what it's assuming, and how you'll both know it worked. You read that, fix
-what's wrong, and say go.
+Say **no** and it gets on with the work, exactly as it would have anyway. Say
+**yes** and it researches the task read-only, writes an evidence-backed brief,
+states what it will deliberately *not* do, and proposes explicit model staffing.
+You read that, fix what's wrong, and say go.
 
 So the cost of having this installed is one word on the occasional task where you didn't
 want it. That's the whole design. Every planning prompt I'd tried before this one got
@@ -21,8 +22,9 @@ worse than no planning at all.
 You catch the misunderstanding while it's still one paragraph, instead of in four
 hundred lines you now have to unpick.
 
-And the part people don't expect: **you don't have to know what to specify.** Claude
-works out what the decisions are and hands them back to you — that's when you notice it
+And the part people don't expect: **you don't have to know what to specify.** The
+agent researches the task, works out what the decisions are, and hands them back
+to you — that's when you notice it
 was about to use the wrong table, invent a second config file, or skip the case you
 actually cared about. Reacting to a draft is easy. Specifying from a blank page is hard.
 This moves you from the second job to the first one.
@@ -84,18 +86,18 @@ And if one of your standing rules is some version of *"don't answer questions ab
 the code from memory, go read the actual code, every time"* — that is exactly what
 the verified-versus-inferred rule is for. See [the three rules](#the-three-rules-underneath-all-of-it).
 
-## Three versions — pick one
+## Three editions — pick one
 
 | You are | Version | Where |
 |---|---|---|
-| Not sure / don't use Claude Code | **[claude.ai](claude-ai/project-instructions.md)** | Paste into a Project's custom instructions |
-| An engineer | **`prompt-it`** | Claude Code plugin |
+| Not sure / don't use a coding agent | **[claude.ai](claude-ai/project-instructions.md)** | Paste into a Project's custom instructions |
+| An engineer | **`prompt-it`** | Codex or Claude Code plugin |
 | Someone with code and data access who doesn't ship code — PM, analyst, researcher | **`prompt-it-readonly`** | Claude Code plugin |
 
 **If you read nothing else, take the [claude.ai version](claude-ai/project-instructions.md).**
 It needs no terminal and no install, and it's most of the value.
 
-## Install (Claude Code)
+## Install in Claude Code
 
 ```
 /plugin marketplace add marcosathanasoulis/prompt-it
@@ -116,6 +118,32 @@ Claude *ask*. Both, or neither works properly.
 The two plugins are **alternatives, not companions** — they define the same skill with
 different rules. Install one.
 
+## Install in Codex
+
+```bash
+codex plugin marketplace add marcosathanasoulis/prompt-it --ref main
+codex plugin add prompt-it@prompt-it
+```
+
+Then add the gate from
+[`snippets/agents-md-gate.md`](snippets/agents-md-gate.md) to
+`~/.codex/AGENTS.md`, or to one repository's `AGENTS.md` when you only want the
+gate there. Start a new Codex task after installation if skill discovery is
+cached.
+
+The engineer plugin uses the same canonical `SKILL.md` in Codex and Claude
+Code. Product-private memory, connectors, authentication, and tools remain
+host-specific.
+
+## Optional Governed Side Lane integration
+
+Prompt it works on its own. When
+[Governed Side Lane](https://github.com/marcosathanasoulis/governed-side-lane)
+is also installed, Prompt it can include an exact Codex, Claude, or explicitly
+configured GLM worker in its staffing proposal. It never dispatches a worker
+during planning, reads usage or billing state, or changes the originating
+coordinator. The human still approves the brief and exact route before work.
+
 ## What the engineer version adds
 
 Optional depth for wide work. Skip this entirely if your tasks are deep rather than
@@ -133,9 +161,9 @@ people either never delegate or delegate everything to the most expensive model:
 - **Never delegate the judgment** on regulated data, authentication, or production
   writes — however mechanical the edit looks.
 
-Plus the three things it must do before proposing a design: ask its questions and wait,
-say what already exists that you should reuse instead, and offer two or three approaches
-with tradeoffs rather than one design to accept or reject.
+Before proposing a design it researches what already exists, separates verified
+facts from inferences, asks only the material questions that remain, and records
+approaches and tradeoffs in the brief.
 
 ## What the read-only version adds
 
