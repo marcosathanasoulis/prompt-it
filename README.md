@@ -2,7 +2,7 @@
 
 **A planning skill that asks before it plans.**
 
-When you give Claude a real task, it stops and asks you one question:
+When you give Claude or ChatGPT (Codex) a real task, it stops and asks you one question:
 
 > **Prompt it?**
 
@@ -21,7 +21,7 @@ worse than no planning at all.
 You catch the misunderstanding while it's still one paragraph, instead of in four
 hundred lines you now have to unpick.
 
-And the part people don't expect: **you don't have to know what to specify.** Claude
+And the part people don't expect: **you don't have to know what to specify.** The assistant
 works out what the decisions are and hands them back to you — that's when you notice it
 was about to use the wrong table, invent a second config file, or skip the case you
 actually cared about. Reacting to a draft is easy. Specifying from a blank page is hard.
