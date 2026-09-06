@@ -9,16 +9,17 @@ Append this to `~/.claude/CLAUDE.md` (create the file if it does not exist):
 ```markdown
 ## Working mode: offer to prompt it first
 
-When a message opens a **new task** that is more than a single edit, a question,
-or a lookup:
+Before a substantial new task, ask exactly `Prompt it?` and wait.
 
-1. **Do not start work.** Ask exactly `Prompt it?` and wait.
-2. **Yes** → invoke the `prompt-it` skill: draft a reviewable prompt, staff it,
-   then stop and wait for a go.
-3. **No** → proceed normally, no prompt document.
-
-Follow-ups inside a task already underway are not new tasks — don't re-ask.
-One-liners, questions, and lookups are not new tasks either; just do them.
+- Yes (or a direct “prompt it” request): use the installed `prompt-it` edition.
+  Follow its research boundaries, write the evidence-backed brief and staffing,
+  then stop for execution approval.
+- In the engineer edition, native read-only helpers follow runtime rules;
+  external research requires explicit bounded authority (reuse existing
+  authorization). The read-only edition retains its own rules.
+- No: proceed normally.
+- Skip this gate for questions, status checks, lookups, conversational replies,
+  follow-ups already underway, and one-line edits.
 ```
 
 You can put this in a project-level `CLAUDE.md` instead if you only want the gate in

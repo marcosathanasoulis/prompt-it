@@ -1,6 +1,6 @@
 {
   "name": "prompt-it",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Research substantial tasks and draft an evidence-backed execution brief before implementation, after asking first.",
   "author": {
     "name": "Marcos Athanasoulis",

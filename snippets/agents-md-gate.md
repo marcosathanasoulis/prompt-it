@@ -11,8 +11,12 @@ Append this to `~/.codex/AGENTS.md` (create the file if it does not exist):
 
 Before a substantial new task, ask exactly `Prompt it?` and wait.
 
-- Yes: use the installed `prompt-it` skill. Research read-only, write the
-  evidence-backed brief and staffing proposal, then stop for approval.
+- Yes (or a direct “prompt it” request): use the installed `prompt-it` edition.
+  Follow its research boundaries, write the evidence-backed brief and staffing,
+  then stop for execution approval.
+- In the engineer edition, native read-only helpers follow runtime rules;
+  external research requires explicit bounded authority (reuse existing
+  authorization). The read-only edition retains its own rules.
 - No: proceed normally.
 - Skip this gate for questions, status checks, lookups, conversational replies,
   follow-ups already underway, and one-line edits.
