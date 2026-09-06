@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -36,6 +37,8 @@ def validate() -> None:
         CLAUDE_MANIFEST,
         CODEX_MANIFEST,
         SKILL,
+        SKILL.parent / "references" / "research-teams.md",
+        SKILL.parent / "references" / "task-graphs.md",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:
@@ -45,20 +48,48 @@ def validate() -> None:
     codex = load_json(CODEX_MANIFEST)
     if claude.get("name") != "prompt-it" or codex.get("name") != "prompt-it":
         fail("plugin names must be prompt-it")
-    if claude.get("version") != "1.2.0" or codex.get("version") != "1.2.0":
-        fail("Claude and Codex plugin versions must both be 1.2.0")
+    if claude.get("version") != "1.3.0" or codex.get("version") != "1.3.0":
+        fail("Claude and Codex plugin versions must both be 1.3.0")
     if claude.get("license") != "MIT" or codex.get("license") != "MIT":
         fail("Claude and Codex manifests must declare MIT")
+
+    # Codex declares the skills directory; Claude uses the standard plugin-root
+    # skills directory when no additional skills path is configured.
+    codex_skills = codex.get("skills")
+    claude_skills = claude.get("skills", "./skills/")
+    if not isinstance(codex_skills, str) or not isinstance(claude_skills, str):
+        fail("canonical package must expose one skills directory per host")
+    canonical_skills = (PLUGIN / "skills").resolve()
+    if any((PLUGIN / value).resolve() != canonical_skills
+           for value in (codex_skills, claude_skills)):
+        fail("Claude and Codex must resolve the same canonical skills directory")
+
+    # Both loaders should offer identical gate/authorization semantics.
+    gate_blocks = []
+    for filename in ("agents-md-gate.md", "claude-md-gate.md"):
+        loader = (ROOT / "snippets" / filename).read_text(encoding="utf-8")
+        block = re.search(r"^```markdown[ \t]*\n(.*?)^```[ \t]*$", loader,
+                          flags=re.MULTILINE | re.DOTALL)
+        if block is None:
+            fail(f"missing or unterminated loader block: {filename}")
+        gate_blocks.append("\n".join(
+            line.rstrip() for line in block.group(1).splitlines()).strip("\n"))
+    if gate_blocks[0] != gate_blocks[1]:
+        fail("Claude and Codex loader gate semantics must remain aligned")
 
     codex_market = load_json(ROOT / ".agents" / "plugins" / "marketplace.json")
     claude_market = load_json(ROOT / ".claude-plugin" / "marketplace.json")
     for label, market in (("Codex", codex_market), ("Claude", claude_market)):
         plugins = market.get("plugins")
-        if not isinstance(plugins, list) or not any(
-            isinstance(item, dict) and item.get("name") == "prompt-it"
-            for item in plugins
-        ):
-            fail(f"{label} marketplace must list prompt-it")
+        entries = [item for item in plugins if isinstance(item, dict)
+                   and item.get("name") == "prompt-it"] if isinstance(plugins, list) else []
+        if len(entries) != 1:
+            fail(f"{label} marketplace must list prompt-it exactly once")
+        source = entries[0].get("source")
+        if isinstance(source, dict) and source.get("source") == "local":
+            source = source.get("path")
+        if not isinstance(source, str) or (ROOT / source).resolve() != PLUGIN.resolve():
+            fail(f"{label} marketplace must resolve the canonical prompt-it package")
 
     text = SKILL.read_text(encoding="utf-8")
     normalized = " ".join(text.split())

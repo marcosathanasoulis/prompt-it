@@ -36,10 +36,10 @@ Two exchanges. Same install, opposite outcomes.
 **You didn't want a plan:**
 
 ```
-you      bump the timeout on the health check to 30s
+you      add retries across the background job pipeline
 claude   Prompt it?
 you      no
-claude   Done — timeout is now 30s in the health check config.
+claude   I’ll implement retries and verify failure handling.
 ```
 
 **You did:**
@@ -55,16 +55,16 @@ claude   Written to .scratch/PROMPT-rate-limiting.md
          ## Assuming — per-key, not per-IP
          ## Done when — the 11th request inside a minute returns 429
 
-         Two questions before I start:
-           1. What limit, and per key or per IP?
-           2. There's already a limiter in the shared utils — reuse it?
+         Verified: the shared utils already include a suitable limiter.
+         Proposed: reuse it, with API-key scope from the existing contract.
+         Open choice: what limit? I recommend 10/minute for the stated load.
 
-         Nothing written yet. Edit that file or say go.
+         Implementation has not started. Edit the brief or say go.
 ```
 
-The second one is the whole product. Neither question had occurred to me when I
-typed the request, and one of them — the existing limiter — would have meant
-throwing the work away.
+The second exchange surfaces the existing implementation and the remaining
+product choice before code changes. The brief answers discoverable questions
+and asks the user for decisions that research cannot settle.
 
 ## "My work is hard problems, not big workflows"
 
@@ -133,37 +133,73 @@ cached.
 
 The engineer plugin uses the same canonical `SKILL.md` in Codex and Claude
 Code. Product-private memory, connectors, authentication, and tools remain
-host-specific.
+host-specific. Both loader snippets use the same gate and authorization block;
+projectless briefs use the current host's artifact location or writable `work/`
+directory. See the [1.3.0 release candidate notes](docs/releases/1.3.0.md) for
+validation and the held publication plan.
 
 ## Optional Governed Side Lane integration
 
 Prompt it works on its own. When
 [Governed Side Lane](https://github.com/marcosathanasoulis/governed-side-lane)
-is also installed, Prompt it can include an exact Codex, Claude, or explicitly
-configured GLM worker in its staffing proposal. It never dispatches a worker
-during planning, reads usage or billing state, or changes the originating
-coordinator. The human still approves the brief and exact route before work.
+is also installed, Prompt it can propose qualified external workers. Generic
+Prompt it consent permits bounded native read-only research helpers when the
+runtime allows. External review research requires explicit authorization for
+its exact route and scope; existing session authorization counts. Research does
+not silently activate execute mode, key-backed runs, new costs or connector
+access. The coordinator retains scope-shaping discovery and final synthesis.
+
+Prompt it first detects the installed core Side Lane skill, follows its actual
+runner/configuration, and inventories exact configured routes. Codex can discover
+Claude and GLM workers; Claude can discover Codex and GLM workers. Those are
+candidates only when configured, with authentication, task eligibility and
+authorization recorded separately. GLM still requires explicit enablement.
+
+Presence-only lane discovery never reads secret values, usage or billing state,
+or calls a model. Required but unqualified lanes become scoped readiness
+prerequisites; an optional absent lane does not block the ordinary in-host plan.
+Implementation staffing still waits for approval of the brief and exact routes.
 
 ## What the engineer version adds
 
-Optional depth for wide work. Skip this entirely if your tasks are deep rather than
-broad — the loop above is the part that matters. But when you do fan work out, most
-people either never delegate or delegate everything to the most expensive model:
+The canonical engineer plugin is version **1.3.0**. It starts with outcome
+coverage and executable work packages, then chooses available agents for each
+job. There is no target task count or fixed model lineup.
 
-- **Split only where the split is real.** Two subtasks that must run in sequence and
-  share all their context are one subtask. Most tasks don't decompose, and inventing
-  parallelism costs more than it saves.
-- **Pin the model on every delegated call.** An unpinned subagent inherits the expensive
-  one, and nobody notices until the bill arrives.
-- **Independent agents go out in one message**, so they actually run concurrently.
-- **Agents that write files get their own git worktree.** Two agents in one checkout
-  overwrite each other.
-- **Never delegate the judgment** on regulated data, authentication, or production
-  writes — however mechanical the edit looks.
+- **Shared contracts unlock branches.** Settle common decisions first, then
+  separate downstream deliverables that can proceed independently. Keep coupled
+  file edits with one owner or sequence their ownership explicitly.
+- **Every node has a contract.** Record its prerequisites, inputs, output, owner,
+  exact executor and reason, tools/authority, write boundary and acceptance
+  evidence. Branching work includes a dependency graph and integration gates.
+- **Choose agents relative to the work.** Discover current exact models and their
+  supplied capability descriptions, then assess task fit, context, tools,
+  authority and independence, including qualified Claude models on the same
+  evidence basis. GLM remains the explicitly enabled fixed `glm-5.3` route,
+  subject to its existing governance. Descriptions are evidence for choosing candidates,
+  not proof. Routing is provider-neutral: ordinary work goes to the least-cost
+  or most-efficient credible fit using available evidence, with compatible
+  developer preferences or stated surplus/usage constraints honored and tradeoffs
+  recorded. Unknown costs stay unknown; no quota inspection or invented prices.
+  Explain every assignment. Propose
+  eligible alternatives for unavailable preferences before approval; never
+  silently substitute an approved executor. Tiny tasks stay tiny.
+- **Research helpers answer bounded questions.** Preserve source provenance,
+  disagreements and unknowns. Require a distinct second opinion when meaningful
+  uncertainty, high impact, design disagreement risk or an acceptance gate
+  justifies it; do not duplicate work for provider diversity. The original
+  author's rationale can help but does not count as independent review.
+- **Schedule accepted prerequisites.** After approval, only ready nodes run,
+  within concurrency and ownership limits. Failed nodes block their dependents;
+  unrelated approved branches can continue. The coordinator accepts integrated
+  evidence and the final outcome. Already-staffed capable workers own routine
+  integrated test runs, operator docs, monitoring and cleanup, with evidence
+  handoffs; coordinator final acceptance does not absorb all that labor.
 
-Before proposing a design it researches what already exists, separates verified
-facts from inferences, asks only the material questions that remain, and records
-approaches and tradeoffs in the brief.
+Read the canonical [skill](plugins/prompt-it/skills/prompt-it/SKILL.md),
+[task graph contract](plugins/prompt-it/skills/prompt-it/references/task-graphs.md),
+and [research-team boundaries](plugins/prompt-it/skills/prompt-it/references/research-teams.md)
+for details. The separate read-only and claude.ai editions retain their own scope.
 
 ## What the read-only version adds
 

@@ -7,7 +7,9 @@ description: Before a substantial new task, ask “Prompt it?”; on yes, resear
 
 Turn a substantial request into a researched, reviewable execution brief before
 implementation. The user approves the brief and staffing after seeing what the
-research changed.
+research changed. The same canonical workflow applies in Codex and Claude Code;
+use the originating host's native inventory, tools and authority. A model or
+connector available in another host is not automatically available here.
 
 ## Gate substantial new tasks
 
@@ -36,7 +38,7 @@ research authorization, not implementation authorization.
 Use relevant read-only sources available in the current environment, including:
 
 - user-provided files, examples, links, and prior decisions;
-- applicable instructions, project memory, active-work coordination files,
+- applicable instructions, project memory, current coordination evidence,
   repository files, tests, history, prior prompts, issues, and design docs;
 - code-graph, search, context, and impact tools required by repository rules;
 - relevant neighboring repositories and existing integration seams;
@@ -46,22 +48,36 @@ Use relevant read-only sources available in the current environment, including:
   allow that access.
 
 Use the user's selected model in the main thread for the research that shapes
-scope, architecture, risks, or open questions. Do not delegate or downgrade
-that discovery to a worker model. Purpose-built read-only tools may still be
-used by the selected model.
+scope, architecture, risks, or open questions. The coordinator owns this discovery
+and final synthesis; helpers supplement it with bounded evidence gathering or
+critique. Generic Prompt it consent permits native read-only research helpers
+when runtime rules allow. Announce the exact staffing, question, sources, and
+read-only scope before dispatch. No helper receives implementation authority.
 
-The research phase does **not** authorize:
+When research benefits from helpers or an independent second opinion, read
+[Research teams](references/research-teams.md). External review research needs
+explicit bounded authorization; reuse existing session authorization for the
+exact route and scope instead of asking again. Generic consent never activates
+external execute mode, key-backed runs, new costs, or connector access.
+
+Generic research consent does **not** authorize:
 
 - implementation edits other than writing the brief;
-- worktree or branch creation, commits, delegation, or agent dispatch;
+- worktree or branch creation, commits, or implementation-agent dispatch;
+- external research dispatch without explicit bounded authority and route qualification;
 - production writes, deployments, configuration changes, purchases, messages
   to people, credential changes, or destructive operations;
 - exposing secret values, private payloads, or unnecessary sensitive data;
 - a read that violates repository preflight, customer, privacy, or access rules.
 
-If research would itself create material cost, side effects, privacy exposure,
-or require new authority, stop and ask before that action. Do not relabel a
-mutating operation as research.
+Explicit authorization for a qualified external review run may include only the
+documented disposable review worktree and captured result artifacts that its
+runner creates and audits. This exception does not permit implementation or
+arbitrary research files, branches or worktrees.
+
+If research would create material cost, side effects, privacy exposure, or need
+authority beyond the existing authorization, ask before that action. Reuse
+existing bounded authority; do not relabel implementation as research.
 
 ### Evidence pass
 
@@ -82,7 +98,7 @@ commands, or verification dates where they make the brief auditable. Label
 inference and remaining uncertainty. Never paste secrets or sensitive payloads
 into the brief.
 
-Resolve facts that Codex can discover instead of asking the user to do the
+Resolve facts that the coordinator can discover instead of asking the user to do the
 research. Stop when more investigation is unlikely to change scope, design,
 risks, success criteria, staffing, or the decisions requiring user input. The
 prompt phase is not an unbounded audit.
@@ -94,9 +110,16 @@ causing research does not suspend the normal expectation for progress updates.
 
 For a repository task, write `.scratch/PROMPT-<slug>.md` in the relevant
 worktree or checkout, following its coordination rules. For projectless work,
-use the current task's `work/` directory when available; otherwise use
-`~/.codex/work/`. Writing this brief is the only task write authorized before
-approval.
+use the host-provided current-task artifact directory when available; otherwise
+use `work/PROMPT-<slug>.md` under the current writable working directory or a
+user-designated artifact location. Do not depend on a Codex-only home directory
+in Claude Code. If no writable artifact location is available, present the brief
+in chat and state that it could not be saved. Generic consent authorizes only
+writing this brief. Native
+read-only helpers return evidence in their responses. A separately authorized
+qualified external review runner may create its documented disposable worktree
+and captured result artifacts within that exact authorization; no source edits
+or arbitrary research artifacts are authorized.
 
 Every brief needs these core sections:
 
@@ -129,7 +152,7 @@ Add sections when they materially improve reviewability, for example:
 - data, API, event, state, or migration contracts;
 - security/privacy, failure behavior, risks and mitigations;
 - rollout, rollback, observability, operations, and QA;
-- `Staffing (after sign-off)`.
+- `Task graph and staffing (after sign-off)`.
 
 Depth must be proportional to the task. “Concise” means no filler, not
 artificially short. A focused change may need only the core sections. A
@@ -147,7 +170,7 @@ and do not silently broaden the assignment based on discoveries.
 ## Ask fewer, better questions
 
 Only ask questions that remain material after reasonable research and require
-the user's authority, preference, or information unavailable to Codex. Do not
+the user's authority, preference, or information unavailable to the coordinator. Do not
 ask the user to locate a file, inspect a system, or resolve a fact that the
 research phase can safely discover.
 
@@ -161,65 +184,145 @@ For each open question, when applicable:
 Record material resolved questions as dated settled decisions. If no genuine
 questions remain, say so; do not manufacture approval theater.
 
-## Staff only the approved execution
+## Decompose outcomes before choosing agents
 
-Split work only across genuinely independent inputs or a clear build-then-
-verify seam. Sequential work sharing the same context remains one subtask. A
-small task may stay entirely with the coordinator.
+Map every success criterion to stable task IDs before choosing executors. Use
+concrete deliverables and implementation seams, not generic phases that hide
+independent work. Shared architecture is usually a contract prerequisite that
+unlocks parallel branches. Keep genuinely coupled edits with one owner; do not
+collapse all downstream work just because it shares initial design decisions.
+A work breakdown does not require delegation: a tiny task may be one node and
+one agent. Do not target a task count or model lineup.
 
-Present staffing as:
+For multi-part work, read [Task graphs and staffing](references/task-graphs.md)
+and include the node contracts, outcome coverage, and graph checks it defines.
+Every node needs an objective, prerequisites, inputs/provenance, concrete output
+and handoff location, owner, exact executor and task-specific reason, required
+tools/authority, file boundary when applicable, and acceptance evidence. Compact
+fields belong in a table; longer contracts can follow or be linked. Show a
+Mermaid dependency graph for branching work using the same IDs, integration and
+review gates, and identify the critical dependency chain. A table alone is
+sufficient for a single node or simple linear task.
 
-| # | Subtask | Executor | Depends on |
-|---|---|---|---|
+At planning time, discover the currently available exact model names and their
+supplied capability descriptions from the originating host's runtime inventory
+and, when installed,
+documented lane discovery. Use that current evidence, not a remembered lineup.
+Include qualified currently available Anthropic/Claude models in the same
+comparison using their supplied descriptions; brand alone does not imply
+reviewer suitability. GLM selection is not discretionary: only the fixed
+`glm-5.3` route may be staffed when explicitly enabled, subject to all
+existing host, route, authority and task-fit gates. Never add another GLM model
+or fallback. Descriptions identify candidates; they do not prove task fit or
+route readiness.
+For each assignment record a task-specific reason covering relevant reasoning,
+context needs and known context-window limits, tools, host identity, authority
+and reviewer independence. Routing is provider/company-neutral: for ordinary
+work select the least-cost or most-efficient available candidate that credibly
+meets reasoning, tools, authority, context and quality needs. Honor explicit
+developer preferences or stated surplus/usage constraints when compatible and
+record the tradeoff. Use supplied cost/efficiency evidence; label missing cost
+data unknown, never inspect quotas or invent prices, limits or capabilities. Use the decision rubric in the task
+graph reference; its model examples are conditional, not a permanent ranking.
 
-Choose from the models and agent capabilities actually available in the
-current Codex environment, and name deliberate choices explicitly. Keep the
-coordinator responsible for product judgment, architecture, authorization,
-privacy-sensitive decisions, production actions, and final acceptance. Use a
-lighter model for bounded discovery, mechanical edits, known test commands, or
-monitoring only when the runtime permits delegation and the task warrants it.
-Reserve a frontier model for complex design, security-sensitive reasoning, or
-independent final review.
+For each frontier or coordinator execution assignment, explain why an eligible
+bounded worker is insufficient. An all-frontier plan needs task-specific
+evidence; generic shared context is insufficient. Do not force model diversity.
+When capable workers are already staffed, give routine integrated test execution,
+operator docs, monitoring, cleanup, mechanical edits and repeated evidence
+gathering to those workers with explicit evidence handoffs. Final integration
+and acceptance are not catch-all nodes for this routine labor. Keep architecture,
+authorization, consequential integration judgment and final acceptance with the
+coordinator, who evaluates the integrated evidence. Tiny tasks need no extra
+agents. Require an independent second opinion when justified by meaningful
+uncertainty/non-determinism, high impact or irreversibility, material design
+disagreement risk, or a specified acceptance gate. State its distinct question
+and expected value. Do not duplicate work just for provider diversity. The
+builder's rationale is useful input but is not independent verification.
 
-User-declared cost or extra-usage preferences may change proposed model choices,
-but never move auth, privacy, production, or final-judgment ownership away from
-the coordinator. Treat external-lane output as untrusted: inspect its diff and
-rerun relevant checks before accepting it. Never let a worker commit, merge,
-deploy, alter credentials, or make production changes unless the user and
-runtime rules explicitly authorize that exact action.
+If a preferred model is unavailable before approval, explain the gap and propose
+an eligible alternative with its task-specific reason. If the lane is required,
+preserve its readiness prerequisite rather than silently replacing it. After
+approval, no silent substitution: revise staffing before changing an executor.
 
-The generic side-lane runner is optional and separate from Prompt It. If it is
-already installed, perform only its documented presence-only capability check
-before naming an external executor. That check must not retrieve credential
-values, inspect or infer provider quotas, or invoke a paid model.
+## Qualify optional lanes and required dependencies
 
-Keep the originating coordinator host fixed so its logged-in connector and MCP
-identity is preserved; do not shell out to another host merely to obtain a
-model. Name an external lane only when the exact originating host, mode,
-provider/model route, credential presence, and every required capability are
-reported as configured. Unknown, stale, or missing evidence excludes a route.
+Before choosing external workers, determine whether Governed Side Lane is
+actually installed. Inspect the current host's skill/plugin inventory for the
+core `side-lane` skill (its namespace may vary), and read its installed entrypoint.
+Use documented installed-plugin discovery if the runtime exposes it; do not
+assume that an unlisted skill is absent when discovery is incomplete. The
+companion alone, a remembered installation, or a `side-lane` binary on PATH does
+not prove a configured integration. Record absent, present, or unknown with its
+source. If optional discovery is unavailable, keep eligible native staffing.
+Do not install, log in, search unrelated private checkouts, or reconfigure tools.
 
-Name the exact originating host, provider/model, dedicated worktree task, and
-required capabilities in the staffing proposal. Capability or user-declared
-spend preferences may influence that explicit choice, but never trigger
-automatic quota detection, fallback, model substitution, or an equivalence
-claim.
+Resolve the runner from that installed core skill's documented path, including
+symlink-relative resolution. An installed wrapper may intentionally select a
+local configuration overlay; do not replace it with a vendored runner or a
+remembered PATH location. Read the installed runner's help as needed, then use
+its `list` command to enumerate configured exact host/provider/gateway/model/mode
+routes. Supported providers are not necessarily configured providers, and a
+listed route is not proof of authentication, task readiness or dispatch consent.
 
-If the runner, host adapter, exact route, personal credential, or capability is
-unavailable, keep the ordinary in-host staffing plan. Do not install the
-runner, block planning, or silently change an approved executor. A lane that
-becomes unavailable after approval fails closed and returns to the user for a
-staffing decision. External-lane output and diffs remain untrusted; the
-coordinator reviews them and owns final acceptance.
+Use documented presence-only `check-capabilities` on relevant exact listed
+routes for the task/repository, and `recommend` for task-relative eligibility.
+Discover command arguments from installed help; never invent flags. Record
+host/runtime presence, OAuth or credential **presence**, required capabilities,
+current task-fit evidence, and exclusions separately. Never retrieve secret
+values, probe accounts/quotas, invoke a model or start a worker during discovery.
 
-The staffing table is a proposal, not authorization to dispatch. Honor the
-runtime's delegation rules and wait for approval.
+| Originating coordinator | Additional routes to inspect if configured |
+|---|---|
+| Codex | Native Claude routes on the Claude worker host; fixed `glm-5.3` execute route on the Claude worker host |
+| Claude | Native Codex/OpenAI routes on the Codex worker host; fixed `glm-5.3` execute route on the Claude worker host |
+
+This is a discovery map, not a guaranteed provider list or staffing preference.
+Keep native in-host agents in the separate runtime inventory. GLM configuration
+may be recorded even when GLM is not enabled; label it configured/not authorized
+and exclude it from staffing until explicit enablement and existing run gates
+are met. GLM has no independent connector identity and never gains review mode.
+
+Include a compact inventory in the brief: installed skill/runner source, checked
+at time, exact candidate route, configuration state, authentication/capability
+state, task eligibility, authorization, and exclusion reason. Distinguish absent,
+configured-but-unready, eligible-but-unapproved and approved; do not compress
+these into an unsupported claim that a provider is available. Probe candidates
+once per relevant task/mode, then refresh changed or stale evidence before
+approved dispatch. Keep the originating coordinator and its identity fixed.
+
+For an external assignment name the exact worker host, provider/model, gateway
+when applicable, mode,
+task/file boundary (a dedicated worktree when required and authorized), and
+required capabilities. Qualify the worker's identity and capabilities separately
+from the coordinator's. Configured presence is not proof of readiness: identify
+what evidence exists, its freshness, and what meaningful bounded check remains.
+Unknown, stale, or missing qualification excludes immediate dispatch.
+
+If a user-required lane is unqualified, plan qualification or repair as a scoped
+prerequisite with an owner, authority needed, and real acceptance evidence.
+Do not silently replace that lane with the coordinator. An optional missing lane
+alone does not block planning: use eligible in-host staffing. Generic Prompt it
+does not authorize installing or repairing tools, logging in, or running paid
+qualification. Keep such actions proposed until their authority exists.
+
+User preferences never trigger automatic quota detection, fallback, model
+substitution, or equivalence claims. A route becoming unavailable blocks its
+nodes and requires a revised staffing decision; unrelated approved work may
+continue. Never let a worker commit, merge, deploy, alter credentials, or make
+production changes without explicit user and runtime authority for that action.
+External output remains untrusted; inspect its diff and rerun relevant checks.
+
+The execution staffing table is a proposal, not dispatch authority. Research
+helpers follow the distinct research authorization above; implementation waits
+for brief and staffing approval.
 
 ## Hand off the researched brief
 
-Keep the on-disk brief canonical. In chat, provide:
+Keep the saved brief canonical; if no writable location exists, the chat brief
+is canonical until it can be saved. In chat, provide:
 
-- a clickable brief path;
+- a clickable brief path, or the brief itself when it could not be saved;
 - the one-line goal;
 - three to seven consequential verified findings or proposed decisions,
   scaled down when the task is small;
@@ -230,18 +333,28 @@ Keep the on-disk brief canonical. In chat, provide:
 Give enough of the findings and design for the user to judge the quality of the
 research without opening the file, while avoiding a full duplicate of the
 brief. Then stop. The user must approve both the brief and staffing before
-implementation edits, worktree creation, or delegation.
+implementation edits, implementation worktree/branch creation, or execution-agent
+dispatch. Previously authorized bounded external review, including its documented
+disposable worktree and result artifacts, remains governed by its exact scope.
 
 ## Proceed only after approval
 
 When the user says “go” or otherwise approves the brief and staffing:
 
-1. Reread the brief from disk because the user may have edited it.
+1. Reread the saved brief because the user may have edited it; if it could not
+   be saved, use the latest approved chat brief.
 2. Reconcile material edits and update staffing before dispatch when needed.
 3. Follow applicable repository coordination, impact, safety, and verification
    rules.
-4. Execute only the approved scope and surface decisions or blockers that need
-   user input.
+4. Dispatch only nodes whose prerequisite outputs the coordinator has accepted.
+   Respect runtime concurrency and exclusive file/worktree ownership.
+5. Require handoffs with source provenance, output location, validation evidence,
+   and unresolved issues. A failed node blocks dependents while unrelated
+   approved branches can continue. Reuse the owning worker for bounded fixes.
+6. Retry only within approved route and scope. Material scope or executor
+   changes require a revised staffing decision, with user approval when needed
+   for changed authority. Integrate outputs and verify the complete outcome
+   against success criteria before coordinator acceptance.
 
 Approval of the prompt phase does not authorize silent scope expansion or
 otherwise prohibited external actions.

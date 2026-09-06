@@ -1,0 +1,40 @@
+{
+  "coordinator": {
+    "host": "codex",
+    "model": "gpt-6-astra",
+    "role": "selected coordinator"
+  },
+  "native_workers": [
+    {
+      "model": "gpt-6-astra",
+      "available": true,
+      "observed_fit": [
+        "ambiguous architecture",
+        "cross-cutting review"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "available": true,
+      "observed_fit": [
+        "bounded implementation",
+        "fixture-driven testing",
+        "documentation"
+      ]
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "available": true,
+      "observed_fit": [
+        "mechanical changes",
+        "routine result inspection"
+      ],
+      "limits": [
+        "no demonstrated complex architecture performance"
+      ]
+    }
+  ],
+  "max_workers": 3,
+  "side_lane": "not installed",
+  "evidence_note": "Supplied scenario assumptions only, not live model benchmarks or route qualification."
+}
