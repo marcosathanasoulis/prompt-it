@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -67,10 +68,12 @@ def validate() -> None:
     gate_blocks = []
     for filename in ("agents-md-gate.md", "claude-md-gate.md"):
         loader = (ROOT / "snippets" / filename).read_text(encoding="utf-8")
-        try:
-            gate_blocks.append(loader.split("```markdown\n", 1)[1].split("```", 1)[0])
-        except IndexError:
-            fail(f"missing loader block: {filename}")
+        block = re.search(r"^```markdown[ \t]*\n(.*?)^```[ \t]*$", loader,
+                          flags=re.MULTILINE | re.DOTALL)
+        if block is None:
+            fail(f"missing or unterminated loader block: {filename}")
+        gate_blocks.append("\n".join(
+            line.rstrip() for line in block.group(1).splitlines()).strip("\n"))
     if gate_blocks[0] != gate_blocks[1]:
         fail("Claude and Codex loader gate semantics must remain aligned")
 

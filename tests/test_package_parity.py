@@ -56,6 +56,25 @@ class PackageParityTests(unittest.TestCase):
         path.write_text(text)
         self.assertNotEqual(self.validate().returncode, 0)
 
+    def test_loader_line_endings_and_trailing_whitespace_are_equivalent(self):
+        path = self.root / 'snippets/claude-md-gate.md'
+        text = path.read_text().replace('```markdown\n', '```markdown  \n\n')
+        text = text.replace('\n```', '\n\n```')
+        path.write_bytes(('\r\n'.join(line + '  ' for line in text.splitlines())
+                          + '\r\n').encode())
+        result = self.validate()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_missing_or_unterminated_loader_fence_is_rejected(self):
+        path = self.root / 'snippets/claude-md-gate.md'
+        original = path.read_text()
+        for text in (original.replace('```markdown', '```text'),
+                     original.replace('\n```\n', '\n')):
+            with self.subTest(text=text):
+                self.assertNotEqual(text, original)
+                path.write_text(text)
+                self.assertNotEqual(self.validate().returncode, 0)
+
     def test_either_marketplace_pointing_at_another_package_is_rejected(self):
         for relative in ('.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json'):
             with self.subTest(marketplace=relative):
