@@ -1,5 +1,14 @@
 # Prompt It
 
+## New to using AI agents?
+
+Read **Put AI to Work**, a practical guide for people who do not code:
+[read the guide](docs/guide/guide.md) or [download the PDF](docs/guide/put-ai-to-work.pdf).
+It covers better prompts, choosing models, measurable success, improvement loops,
+desktop setup, secure connections, voice coordination, agent teams, and graphs.
+
+See [how to rebuild the PDF](docs/guide/README.md) when updating the guide.
+
 **A planning skill that asks before it plans.**
 
 When you give Codex or Claude Code a substantial new task, it stops and asks
