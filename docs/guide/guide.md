@@ -18,7 +18,30 @@ A **skill** is a reusable set of instructions that teaches an agent a repeatable
 
 As confidence grows, expand the scope one permission, service, or workflow at a time, while keeping the same habit of checking evidence.
 
-## 1. Turn a wish into an assignment
+## 1. Connect the services you actually use
+
+Make a short inventory: email, calendar, documents, storage, project tracker, and any specialized service. Then connect one service at a time through its official flow.
+
+1. Choose a reputable, relevant plugin or connector. A **plugin** adds capabilities to an AI product. A **connector** links it to a service. An **MCP** (Model Context Protocol) server is one technical way tools and data can be offered to an agent. Installation alone does not grant account access.
+2. Check the publisher, requested permissions, supported actions, and any cost.
+3. Authenticate the intended account. A browser login may differ from a plugin login; two AI products do not automatically share authentication.
+4. Verify a harmless read, such as listing calendar names or opening a test document.
+5. Where permitted, perform a reversible test, such as creating and deleting a clearly named draft. Ask before actions that affect others.
+
+If no connector exists, ask the agent to find the service's official API or provider-maintained MCP documentation. An **API** is a documented way one program asks another service to perform an allowed action. Check the publisher, scopes, cost, and whether it supports the exact action. Use a limited credential created through the service's official account page if one is truly needed. Never paste an API key into chat.
+
+### Copyable prompt 1 - connect and verify a service
+
+```text
+Help me connect [service] for [specific task]. Use official or provider-maintained
+documentation. Before I sign in, show the publisher, permissions, supported actions,
+cost considerations, and the account I should use. Then guide me through a harmless
+read test and a clearly labeled reversible test within this approval. Pause for any
+action that affects others. Distinguish connection,
+capability, and authorization. Never ask me to paste a secret into chat.
+```
+
+## 2. Turn a wish into an assignment
 
 You do not need to write a perfect specification. Ask the agent to help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
 
@@ -28,7 +51,7 @@ This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/p
 
 **Usable brief:** “Create a cleaned *copy* of `Volunteer signups.xlsx`. Standardize email addresses, flag likely duplicates without deleting them, and add a summary by event. Preserve the original worksheet and formulas. Flag rows you cannot interpret. Success means the summary totals match the nonblank source rows, the duplicate rule is documented, and I can open and understand the result.”
 
-### Copyable prompt 1 - make a brief
+### Copyable prompt 2 - make a brief
 
 ```text
 Help me turn this into an approved work brief before doing the work:
@@ -42,7 +65,7 @@ verified, inferred, or needing my decision. Do not begin execution until I appro
 
 Keep the brief somewhere durable. A **project instruction file** is a supported file that tells an agent the standing goals and preferences for a workspace. A short **handoff note** records decisions, completed checks, and next steps. Save the reasons behind a preference as well as the preference itself: “keep originals because auditors may need to compare them” is more useful than “be careful.”
 
-### Copyable prompt 2 - preserve durable context
+### Copyable prompt 3 - preserve durable context
 
 ```text
 Save my goals, preferences, and the reasons for them in this project's supported
@@ -52,9 +75,49 @@ routine, reversible work; pause only for a material scope, permission, or decisi
 change. Do not include secrets or private account details.
 ```
 
-This prompt sets expectations. The app's permission mode controls what the agent can actually do without asking; see section 5.
+This prompt sets expectations. The app's permission mode controls what the agent can actually do without asking; see section 6.
 
-## 2. Choose a model for the task, not for its marketing
+### Install Prompt It without being a coder
+
+For the hands-on work in this guide, choose the standard **`prompt-it` plugin** in either Codex or Claude Code. The repository calls this the “engineer” edition, but you do not need to write code: it helps your agent plan work, choose models, and carry out an approved brief. Choose **`prompt-it-readonly`** in Claude Code only if you want research and analysis without changes to files or systems. Install one edition per product, not both. The paste-in Claude.ai edition is for ordinary chat projects; it is not the plugin for a coding agent.
+
+**Easiest route: ask your agent to install it.** Open a local Codex task or the Code tab in Claude desktop, then paste this setup request. Installation changes the agent's setup; you can have it apply only to this project or to your personal setup across projects.
+
+```text
+Install the standard Prompt It plugin from
+https://github.com/marcosathanasoulis/prompt-it for the AI app I am using.
+Read its current README first and check whether it is already installed.
+Use the product's supported plugin installation method. Add the matching
+“Prompt it?” gate from the repository's snippets folder to my personal
+instruction file, preserving existing instructions and avoiding duplicates.
+Explain what changed and whether I need a new session. Help me verify that
+it offers planning on a substantial task and waits for my approval before
+execution. I do not code, so handle the setup and explain any step I must do.
+```
+
+**Codex installation.** The agent can run these commands in the local terminal. If `codex` is unavailable, ask it to set up the supported CLI for your platform first. These are terminal commands, not text to paste as a normal chat request:
+
+```bash
+codex plugin marketplace add marcosathanasoulis/prompt-it --ref main
+codex plugin add prompt-it@prompt-it
+```
+
+Then have the agent append the [Codex gate snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/agents-md-gate.md) to your personal `~/.codex/AGENTS.md`, or the project's `AGENTS.md` for just that project. The `~` means your home folder; let the agent resolve the right location on your system.
+
+**Claude Code installation.** In a Claude Code terminal session, enter these slash commands one at a time. They are Claude Code commands, not ordinary shell commands. If your desktop interface does not accept them, ask the agent to use the supported terminal installation flow:
+
+```text
+/plugin marketplace add marcosathanasoulis/prompt-it
+/plugin install prompt-it@prompt-it
+```
+
+Then have the agent append the [Claude Code gate snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate.md) to your personal `~/.claude/CLAUDE.md`, or the project's `CLAUDE.md`. For the read-only alternative, substitute `prompt-it-readonly@prompt-it` in the install command. Each product needs its own installation and instruction file.
+
+**Verify both parts.** The plugin provides the planning skill; the gate makes the agent offer it. Start a new task or session after installation. Ask: “Help me turn these volunteer notes into a report with a summary, action list, and checks for missing information.” It should ask **“Prompt it?”** Say **yes** to get a brief and model recommendation, review those, then say **go** when ready. On a separate substantial request, **no** should continue normally. If the question does not appear, ask the agent to check plugin discovery and the gate rather than installing duplicate copies.
+
+The [Prompt It installation instructions](https://github.com/marcosathanasoulis/prompt-it#install-in-codex) are the package-specific source of truth; see also [Codex plugins](https://learn.chatgpt.com/docs/plugins) and [Claude Code plugin installation](https://code.claude.com/docs/en/discover-plugins). Managed work accounts may require an administrator to make the plugin available.
+
+## 3. Choose a model for the task, not for its marketing
 
 A **model** is the AI system doing the reasoning or transformation. Products may offer several. The right choice depends on the task, its consequences, the tools it needs, and the evidence it must examine. There is no universal “best” or “cheapest” model.
 
@@ -70,7 +133,7 @@ As of September 2026, Codex's picker documents Astra for the hardest end-to-end 
 
 Small work stays small. Splitting “rename these headings” among several agents adds coordination, cost, and opportunities to misunderstand. Divide work only when the parts are independent and each has a clear output.
 
-### Copyable prompt 3 - select and report a model
+### Copyable prompt 4 - select and report a model
 
 ```text
 Inspect the models and tools actually available to me. Classify this task as
@@ -80,7 +143,7 @@ each part, what would make you escalate, and what evidence you need before sayin
 the result is complete. Do not claim automatic routing that this product does not support.
 ```
 
-## 3. Decide what “done” means
+## 4. Decide what “done” means
 
 Let the agent propose success criteria, but you approve them. Good criteria mix objective checks with human judgment.
 
@@ -95,7 +158,7 @@ The human quality check is different: open the result and ask, “Would a coordi
 
 Ask for evidence, not a cheerful promise. Evidence could be a list of changed sheets, before/after row counts, screenshots only when useful, a short exception list, and the actual file opened successfully. Recalculate a sample yourself. If the work affects people, money, health, law, or safety, seek qualified review.
 
-### Copyable prompt 4 - define acceptance checks
+### Copyable prompt 5 - define acceptance checks
 
 ```text
 For this task, propose measurable acceptance checks and one human quality check.
@@ -104,7 +167,7 @@ uncertain cases instead of guessing, and tell me exactly what evidence you will
 show before you declare success. I will approve the final criteria.
 ```
 
-## 4. Improve in measured loops
+## 5. Improve in measured loops
 
 Useful agent work follows a loop: plan, act, test, inspect evidence, improve, then test again. It is not “keep trying until it sounds convincing.” A retry should test a changed hypothesis.
 
@@ -127,7 +190,7 @@ Use a small scorecard. For example: totals match (pass/fail), duplicates flagged
 
 Stop when the agreed checks pass; when the retry, time, or cost limit is reached; when access is missing; or when a decision belongs to you. The agent should say which condition stopped it.
 
-### Copyable prompt 5 - run a bounded improvement loop
+### Copyable prompt 6 - run a bounded improvement loop
 
 ```text
 Work in a measured loop: plan, act, test, inspect evidence, revise, and retest.
@@ -137,7 +200,7 @@ a changed hypothesis. Stop and ask me if access is missing, progress stalls, or 
 decision requires my judgment. Do not lower the acceptance standard silently.
 ```
 
-## 5. Set up a workspace before handing over work
+## 6. Set up a workspace before handing over work
 
 Ask the agent to begin with a dedicated folder or project. It should check what exists, record versions where relevant, install only tools needed for the approved task, create a harmless test file, and run a harmless command. It should tell you what it changed.
 
@@ -160,7 +223,7 @@ These paths were checked in September 2026; use the linked official documentatio
 
 For computer-control features, use only the permissions your platform shows. In Codex, install the Computer Use server and skill through **Plugins**, then review access in **Settings > Computer use**. On macOS, grant Accessibility and Screen Recording when prompted; on Windows, keep the target app on the active desktop. Claude's Computer use control is separate under **Settings > General**. Features can be absent for an account, platform, or rollout. You handle sign-in, multifactor authentication, and operating-system confirmation prompts. See [Codex Computer Use](https://learn.chatgpt.com/docs/computer-use) and [Claude desktop](https://code.claude.com/docs/en/desktop).
 
-### Copyable prompt 6 - safe workspace setup
+### Copyable prompt 7 - safe workspace setup
 
 ```text
 Set up a dedicated workspace for this task. First inspect the current folder and
@@ -168,29 +231,6 @@ propose the minimum tools and permissions needed. Explain app permissions, OS
 permissions, service sign-in, and action authorization separately. Make routine,
 reversible setup changes, verify file creation and one harmless command, and report
 what changed. Pause only for a material scope or permission change. I will handle sign-in, MFA, and OS confirmation prompts.
-```
-
-## 6. Connect the services you actually use
-
-Make a short inventory: email, calendar, documents, storage, project tracker, and any specialized service. Then connect one service at a time through its official flow.
-
-1. Choose a reputable, relevant plugin or connector. A **plugin** adds capabilities to an AI product. A **connector** links it to a service. An **MCP** (Model Context Protocol) server is one technical way tools and data can be offered to an agent. Installation alone does not grant account access.
-2. Check the publisher, requested permissions, supported actions, and any cost.
-3. Authenticate the intended account. A browser login may differ from a plugin login; two AI products do not automatically share authentication.
-4. Verify a harmless read, such as listing calendar names or opening a test document.
-5. Where permitted, perform a reversible test, such as creating and deleting a clearly named draft. Ask before actions that affect others.
-
-If no connector exists, ask the agent to find the service's official API or provider-maintained MCP documentation. An **API** is a documented way one program asks another service to perform an allowed action. Check the publisher, scopes, cost, and whether it supports the exact action. Use a limited credential created through the service's official account page if one is truly needed. Never paste an API key into chat.
-
-### Copyable prompt 7 - connect and verify a service
-
-```text
-Help me connect [service] for [specific task]. Use official or provider-maintained
-documentation. Before I sign in, show the publisher, permissions, supported actions,
-cost considerations, and the account I should use. Then guide me through a harmless
-read test and a clearly labeled reversible test within this approval. Pause for any
-action that affects others. Distinguish connection,
-capability, and authorization. Never ask me to paste a secret into chat.
 ```
 
 ## 7. Keep secrets out of the conversation
@@ -291,7 +331,7 @@ The longest chain of dependent work sets the earliest possible finish. Parallel 
 
 ### A workflow/decision graph
 
-The improvement loop in section 4 is different: it has branches and loops. A passing test leads toward acceptance. A failing test leads to diagnosis and revision. Missing access or stalled progress leads to a human. A dependency map shows what must happen first; a workflow map shows how a case moves through decisions.
+The improvement loop in section 5 is different: it has branches and loops. A passing test leads toward acceptance. A failing test leads to diagnosis and revision. Missing access or stalled progress leads to a human. A dependency map shows what must happen first; a workflow map shows how a case moves through decisions.
 
 ### A knowledge/evidence graph
 
@@ -337,11 +377,11 @@ findings, inferences, and items needing human or qualified expert review.
 
 ## A one-page routine
 
-1. Pick one inspectable task and keep the original.
-2. Ask the agent to turn your request into a brief; approve the outcome and checks.
-3. Choose the smallest capable model and a bounded tool/permission scope.
-4. Set up a dedicated workspace and verify a harmless result.
-5. Connect one intended service through its official flow; test a harmless read.
+1. Connect one intended service through its official flow; test a harmless read.
+2. Pick one inspectable task and keep the original.
+3. Ask the agent to turn your request into a brief; approve the outcome and checks.
+4. Choose the smallest capable model and a bounded tool/permission scope.
+5. Set up a dedicated workspace and verify a harmless result.
 6. Keep credentials in a supported vault and changes in recoverable checkpoints.
 7. Run a measured loop with evidence, a retry limit, and a clear stop condition.
 8. Open the result yourself, test a real example, and make the final judgment.

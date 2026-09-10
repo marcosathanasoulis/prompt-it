@@ -386,6 +386,7 @@ def build_story(source: str, s, page_map: dict):
     diagram_kinds = ["loop", "task", "evidence"]
     diagram_count = 0
     in_code = False
+    code_kind = "text"
     code: list[str] = []
     in_references = False
     reference_items: list[str] = []
@@ -424,12 +425,14 @@ def build_story(source: str, s, page_map: dict):
             continue
         if line.startswith("```"):
             if in_code:
-                prompt = Paragraph(escape(" ".join(x.strip() for x in code)), s["prompt"])
+                formatted = "<br/>".join(escape(x) for x in code) if code_kind == "bash" or (code and code[0].startswith("/plugin ")) else escape(" ".join(x.strip() for x in code))
+                prompt = Paragraph(formatted, s["prompt"])
                 add(boxed(prompt, PROMPT_BG, TEAL))
                 code = []
                 in_code = False
             else:
                 in_code = True
+                code_kind = line[3:].strip()
             i += 1
             continue
         if in_code:
