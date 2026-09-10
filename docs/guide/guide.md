@@ -41,7 +41,7 @@ action that affects others. Distinguish connection,
 capability, and authorization. Never ask me to paste a secret into chat.
 ```
 
-## 2. Turn a wish into an assignment
+## 2. Have AI help write the prompt
 
 You do not need to write a perfect specification. Ask the agent to help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
 
@@ -200,11 +200,31 @@ a changed hypothesis. Stop and ask me if access is missing, progress stalls, or 
 decision requires my judgment. Do not lower the acceptance standard silently.
 ```
 
-## 6. Set up a workspace before handing over work
+## 6. Have AI get your computer ready
 
-Ask the agent to begin with a dedicated folder or project. It should check what exists, record versions where relevant, install only tools needed for the approved task, create a harmless test file, and run a harmless command. It should tell you what it changed.
+The goal is to give your AI the tools and access it needs to do useful work for you. You do not need to know how to install software, configure a project, or run technical commands. Tell the agent what you want to accomplish and ask it to prepare and test the setup.
 
-Four permissions are easy to confuse:
+The agent should check what is already installed, organize a separate folder for the task, add only the tools it needs, and prove the setup works with a harmless test. A **workspace** simply means the folder or project where it keeps this work. Ask it to preserve your existing files and explain what it changed.
+
+### Copyable prompt 7 - have AI get your computer ready
+
+```text
+Help me get my computer ready so you can do this task for me: [my goal].
+I am not a coder. Check what is already available, create or choose a separate
+folder for this work, and set up the tools and connections you need. Preserve
+my existing files and settings. Do the routine, reversible setup yourself and
+explain what you changed in plain language. When you need more access, explain
+what it allows and why. Guide me one step at a time through any sign-in or
+permission prompt that only I can complete. Never ask me to paste a password
+or API key into chat. Test that you can create a sample file and perform a
+harmless action needed for my task. Tell me what works and what is still blocked.
+```
+
+**Your part is small but important:** describe the outcome, choose the intended account, and complete sign-ins, verification codes, or permission prompts that the app reserves for you. Have the agent do the rest within the agreed scope. If it cannot perform a step, ask for one clear instruction at a time rather than a long technical checklist.
+
+### Understand what you are allowing
+
+You do not need to configure everything yourself. Ask the agent to explain these four kinds of permission when they matter:
 
 1. **App permission:** what the AI app allows, such as read-only, approval-based changes, or a broader file/network mode.
 2. **Operating-system permission:** what macOS or Windows allows an app to control or see, such as Accessibility or Screen Recording.
@@ -213,25 +233,15 @@ Four permissions are easy to confuse:
 
 They are separate. A broad app mode does not sign you into a service, and a connected account does not authorize every action. Current Codex documentation describes optional Auto-review and Full access modes; Full access can allow broad file changes and network commands without per-action approval. It does not replace operating-system or service authorization. Claude Code documentation describes a Bypass permissions setting and recommends it only in isolated containers or virtual machines. Treat broad modes as an informed choice, not a default.
 
-### A concrete desktop start
+### Settings reference: let the agent guide you
 
-These paths were checked in September 2026; use the linked official documentation if your screen differs.
+You can give the agent the references below and ask it to make the supported changes. If a setting needs your click, have it explain exactly where to click and why. These paths were checked in September 2026; the agent should check the linked official documentation if your screen differs.
 
 **In ChatGPT desktop / Codex:** choose **Codex**, then select the project folder you intend to use. The default **Ask for approval** already allows workspace edits and routine local commands. Its name does not mean it asks about every step: it handles routine work inside the workspace and requests approval when the permission boundary requires it. To make **Approve for me** available, go to **Settings > General > Permissions** and enable **Auto-review**. To make **Full access** available, enable it there too. Then select the desired mode below the composer. Enabling a mode only puts it in the picker; it does not select it for an existing chat. Auto-review can make mistakes. Full access can edit files beyond the workspace and run network commands without asking, so use it only when you understand the boundary and the task requires it. See [Codex permission modes](https://learn.chatgpt.com/docs/permission-modes).
 
 **In Claude desktop:** open the **Code** tab and select the folder you intend to work in. Choose the mode next to Send. **Settings > Claude Code** controls modes where they are offered. The documented Bypass permissions mode is recommended only for an isolated virtual machine or container. For ordinary work, stay with the workspace and approval mode that fits the task. See [Claude desktop](https://code.claude.com/docs/en/desktop).
 
 For computer-control features, use only the permissions your platform shows. In Codex, install the Computer Use server and skill through **Plugins**, then review access in **Settings > Computer use**. On macOS, grant Accessibility and Screen Recording when prompted; on Windows, keep the target app on the active desktop. Claude's Computer use control is separate under **Settings > General**. Features can be absent for an account, platform, or rollout. You handle sign-in, multifactor authentication, and operating-system confirmation prompts. See [Codex Computer Use](https://learn.chatgpt.com/docs/computer-use) and [Claude desktop](https://code.claude.com/docs/en/desktop).
-
-### Copyable prompt 7 - safe workspace setup
-
-```text
-Set up a dedicated workspace for this task. First inspect the current folder and
-propose the minimum tools and permissions needed. Explain app permissions, OS
-permissions, service sign-in, and action authorization separately. Make routine,
-reversible setup changes, verify file creation and one harmless command, and report
-what changed. Pause only for a material scope or permission change. I will handle sign-in, MFA, and OS confirmation prompts.
-```
 
 ## 7. Keep secrets out of the conversation
 
@@ -381,7 +391,7 @@ findings, inferences, and items needing human or qualified expert review.
 2. Pick one inspectable task and keep the original.
 3. Ask the agent to turn your request into a brief; approve the outcome and checks.
 4. Choose the smallest capable model and a bounded tool/permission scope.
-5. Set up a dedicated workspace and verify a harmless result.
+5. Ask AI to prepare your computer for the task and show that the setup works.
 6. Keep credentials in a supported vault and changes in recoverable checkpoints.
 7. Run a measured loop with evidence, a retry limit, and a clear stop condition.
 8. Open the result yourself, test a real example, and make the final judgment.
