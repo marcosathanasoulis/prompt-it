@@ -18,6 +18,84 @@ A **skill** is a reusable set of instructions that teaches an agent a repeatable
 
 As confidence grows, expand the scope one permission, service, or workflow at a time, while keeping the same habit of checking evidence.
 
+## Quick Start Prompt
+
+**Paste the whole prompt below into a local Codex task or Claude Code session. In Claude Desktop, choose the Code tab. Use the coding agent, not ordinary Chat or Cowork.** You do not need to fill in technical details first: it will ask. If you have not installed either product, install its official desktop app and sign in first.
+
+This is one prompt, even where it continues onto another PDF page. It asks the agent to do the setup, explain the decisions you own, and complete a small first task. Broad access is optional: approve it only after the agent explains what it permits. The prompt itself cannot grant permissions or override your organization's controls. Section 6 explains the settings in more detail.
+
+```text
+Help me set up this coding agent to do useful work for me. I am not a coder.
+Use plain English, do the technical work yourself, and ask a few short questions
+at a time. Confirm that we are in local Codex or Claude Code, not ordinary Chat
+or Cowork; if not, guide me to the correct place before proceeding.
+
+1. Ask about my computer, the work I want help with, services and accounts I use,
+privacy needs, budget, and one small first task. Inspect the existing setup
+without exposing private data. Check current official instructions when needed.
+
+2. Connect my services first. Help me inventory everything I regularly use and
+sign in through official plugins, connectors, or MCP connections. Prioritize
+what my first task needs, then work through the rest I approve. Explain each
+publisher, permission, and cost; test access harmlessly. If a connection is
+missing, find an official API or trustworthy MCP server and help configure it.
+
+3. Offer a very broad access setup so you can work with minimal interruptions.
+Explain the actual reach and risks before asking me to approve it. Walk me
+through enabling AND selecting Codex Full access, if supported and approved.
+In Claude Code, explain Auto and explicit permissions; explain that Bypass
+permissions is intended for isolated containers or virtual machines, and help
+prepare that environment if I choose it. Check current menus and availability.
+Guide me through approved folder, network, browser, computer-control, and OS
+permissions, plus service authorizations. Tell me exactly which clicks, sign-ins,
+or administrator steps require me. Respect organization restrictions. Record
+our agreed scope and how to revoke access. After approval, proceed with routine
+work inside it without repeatedly asking. Get explicit standing or specific
+authorization for sending messages, publishing, spending, deleting originals,
+or changing live shared systems. Broad technical access alone is not that consent.
+
+4. Keep secrets out of chat, ordinary files, logs, and Git. Prefer account sign-in
+or managed identity. If a key is needed, guide me to its official creation page
+and enter it directly into a supported secure store: macOS Keychain, Windows
+Credential Manager, or a cloud secret manager such as Google Secret Manager.
+Configure retrieval without printing the value; verify access with a harmless test.
+
+5. Set up a dedicated working folder and Git version history, preserving originals
+and my existing settings. Exclude secrets and private material from commits.
+Commit small completed steps often, show me how to undo a change, and explain
+which files or external actions Git cannot restore. Do not publish my files
+or create a public repository without my approval.
+
+6. Help install the standard hands-on Prompt It skill from
+https://github.com/marcosathanasoulis/prompt-it for this product. Follow its
+current instructions, include the required instruction-file gate, preserve
+existing instructions, avoid duplicates, and test that the gate works.
+
+7. Help write my first task's prompt. Propose a brief with inputs, constraints,
+measurable success checks, and a time/cost/retry limit; get my approval. Choose
+the least expensive capable available model for each part. Reserve stronger
+models for harder work or review, and escalate when evidence warrants it.
+Tell me if you cannot change models yourself. Use agent teammates only when
+they add value; agree roles, permissions, cost, and one owner for each output.
+
+8. Work, test the actual result, diagnose failures, improve, and test again until
+our checks pass or the agreed limit is reached. Do not weaken the checks to
+claim success. Verify sources and calculations; use independent review where
+useful. For tangled steps, documents, or records, suggest a simple relationship
+map only when it solves a concrete problem. Start small and show the evidence.
+
+9. If I want ongoing spoken coordination, check for genuine conversational voice
+in this product and help enable it. Distinguish that from dictation and explain
+session limits. Consider Governed Side Lane for a separate model's bounded work,
+and Bring Me Back for supported Codex session recovery; explain and install only
+what I choose from the public repositories linked in Prompt It's guide.
+
+10. Finish with a setup checklist, verified capabilities, remaining blockers,
+actual task results, and checks I can repeat myself. Save non-secret preferences,
+permissions, decisions, and a recovery note in supported project instructions.
+Show me the finished work and ask me to evaluate it. Begin with your first questions.
+```
+
 ## 1. Connect the services you actually use
 
 Make a short inventory: email, calendar, documents, storage, project tracker, and any specialized service. Then connect one service at a time through its official flow.
@@ -321,11 +399,15 @@ artifact at a time. Include handoff notes, a review gate, and a plan for resolvi
 conflicting findings. Do not assume agents share memory, accounts, or access.
 ```
 
-## 11. Think in graphs: draw relationships before they surprise you
+## 11. Help AI connect the dots
 
-A graph is simply a map of **nodes** (things or steps) and **edges** (their connections). You can draw one on paper or ask an agent for a table; no graph database or special framework is required.
+“Graph” can mean several different things in AI. The useful idea is a **map of connections**: which step comes next, where a number came from, or which documents describe the same project. You do not need to learn the machinery. Tell the agent the problem and ask it to choose the simplest useful approach. Often a table or checklist is enough.
 
-### A task/dependency graph
+### Keep a multi-step job moving
+
+**When:** a recurring job has handoffs, decisions, retries, or interruptions. For example, preparing a monthly report requires collecting figures, checking them, drafting, and getting approval. A workflow map helps the agent know what to do next, what must wait, and where to resume. The loop in section 5 is one example; [LangGraph's documentation](https://docs.langchain.com/oss/python/langgraph/graph-api) describes how software can run these steps and decisions.
+
+**Ask AI:** “Map this job into steps. Show what can happen together, what must wait, and what happens if a check fails. Save progress so we can resume without repeating completed work.”
 
 ```mermaid
 flowchart LR
@@ -337,13 +419,33 @@ flowchart LR
   V --> A[Human acceptance]
 ```
 
-The longest chain of dependent work sets the earliest possible finish. Parallel research only helps when the draft does not need to wait for a missing decision.
+A drawing helps people understand the plan. Having the agent build a working, resumable process is a separate task that needs testing.
 
-### A workflow/decision graph
+### Find out where a number came from
 
-The improvement loop in section 5 is different: it has branches and loops. A passing test leads toward acceptance. A failing test leads to diagnosis and revision. Missing access or stalled progress leads to a human. A dependency map shows what must happen first; a workflow map shows how a case moves through decisions.
+**When:** two reports disagree, or you cannot explain a total. A lineage map traces a number back through calculations to its original rows or source system. It can also show which reports may change if an input changes. [DataHub's lineage guide](https://docs.datahub.com/docs/features/feature-guides/lineage) illustrates this approach.
 
-### A knowledge/evidence graph
+**Ask AI:** “Trace this total back to the source records and show the formulas, filters, dates, and definition used. Explain why it differs from the other report, and flag any missing evidence.”
+
+### Recognize the same person or organization across records
+
+**When:** your contact list, sign-up sheet, and billing system use different names or IDs for the same person. Matching records, called entity resolution, can prevent double-counting and misleading connections. Do this before building a larger relationship map. [Neo4j's introduction](https://neo4j.com/blog/graph-data-science/graph-data-science-use-cases-entity-resolution/) explains how matching can use connected information.
+
+**Ask AI:** “Work on a copy. Suggest which records describe the same person or organization, explain each match, and put uncertain cases in a review list. Do not merge or delete them without approval.”
+
+### Answer questions that span many documents
+
+**When:** you need to connect evidence scattered across notes, contracts, and reports: “Which promises to this customer are still open?” or “What themes recur across our project reviews?” GraphRAG combines document search with a map of related people, topics, and facts. It can focus on one subject and its connections or summarize themes across a collection. [Microsoft's query guide](https://microsoft.github.io/graphrag/query/overview/) describes these options.
+
+**Ask AI:** “Try ordinary search first. If it misses connections needed for these three questions, test a small document-and-relationship map. Cite the source for each answer and compare quality, cost, and update effort before expanding.”
+
+A combined search-and-map approach is worth testing, not assuming superior. [Research on practical GraphRAG](https://arxiv.org/abs/2507.03226) reports benefits in specific evaluations; it does not prove every document collection needs it. For one document or a simple lookup, the setup may add little value.
+
+### Keep facts consistent and checkable
+
+**When:** a shared directory or project record uses “owner,” “customer,” or “location” inconsistently. Agreeing the kinds of things and connections the agent may record gives everyone a common vocabulary. Attach sources and dates so a neat-looking map does not become unsupported “truth.”
+
+**Ask AI:** “Propose simple categories and clear relationship names for this information. Keep a source and checked date for each claim, flag contradictions, and show me a small sample before organizing the rest.”
 
 ```mermaid
 flowchart LR
@@ -353,17 +455,43 @@ flowchart LR
   D --> O
 ```
 
-A claim can link to a source, date, owner, related decision, and affected output. That map helps answer “What supports this?” and “What else must I revisit if this source changes?” A stored connection can still be wrong or stale; structure does not prove truth or causation.
+### Remember what changed
 
-### Copyable prompt 12 - draw and maintain the map
+**When:** people change roles, preferences change, or project decisions supersede earlier ones. A dated memory map distinguishes “was true then” from “is true now.” Tools such as [Graphiti](https://help.getzep.com/graphiti/getting-started/overview) support changing relationships and their history. A dated project note may be enough for a small job.
+
+**Ask AI:** “Keep a source-backed record of the project facts I approve. Record when each was true, preserve the history of changes, and recheck stale facts before using them. Let me correct or remove entries.”
+
+### Check what a software change might affect
+
+**When:** your agent is changing a website, app, or automation, even if you cannot read its code. A code dependency map helps it find connected parts that need checking.
+
+**Ask AI:** “Before changing this, trace what uses it and what it depends on. Explain the likely effects in plain English, then test the affected behavior. Treat the map as a lead to investigate, not proof that nothing else can break.”
+
+### Find useful patterns in connected records
+
+**When:** connections matter more than individual rows: shared suppliers, related resources, or unusually connected transactions. Graph analysis can help identify groups or suggest links; specialized graph machine learning is sometimes useful at larger scale. [Neo4j's community-detection documentation](https://neo4j.com/docs/graph-data-science/current/algorithms/community/) describes methods for finding groups.
+
+**Ask AI:** “Show patterns in these connected records and explain the evidence. Compare with a simple spreadsheet analysis first. Treat unusual connections as questions for review, not proof of misconduct or a reliable prediction.”
+
+### Help people find related content
+
+**When:** readers struggle to navigate a library of articles, courses, or resources. A topic-to-subtopic-to-resource map can organize navigation and related suggestions.
+
+**Ask AI:** “Group these resources by the questions readers have. Suggest clear topics, useful related links, and gaps. Check a sample with me before applying it. If structured website labels would help, propose them separately.”
+
+Organizing content can make it easier to use. It does not guarantee search rankings or that an AI answer engine will recommend it.
+
+### Copyable prompt 12 - choose a useful connection map
 
 ```text
-Create a simple task, decision, and evidence map for [project]. List nodes and
-connections, dependencies, owners, model choices, handoff evidence, review gates,
-and a bounded retry path. Mark what can run in parallel and what must wait. Keep
-the map updated when a decision, source, or dependency changes. Do not imply the
-map schedules, shares access, or verifies work automatically.
+Here is my problem: [describe it]. Would a simple map of steps, sources, records,
+or relationships help? Explain when and why, using my example. Compare it with
+a checklist, spreadsheet, or ordinary search before proposing special tools.
+Build a small sample only within our approved scope. Define how we will measure
+improvement, show the evidence, and identify who will maintain it when facts change.
 ```
+
+**Start with the problem.** Map a recurring workflow first if steps get lost. Trace sources if numbers cannot be trusted. Resolve duplicate identities before connecting lots of records. Try GraphRAG only for specific questions that simpler search handles poorly. Every maintained map needs an owner, a refresh plan, and a way to correct errors.
 
 ### Where this appears to be heading
 

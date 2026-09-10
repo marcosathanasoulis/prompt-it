@@ -137,7 +137,7 @@ def section_heading(title: str, number: str | None, key: str, s) -> Table:
 
 
 def boxed(flowable, background, bar, pad=10) -> Table:
-    t = Table([[flowable]], colWidths=[CONTENT_W])
+    t = Table([[flowable]], colWidths=[CONTENT_W], splitInRow=1)
     t.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), background),
         ("LINEBEFORE", (0, 0), (0, -1), 3, bar),
@@ -425,7 +425,7 @@ def build_story(source: str, s, page_map: dict):
             continue
         if line.startswith("```"):
             if in_code:
-                formatted = "<br/>".join(escape(x) for x in code) if code_kind == "bash" or (code and code[0].startswith("/plugin ")) else escape(" ".join(x.strip() for x in code))
+                formatted = "<br/>".join(escape(x) for x in code) if code_kind == "bash" or (code and code[0].startswith("/plugin ")) else "<br/><br/>".join(escape(" ".join(part.split())) for part in "\n".join(code).split("\n\n"))
                 prompt = Paragraph(formatted, s["prompt"])
                 add(boxed(prompt, PROMPT_BG, TEAL))
                 code = []
