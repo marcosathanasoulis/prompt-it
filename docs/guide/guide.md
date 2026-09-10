@@ -6,6 +6,8 @@
 
 **Setup reference checked September 2026.** AI products, plans, and settings change quickly. When a screen in this guide looks different from yours, ask the agent to check the current official documentation before you change a setting.
 
+## Start here
+
 AI is useful long before you know how to program. It can help turn a folder of notes into a report, tidy a spreadsheet, prepare a presentation, compare options, investigate a broken process, or organize copies of files. The useful distinction is between a chat that gives advice and an **agent**: software that can use selected tools to carry out parts of the work.
 
 An agent still needs a clear assignment, appropriate access, and a person who decides what is acceptable. This guide gives you a repeatable way to provide all three.

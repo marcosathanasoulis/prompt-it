@@ -7,4 +7,6 @@ python3 -m pip install -r requirements.txt
 python3 build_pdf.py
 ```
 
-The build uses ReportLab and standard PDF fonts, so it does not depend on an author-specific filesystem path or a proprietary font. The PDF contains selectable text, clickable links, page numbers, and embedded vector diagrams. Render it with Poppler or another PDF viewer and inspect every page after changing copy or layout.
+The build uses ReportLab and standard PDF fonts, so it does not depend on an author-specific filesystem path or a proprietary font. The PDF contains selectable text, clickable links, page numbers, a cover contents list with page numbers, a PDF outline for navigation, and embedded vector diagrams. The build runs twice: the first pass records where each section starts, and the second pass prints those page numbers on the cover. Render it with Poppler or another PDF viewer and inspect every page after changing copy or layout.
+
+Layout conventions in `build_pdf.py`: each numbered `##` heading becomes a section with a badge and a running header; `### Copyable prompt N - title` becomes a labeled prompt card whose text is one selectable paragraph; `>` blockquotes become callouts; ` ```mermaid ` blocks are replaced, in order, by the three vector diagrams; and the bullet list under "References" is set in two columns.
