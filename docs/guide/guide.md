@@ -123,7 +123,7 @@ capability, and authorization. Never ask me to paste a secret into chat.
 
 ## 2. Have AI help write the prompt
 
-You do not need to write a perfect specification. Ask the agent to help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
+You do not need to write a perfect specification. Rather than say "Do X" you say "Help me write the prompt to do X". So you ask the agent to help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
 
 This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/prompt-it), a public reusable planning skill. Its core idea is simple: for a substantial task, research and clarify first; approve a short plan; then do the work. You can use the same pattern without installing anything. Its no-install Claude.ai edition can be pasted into project instructions; its Codex and Claude Code editions add a reusable skill and a small gate that asks whether you want planning first.
 
@@ -199,7 +199,7 @@ The [Prompt It installation instructions](https://github.com/marcosathanasoulis/
 
 ## 3. Choose a model for the task instead of defaulting to a frontier model
 
-A **model** is the AI system doing the reasoning or transformation. Products may offer several. The right choice depends on the task, its consequences, the tools it needs, and the evidence it must examine. There is no universal “best” or “cheapest” model.
+A **model** is the AI system doing the reasoning or transformation. Typically when you use AI it starts with the latest and greatest "frontier" model, like GPT 6 or Fable 5.1. But these are also the most expensive models.  And you usually don't need the most expensive model for a task. OpenAI and Anthropic offer many models and the price of the cheapest can be 100x less than the most expensive. The right choice depends on the task, its consequences, the tools it needs, and the evidence it must examine. There is no universal “best” or “cheapest” model.
 
 | Task shape | Sensible starting point | Escalate when |
 |---|---|---|
