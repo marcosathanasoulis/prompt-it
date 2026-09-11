@@ -332,7 +332,7 @@ def draw_page(canvas, doc):
     canvas.drawString(MARGIN, y_rule + 6, doc.current_section.upper())
     canvas.setFillColor(NAVY)
     canvas.setFont("Helvetica-Bold", 8)
-    canvas.drawRightString(PAGE_W - MARGIN, y_rule + 6, "PUT AI TO WORK")
+    canvas.drawRightString(PAGE_W - MARGIN, y_rule + 6, "PUT AGENTIC AI TO WORK")
     canvas.setFont("Helvetica", 9)
     canvas.setFillColor(SLATE)
     canvas.drawCentredString(PAGE_W / 2, 34, str(doc.page))
