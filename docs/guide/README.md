@@ -1,4 +1,4 @@
-# Put AI to Work - build notes
+# Put Agentic AI to Work - build notes
 
 `guide.md` is the editable source. `build_pdf.py` turns it into the public PDF.
 

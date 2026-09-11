@@ -2,7 +2,7 @@
 
 ## New to using AI agents?
 
-Read **Put AI to Work**, a practical guide for people who do not code:
+Read **Put Agentic AI to Work**, a practical guide for people who do not code:
 [read the guide](docs/guide/guide.md) or [download the PDF](docs/guide/put-ai-to-work.pdf).
 It covers better prompts, choosing models, measurable success, improvement loops,
 desktop setup, secure connections, voice coordination, agent teams, and graphs.
