@@ -8,6 +8,10 @@
 
 ## Start here
 
+This guide is for people who want to dive into **agentic AI**: AI that can do useful work for you, using tools to create files, build things, and carry out tasks. You do not need to be a coder. You will learn how to give an agent a clear assignment and set it up with the connections, instructions, and checks that make its help more reliable over time.
+
+**Want to get started without reading everything?** Jump to the **Quick Start Prompt** below and paste the whole thing into Codex or Claude Code. It asks the agent to guide your setup and help complete a small first task. Come back to the rest of the guide as questions arise.
+
 AI is useful long before you know how to program. It can help turn a folder of notes into a report, tidy a spreadsheet, prepare a presentation, compare options, investigate a broken process, or organize copies of files. The useful distinction is between a chat that gives advice and an **agent**: software that can use selected tools to carry out parts of the work.
 
 An agent still needs a clear assignment, appropriate access, and a person who decides what is acceptable. This guide gives you a repeatable way to provide all three.
@@ -17,6 +21,54 @@ A **skill** is a reusable set of instructions that teaches an agent a repeatable
 > **Start small.** Pick one task whose result you can inspect in under an hour: clean a copy of a spreadsheet, outline a report from supplied notes, or create a draft folder structure. You will learn more from a completed, checked task than from an ambitious experiment with no finish line.
 
 As confidence grows, expand the scope one permission, service, or workflow at a time, while keeping the same habit of checking evidence.
+
+## Seven things you could try
+
+Start with something you already wish were done. These examples show the kind of result you can ask for; the agent should check its available tools and access before promising to deliver it. Each “Try saying” prompt is a starting point you can adapt.
+
+### Turn a messy folder into something useful
+
+Give the agent a folder of meeting notes, PDFs, and half-finished drafts. Ask for an organized copy, a searchable index linking back to the files, and a short summary of decisions and unfinished work. The result is a collection you can actually use, with uncertain dates or conflicting versions flagged for review.
+
+**Try saying:** “Turn this folder into an organized project pack with an index, a summary, and an action list. Work on copies, preserve the originals, and link each decision to its source. Show me a sample before organizing the rest.”
+
+### Build your own little app
+
+A small app can solve an everyday annoyance: tracking books you lend, planning meals from favorite recipes, or keeping a packing checklist for different trips. Describe what you want to do, and have the agent build a working first version you can open and try. You can request changes in ordinary language.
+
+**Try saying:** “Build a simple app to track books I lend: title, borrower, date, and whether it came back. Start with a private version I can try on my computer. Test adding, editing, and returning a book, and check that entries survive reopening it.”
+
+### Give your small organization useful tools
+
+A club, neighborhood group, or small nonprofit may need a volunteer rota, equipment checkout system, or event signup tool. An agent can help turn that need into a usable prototype, with instructions another volunteer can follow. Agree who can see and change information before using real member data.
+
+**Try saying:** “Help our community group manage volunteer shifts. Build a prototype using sample names, show unfilled shifts and double bookings, and write a one-page handover guide. Let two volunteers test it before we decide how to share it.”
+
+### Keep watch for changes you care about
+
+Have an agent help set up a recurring check for a changed event date, a new grant opportunity, or an update to a page you follow. A useful result includes the source, what changed, and why it matches your criteria. Ongoing checks need a supported scheduler and notification route; an ordinary chat promise is not a running monitor.
+
+**Try saying:** “Help me set up a weekly check of these community grant pages. Tell me about new opportunities that match our location and project, with links and deadlines. Confirm where the check runs, test the notification, and show me how to pause it. Stay quiet when nothing relevant changes, but tell me if checks fail.”
+
+### Coordinate several jobs by voice while doing chores or traveling
+
+While folding laundry, you could ask for progress on a report, start a separate spreadsheet cleanup, and redirect an app-building task in the same spoken conversation. In supported Codex voice sessions, the coordinator can start and check tasks and relay instructions. Phone access requires a supported remote setup connected to your desktop; availability and session limits vary. See section 9 and [OpenAI's voice guide](https://learn.chatgpt.com/docs/features/voice).
+
+Set up and test hands-free access before traveling. If driving, keep attention on the road and defer screen checks, approvals, and anything distracting until safely parked.
+
+**Try saying:** “While I do chores, coordinate these three approved jobs: organize my notes, clean the spreadsheet copy, and build the book tracker. Keep their outputs separate. Give me a short spoken update when I ask, and save anything that needs visual review until I am back at my desk.”
+
+### Make a spreadsheet you can actually use
+
+Turn scattered signups or an awkward export into a clear workbook with consistent columns, filters, and a summary. The agent can build the formulas and explain them. Ask it to reconcile the totals and flag uncertain records so the finished spreadsheet is useful as well as tidy.
+
+**Try saying:** “Make a cleaned copy of this event signup sheet. Flag possible duplicates, summarize attendance by session, and highlight missing information. Preserve the source, explain the formulas, and check that every signup is accounted for.”
+
+### Rescue an abandoned project
+
+An unfinished family history, website, or workshop plan often stalls because returning to it feels harder than starting over. Give the agent the existing materials and ask it to reconstruct what is done, what is missing, and the smallest useful next deliverable. Have it finish that piece within a clear limit.
+
+**Try saying:** “Help me restart this unfinished workshop. Read the notes and drafts, separate recorded decisions from your suggestions, and propose one useful piece you can finish in an hour. Once I approve it, complete that piece and leave a clear next-step note.”
 
 ## Quick Start Prompt
 

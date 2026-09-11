@@ -389,6 +389,7 @@ def build_story(source: str, s, page_map: dict):
     code_kind = "text"
     code: list[str] = []
     in_references = False
+    in_examples = False
     reference_items: list[str] = []
     section_count = 0
 
@@ -458,13 +459,19 @@ def build_story(source: str, s, page_map: dict):
                 key = f"section-{section_count}"
                 sections.append((key, number, clean))
                 in_references = clean.lower().startswith("references")
-                if len(sections) > 1:
+                in_examples = clean == "Seven things you could try"
+                if in_examples or clean == "Quick Start Prompt":
+                    body.append(PageBreak())
+                elif len(sections) > 1:
                     body.append(CondPageBreak(2.0 * inch))
                 if clean.startswith("Before you press"):
                     whole = []  # short checklist: heading, intro, table and note stay together
                 pending.append(section_heading(clean, number, key, s))
         elif line.startswith("### "):
             title = line[4:].strip()
+            if in_examples:
+                close_whole()
+                whole = []  # keep each example with its short starter prompt
             num, label = split_prompt_heading(title)
             if num:
                 pending.append(Paragraph(f"COPYABLE PROMPT {num}", s["tag"]))
