@@ -60,8 +60,10 @@ and enter it directly into a supported secure store: macOS Keychain, Windows
 Credential Manager, or a cloud secret manager such as Google Secret Manager.
 Configure retrieval without printing the value; verify access with a harmless test.
 
-5. Set up a dedicated working folder and Git version history, preserving originals
-and my existing settings. Exclude secrets and private material from commits.
+5. Set up a dedicated working folder, preserving originals and my existing
+settings. Offer optional source control with Git: explain it as a history of
+changes that you will manage for me. If I choose it, set it up and use it.
+Exclude secrets and private material from commits.
 Commit small completed steps often, show me how to undo a change, and explain
 which files or external actions Git cannot restore. Do not publish my files
 or create a public repository without my approval.
@@ -195,7 +197,7 @@ Then have the agent append the [Claude Code gate snippet](https://github.com/mar
 
 The [Prompt It installation instructions](https://github.com/marcosathanasoulis/prompt-it#install-in-codex) are the package-specific source of truth; see also [Codex plugins](https://learn.chatgpt.com/docs/plugins) and [Claude Code plugin installation](https://code.claude.com/docs/en/discover-plugins). Managed work accounts may require an administrator to make the plugin available.
 
-## 3. Choose a model for the task, not for its marketing
+## 3. Choose a model for the task instead of defaulting to a frontier model
 
 A **model** is the AI system doing the reasoning or transformation. Products may offer several. The right choice depends on the task, its consequences, the tools it needs, and the evidence it must examine. There is no universal “best” or “cheapest” model.
 
@@ -343,17 +345,21 @@ suspected, give me the provider-specific rotation and revocation steps.
 
 ## 8. Make progress recoverable
 
-**Git** records versions of files. A **commit** is a named checkpoint. A **branch** is a separate line of work that can be reviewed before it joins another. Git is valuable for source files, notes, and editable assets, but it cannot unsend an email, reverse a purchase, undo a database change, or replace an off-device backup.
+**Source control** is a way to keep a history of changes to files. Think of it as labeled save points: your agent can compare versions, see what changed, and return to an earlier version when something goes wrong. It is useful for documents, notes, websites, and other project files as well as code.
 
-Before a substantial agent run, make a clean checkpoint. Save every useful improvement in a meaningful checkpoint, keeping generated PDFs beside editable source. Keep secrets and unnecessary personal data out of version history. For experiments or concurrent writers, use a separate branch or isolated working copy. An isolated Git working copy prevents writers from colliding on tracked files; it is **not** an operating-system security sandbox, and `git status` does not audit external actions.
+**This is optional, but a good idea for ongoing work.** You do not need to learn commands or manage it yourself. Ask your agent to set it up and use it in the background. **Git** is a common source-control tool; a **commit** is simply a saved checkpoint. Your agent can make frequent, small commits with clear labels, so useful progress is easy to recover.
 
-When recovering, first identify the exact checkpoint you want. Ask what restoration discards, copy out work you want to keep, and only then restore. Do not use a dramatic recovery command merely because an agent suggested it.
+Tell the agent to preserve originals, save editable files alongside finished outputs such as PDFs, and keep secrets and unnecessary personal data out of the history. If it wants to try an experiment, it can manage a separate line of work, called a **branch**, so the experiment can be reviewed before it joins the main version. You only need to decide which result you want to keep.
+
+Git helps recover files it has recorded. It cannot unsend an email, reverse a purchase, undo a change in an external database, or replace a separate backup. Before restoring an earlier version, have the agent explain what would be lost and preserve any newer work you want to keep.
 
 ### Copyable prompt 9 - checkpoint and recover safely
 
 ```text
-Set up Git for this workspace if appropriate. Before substantial work, show me a
-clean checkpoint and explain what it contains. Save useful improvements in small,
+Explain whether optional source control would help this project. If I choose it,
+set up Git and manage it for me; I do not need to learn the commands. Before
+substantial work, make a checkpoint and explain what it contains. Save useful
+improvements in small,
 meaningful commits and keep editable source beside generated outputs. Before any
 recovery, identify the exact checkpoint, explain what would be discarded, and help
 me preserve wanted work first. Never add secrets or unnecessary sensitive data.
@@ -520,7 +526,7 @@ findings, inferences, and items needing human or qualified expert review.
 3. Ask the agent to turn your request into a brief; approve the outcome and checks.
 4. Choose the smallest capable model and a bounded tool/permission scope.
 5. Ask AI to prepare your computer for the task and show that the setup works.
-6. Keep credentials in a supported vault and changes in recoverable checkpoints.
+6. Keep credentials in a supported vault; if you choose source control, have AI manage the checkpoints.
 7. Run a measured loop with evidence, a retry limit, and a clear stop condition.
 8. Open the result yourself, test a real example, and make the final judgment.
 
