@@ -12,6 +12,12 @@ signup, connector, or installation request.
 
 Use `lane-discovery.md` for absent/partial installs, installed wrapper overlays, both coordinator origins, configured-but-disabled GLM, missing OAuth and connector-ineligible review routes.
 
+Use `end-to-end-routing.md` after the planning scenarios to exercise approved
+selection and simulated dispatch for light coding, deep coding, visual design,
+and browser work. It requires exact-route evidence, whole-session economics,
+fixed coordinator identity, and in-scope retry/review loops; it does not accept
+a provider-specific desired answer.
+
 Afterward inspect the artifacts for:
 
 - Coverage of client health, action and easy test creation; explicit handling of missing runs, member readiness, existing alerts and preserved runner capabilities.
