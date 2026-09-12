@@ -259,6 +259,14 @@ an eligible alternative with its task-specific reason. If the lane is required,
 preserve its readiness prerequisite rather than silently replacing it. After
 approval, no silent substitution: revise staffing before changing an executor.
 
+Explicit standing authorization for cost-effective metered models can cover
+eligible runs without repeated spend questions. Record the authorization scope,
+task-specific cost evidence, and exact route in staffing. Compare expected total
+accepted-task cost, including retries and review; do not infer free usage from
+OAuth authentication. When Side Lane marks the selected model billable, supply
+its billing authorization flag for each covered run. Keep task approval and
+provider qualification requirements in place.
+
 ## Qualify optional lanes and required dependencies
 
 Before choosing external workers, determine whether Governed Side Lane is
