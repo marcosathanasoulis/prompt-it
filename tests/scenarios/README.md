@@ -6,6 +6,10 @@ Give an independent evaluator the canonical skill, its references, portal-reques
 
 Also run `host-parity.md` independently under its supplied Codex and Claude inventories. This exercises economical mechanical staffing and symmetric cross-provider preferences without live provider calls.
 
+Run `single-provider.md` for the OpenAI-only, Claude-only, no-plugin, and
+no-eligible-route cases. Each must produce an ordinary in-host brief without a
+signup, connector, or installation request.
+
 Use `lane-discovery.md` for absent/partial installs, installed wrapper overlays, both coordinator origins, configured-but-disabled GLM, missing OAuth and connector-ineligible review routes.
 
 Afterward inspect the artifacts for:

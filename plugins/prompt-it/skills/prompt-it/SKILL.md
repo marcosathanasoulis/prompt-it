@@ -11,6 +11,13 @@ research changed. The same canonical workflow applies in Codex and Claude Code;
 use the originating host's native inventory, tools and authority. A model or
 connector available in another host is not automatically available here.
 
+Prompt it works with one native OpenAI/Codex or Anthropic/Claude host. It does
+not require Governed Side Lane, a second provider, an API key, a connector, or
+an optional model catalog. Start with the originating host's available models
+and tools. If no eligible optional route exists, keep planning and staffing on
+that host; do not ask the user to install, subscribe to, or configure anything
+just to make a normal task proceed.
+
 ## Gate substantial new tasks
 
 Before implementation, delegation, repository inspection, planning, or an
@@ -225,6 +232,13 @@ record the tradeoff. Use supplied cost/efficiency evidence; label missing cost
 data unknown, never inspect quotas or invent prices, limits or capabilities. Use the decision rubric in the task
 graph reference; its model examples are conditional, not a permanent ranking.
 
+For an installed qualifying route, compare the supplied full-session economics,
+including task tokens, tool charges when known, handoff/review/correction
+overhead, and the user's declared marginal plan state. Do not mistake a
+configured candidate for a zero-cost route, or treat unknown rates/overhead as
+zero. Select the least-expensive *qualified* fit only when its session evidence
+is comparable; otherwise record the uncertainty and use the best evidenced fit.
+
 For each frontier or coordinator execution assignment, explain why an eligible
 bounded worker is insufficient. An all-frontier plan needs task-specific
 evidence; generic shared context is insufficient. Do not force model diversity.
@@ -257,6 +271,15 @@ not prove a configured integration. Record absent, present, or unknown with its
 source. If optional discovery is unavailable, keep eligible native staffing.
 Do not install, log in, search unrelated private checkouts, or reconfigure tools.
 
+Do this only when an optional lane could materially improve the task. It is not
+a base-plan prerequisite or a provider survey. If the core is absent, or no
+optional route can improve the task, select a credible native model from the
+current host inventory, state any review-independence limitation honestly, and
+finish the brief. When the core is installed, consider every configured route
+that fits the task; the user does not need to name a provider. Do not mention
+optional signup or connector setup unless the user asked for it or it is a
+concrete prerequisite of the task.
+
 Resolve the runner from that installed core skill's documented path, including
 symlink-relative resolution. An installed wrapper may intentionally select a
 local configuration overlay; do not replace it with a vendored runner or a
@@ -265,6 +288,12 @@ its `list` command to enumerate configured exact host/provider/gateway/model/mod
 routes. Supported providers are not necessarily configured providers, and a
 listed route is not proof of authentication, task readiness or dispatch consent.
 
+When the installed help exposes `candidates`, it reads the research catalog only.
+Its records are not configured routes and do not check credentials, connectors,
+cost entitlement, authorization, or provider availability. Record those
+candidates separately from the runner's configured routes; do not require the
+user to pick one before normal in-host staffing continues.
+
 Use documented presence-only `check-capabilities` on relevant exact listed
 routes for the task/repository, and `recommend` for task-relative eligibility.
 Discover command arguments from installed help; never invent flags. Record
@@ -272,10 +301,10 @@ host/runtime presence, OAuth or credential **presence**, required capabilities,
 current task-fit evidence, and exclusions separately. Never retrieve secret
 values, probe accounts/quotas, invoke a model or start a worker during discovery.
 
-| Originating coordinator | Additional routes to inspect if configured |
+| Originating coordinator | Optional routes to inspect if configured and task-relevant |
 |---|---|
-| Codex | Native Claude routes on the Claude worker host; fixed `glm-5.3` execute route on the Claude worker host |
-| Claude | Native Codex/OpenAI routes on the Codex worker host; fixed `glm-5.3` execute route on the Claude worker host |
+| Codex | Exact worker routes listed by the installed runner, including native Claude and any separately qualified candidate route. Fixed `glm-5.3` remains explicit-only. |
+| Claude | Exact worker routes listed by the installed runner, including native Codex/OpenAI and any separately qualified candidate route. Fixed `glm-5.3` remains explicit-only. |
 
 This is a discovery map, not a guaranteed provider list or staffing preference.
 Keep native in-host agents in the separate runtime inventory. GLM configuration
