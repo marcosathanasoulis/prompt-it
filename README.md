@@ -149,7 +149,9 @@ validation and the held publication plan.
 
 ## Optional Governed Side Lane integration
 
-Prompt it works on its own. When
+Prompt it works on its own with either a single OpenAI/Codex or a single
+Anthropic/Claude host. It does not need Side Lane, another provider, an API key,
+or a connector to research, brief, approve, and execute ordinary work. When
 [Governed Side Lane](https://github.com/marcosathanasoulis/governed-side-lane)
 is also installed, Prompt it can propose qualified external workers. Generic
 Prompt it consent permits bounded native read-only research helpers when the
@@ -159,10 +161,11 @@ not silently activate execute mode, key-backed runs, new costs or connector
 access. The coordinator retains scope-shaping discovery and final synthesis.
 
 Prompt it first detects the installed core Side Lane skill, follows its actual
-runner/configuration, and inventories exact configured routes. Codex can discover
-Claude and GLM workers; Claude can discover Codex and GLM workers. Those are
-candidates only when configured, with authentication, task eligibility and
-authorization recorded separately. GLM still requires explicit enablement.
+runner/configuration, and inventories exact configured task-fitting routes.
+Those routes are candidates only when configured, with authentication, task
+eligibility, economics, and authorization recorded separately. Prompt it does
+not assume one host or provider from another; GLM still requires explicit
+enablement.
 
 Presence-only lane discovery never reads secret values, usage or billing state,
 or calls a model. Required but unqualified lanes become scoped readiness

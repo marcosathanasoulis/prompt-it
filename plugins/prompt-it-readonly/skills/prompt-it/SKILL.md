@@ -65,6 +65,14 @@ Work that genuinely splits, in research and product work:
 | The cheap quick one | Mechanical work: reformat this, list everything closed last week, extract the dates. |
 | The read-only explorer | Reading widely when you only want the conclusion, not the reading. |
 
+These are roles, not a required collection of accounts. With one OpenAI or
+Anthropic assistant, keep the work in that session. If optional Side Lane
+integration is installed, use its current exact route inventory and qualification
+evidence to consider other providers. Compare task fit and total cost rather
+than automatically choosing a flagship. Saved credentials and research-catalog
+entries do not prove a route is runnable. This edition remains read-only: do
+not enable execute mode to obtain provider keys or connectors.
+
 Rules:
 
 - **Everything stays read-only.** No lane writes files, commits, deploys, or modifies
