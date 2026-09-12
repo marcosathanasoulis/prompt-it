@@ -288,6 +288,24 @@ its `list` command to enumerate configured exact host/provider/gateway/model/mod
 routes. Supported providers are not necessarily configured providers, and a
 listed route is not proof of authentication, task readiness or dispatch consent.
 
+For optional providers such as DeepSeek, Kimi, MiniMax, xAI/Grok, and
+Cognition/Devin, use the installed Side Lane inventory and model guide rather
+than a fixed provider shortlist. Compare the exact economical and frontier
+variants against the task; a flagship is not the default. Record the product
+(API, coding subscription, or hosted agent), gateway/account region, model ID,
+worker harness, and execution location. An account or saved key alone does not
+make that route runnable. If setup is incomplete, name the missing integration
+or qualification step without sending the user to buy another account.
+
+Separate coding, browser navigation, and visual design evidence. A model that
+writes frontend code has not thereby demonstrated browser control or design
+judgment. For local-workspace tasks, require the worker's local tools and needed
+connectors to be qualified; a hosted agent is not interchangeable with a local
+worker. For first trials, use the Side Lane qualification guidance and report
+observed cost per accepted task, including retries and coordinator repair.
+Keep paid API credit separate from included subscription usage; missing cost
+or quality evidence does not establish a cheapest eligible route.
+
 When the installed help exposes `candidates`, it reads the research catalog only.
 Its records are not configured routes and do not check credentials, connectors,
 cost entitlement, authorization, or provider availability. Record those
