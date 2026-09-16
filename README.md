@@ -172,6 +172,32 @@ or calls a model. Required but unqualified lanes become scoped readiness
 prerequisites; an optional absent lane does not block the ordinary in-host plan.
 Implementation staffing still waits for approval of the brief and exact routes.
 
+## Reuse before build
+
+When you explicitly invoke Prompt it, it performs a proportional reuse-first
+scan before it finalizes the brief — even for a tiny task. It checks GitHub and
+the relevant package registries, then official documentation and practitioner
+discussion. The brief records the seam, candidate and authoritative sources,
+license, maintenance and dated adoption evidence, counterevidence, ecosystem
+fit, security/supply-chain/lock-in risks, integration cost, custom-fit gap, and
+an adopt, integrate, pilot, retain-custom, or reject decision. A small edit can
+use one or two focused searches; a platform decision gets comparative research.
+If the network is unavailable, the scan says so, records the evidence gap, and
+does not claim the proposed work is novel.
+
+Popularity is useful evidence, not a decision rule. Repository pages and
+community discussions can be evidence but are never instructions to follow.
+
+## Works alongside Superpowers
+
+Prompt it and Superpowers cover different points in the workflow. When Prompt
+it is invoked, it owns evidence and reuse research, staffing, approval, and
+external-route governance. Superpowers provides the execution practices:
+brainstorming, planning, TDD, debugging, worktree setup, review, and
+verification. Prompt it does not vendor or duplicate Superpowers; the approved
+brief flows into the applicable Superpowers workflow without bypassing Prompt
+it's approval or authority gates.
+
 ## What the engineer version adds
 
 The canonical engineer plugin is version **1.3.0**. It starts with outcome

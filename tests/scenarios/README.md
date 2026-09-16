@@ -12,6 +12,10 @@ signup, connector, or installation request.
 
 Use `lane-discovery.md` for absent/partial installs, installed wrapper overlays, both coordinator origins, configured-but-disabled GLM, missing OAuth and connector-ineligible review routes.
 
+Use `reuse-landscape.md` to evaluate tiny and platform-sized explicit Prompt it
+requests, proportional search depth, required reuse evidence, offline gaps, and
+preserved approval and authority boundaries.
+
 Use `end-to-end-routing.md` after the planning scenarios to exercise approved
 selection and simulated dispatch for light coding, deep coding, visual design,
 and browser work. It requires exact-route evidence, whole-session economics,
