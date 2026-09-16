@@ -93,8 +93,8 @@ def validate() -> None:
     codex = load_json(CODEX_MANIFEST)
     if claude.get("name") != "prompt-it" or codex.get("name") != "prompt-it":
         fail("plugin names must be prompt-it")
-    if claude.get("version") != "1.3.1" or codex.get("version") != "1.3.1":
-        fail("Claude and Codex plugin versions must both be 1.3.1")
+    if claude.get("version") != "1.4.0" or codex.get("version") != "1.4.0":
+        fail("Claude and Codex plugin versions must both be 1.4.0")
     if claude.get("license") != "MIT" or codex.get("license") != "MIT":
         fail("Claude and Codex manifests must declare MIT")
 
@@ -136,7 +136,7 @@ def validate() -> None:
         if not isinstance(source, str) or (ROOT / source).resolve() != PLUGIN.resolve():
             fail(f"{label} marketplace must resolve the canonical prompt-it package")
 
-    for name, version in (("prompt-it", "1.3.1"), ("prompt-it-readonly", "1.1.1")):
+    for name, version in (("prompt-it", "1.4.0"), ("prompt-it-readonly", "1.2.0")):
         entries = [item for item in claude_market["plugins"] if item.get("name") == name]
         manifest = load_json(ROOT / "plugins" / name / ".claude-plugin" / "plugin.json")
         if len(entries) != 1 or entries[0].get("version") != version or manifest.get("version") != version:

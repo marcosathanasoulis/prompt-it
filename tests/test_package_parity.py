@@ -34,6 +34,38 @@ class PackageParityTests(unittest.TestCase):
         result = self.validate()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_1_4_0_release_versions_are_aligned(self):
+        expected = {
+            'prompt-it': '1.4.0',
+            'prompt-it-readonly': '1.2.0',
+        }
+        marketplace = json.loads(
+            (self.root / '.claude-plugin/marketplace.json').read_text())
+        marketplace_versions = {
+            item['name']: item.get('version')
+            for item in marketplace['plugins']
+        }
+        for name, version in expected.items():
+            with self.subTest(package=name):
+                manifest = json.loads((
+                    self.root / 'plugins' / name / '.claude-plugin' / 'plugin.json'
+                ).read_text())
+                self.assertEqual(manifest.get('version'), version)
+                self.assertEqual(marketplace_versions.get(name), version)
+
+        codex_manifest = json.loads((
+            self.root / 'plugins/prompt-it/.codex-plugin/plugin.json'
+        ).read_text())
+        self.assertEqual(codex_manifest.get('version'), expected['prompt-it'])
+        codex_marketplace = json.loads((
+            self.root / '.agents/plugins/marketplace.json'
+        ).read_text())
+        codex_entry = next(
+            item for item in codex_marketplace['plugins']
+            if item['name'] == 'prompt-it'
+        )
+        self.assertNotIn('version', codex_entry)
+
     def test_explicit_claude_path_can_use_the_same_canonical_directory(self):
         self.manifest('.claude-plugin', './skills/')
         result = self.validate()

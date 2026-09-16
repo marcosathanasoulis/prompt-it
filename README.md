@@ -144,8 +144,8 @@ The engineer plugin uses the same canonical `SKILL.md` in Codex and Claude
 Code. Product-private memory, connectors, authentication, and tools remain
 host-specific. Both loader snippets use the same gate and authorization block;
 projectless briefs use the current host's artifact location or writable `work/`
-directory. See the [1.3.0 release candidate notes](docs/releases/1.3.0.md) for
-validation and the held publication plan.
+directory. See the [1.4.0 release notes](docs/release-1.4.0.md) for validation
+and the held publication plan.
 
 ## Optional Governed Side Lane integration
 
@@ -200,7 +200,7 @@ it's approval or authority gates.
 
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.3.0**. It starts with outcome
+The canonical engineer plugin is version **1.4.0**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 
