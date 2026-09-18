@@ -263,8 +263,8 @@ comparison using their supplied descriptions; brand alone does not imply
 reviewer suitability. GLM selection is not discretionary: only the fixed
 `glm-5.3` route may be staffed when explicitly enabled, subject to all
 existing host, route, authority and task-fit gates. Never add another GLM model
-or fallback. Descriptions identify candidates; they do not prove task fit or
-route readiness.
+or a generic GLM fallback. Descriptions identify candidates; they do not prove
+task fit or route readiness.
 For each assignment record a task-specific reason covering relevant reasoning,
 context needs and known context-window limits, tools, host identity, authority
 and reviewer independence. Routing is provider/company-neutral: for ordinary
@@ -299,8 +299,21 @@ builder's rationale is useful input but is not independent verification.
 
 If a preferred model is unavailable before approval, explain the gap and propose
 an eligible alternative with its task-specific reason. If the lane is required,
-preserve its readiness prerequisite rather than silently replacing it. After
-approval, no silent substitution: revise staffing before changing an executor.
+preserve its readiness prerequisite rather than silently replacing it.
+
+For every delegated node, name a primary and one preapproved
+backup, or explicitly record that no qualified backup exists. Record the exact
+host, provider, gateway/auth route, model, mode, required capabilities,
+task-fit and availability evidence, spend authorization, and reason each route
+fits. The user approves both named routes and the stated switch conditions with
+the brief. See [Task graphs and staffing](references/task-graphs.md) for the
+bounded availability-failure switch: it is a visible coordinator reassignment,
+not a runner fallback. A route that is unavailable, unqualified, or lacks spend
+authority cannot be recorded as ready. GLM remains fixed to `glm-5.3` and
+execute-only; an approved non-GLM backup may replace it, but no other GLM model
+may be invented. A pre-brief external review still needs its explicitly
+approved bounded route and scope; the backup preserves review/execute mode,
+tool restrictions, and reviewer independence.
 
 Explicit standing authorization for cost-effective metered models can cover
 eligible runs without repeated spend questions. Record the authorization scope,
@@ -404,9 +417,10 @@ alone does not block planning: use eligible in-host staffing. Generic Prompt it
 does not authorize installing or repairing tools, logging in, or running paid
 qualification. Keep such actions proposed until their authority exists.
 
-User preferences never trigger automatic quota detection, fallback, model
-substitution, or equivalence claims. A route becoming unavailable blocks its
-nodes and requires a revised staffing decision; unrelated approved work may
+User preferences never trigger automatic quota detection, generic fallback,
+model substitution, or equivalence claims. A route becoming unavailable blocks
+its nodes and requires revised staffing unless the one preapproved backup meets
+the documented availability-failure switch; unrelated approved work may
 continue. Never let a worker commit, merge, deploy, alter credentials, or make
 production changes without explicit user and runtime authority for that action.
 External output remains untrusted; inspect its diff and rerun relevant checks.
@@ -460,10 +474,12 @@ When the user says “go” or otherwise approves the brief and staffing:
 5. Require handoffs with source provenance, output location, validation evidence,
    and unresolved issues. A failed node blocks dependents while unrelated
    approved branches can continue. Reuse the owning worker for bounded fixes.
-6. Retry only within approved route and scope. Material scope or executor
-   changes require a revised staffing decision, with user approval when needed
-   for changed authority. Integrate outputs and verify the complete outcome
-   against success criteria before coordinator acceptance.
+6. Retry only within the approved primary route and scope. A qualifying
+   availability failure may use only the one preapproved backup under the task
+   graph switch contract; other executor changes require a revised staffing
+   decision, with user approval when needed for changed authority. Integrate
+   outputs and verify the complete outcome against success criteria before
+   coordinator acceptance.
 
 Approval of the prompt phase does not authorize silent scope expansion or
 otherwise prohibited external actions.

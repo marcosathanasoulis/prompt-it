@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.1 - 2026-09-18
+
+- Require each delegated node to record one exact primary and preapproved
+  backup, or an explicit absence. An approved availability failure can switch
+  only to that refreshed backup without another permission pause; all other
+  executor changes retain the staffing-approval requirement.
+
 ## 1.5.0 - 2026-09-15
 
 - Add optional, one-way exports from an approved canonical Prompt it brief to

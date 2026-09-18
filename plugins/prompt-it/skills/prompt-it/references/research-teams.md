@@ -50,11 +50,13 @@ receive. Never promote review to execute merely to obtain connector access.
 Generic Prompt it does not activate external execute mode, key-backed calls,
 new costs or GLM. Only the fixed `glm-5.3` route may be staffed when
 explicitly enabled, with its existing host/provider/gateway, authority and
-task-fit governance. No other GLM model or fallback is permitted. GLM retains
-its explicit gate and execute-only constraint;
-it is not a review-mode research substitute. An explicit review authorization
-does not authorize execute or key-backed routes. No secret retrieval or real
-model call is part of presence-only discovery.
+task-fit governance. No other GLM model or generic or automatic GLM fallback is
+permitted. An exact preapproved non-GLM backup remains limited to an approved
+delegated node's documented availability-failure switch; it does not expand
+pre-brief research scope. GLM retains its explicit gate and execute-only
+constraint; it is not a review-mode research substitute. An explicit review
+authorization does not authorize execute or key-backed routes. No secret
+retrieval or real model call is part of presence-only discovery.
 
 ## Evidence and synthesis
 

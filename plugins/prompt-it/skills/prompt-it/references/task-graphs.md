@@ -72,8 +72,10 @@ otherwise promising description.
 
 GLM model choice is fixed, not discretionary: staff only `glm-5.3` when
 explicitly enabled. Preserve its exact worker host, provider, gateway and mode
-and all existing route, authority and task-fit gates. Never add other GLM choices
-or a fallback, or infer task suitability from availability. Its execute-only
+and all existing route, authority and task-fit gates. Never add another GLM
+choice or a generic or automatic GLM fallback, or infer task suitability from
+availability. The documented exact preapproved backup may instead be a
+qualified non-GLM route after an availability failure. Its execute-only
 constraint remains; it cannot substitute for review-mode research.
 
 Routing is provider/company-neutral. For ordinary work choose the least-cost or
@@ -100,8 +102,37 @@ all routine verification personally. Tiny tasks need no additional agent.
 
 If a preferred model is unavailable before approval, explain the gap and propose
 an eligible alternative for that task. Preserve required-lane readiness as a
-prerequisite. After approval, stop affected dispatch and revise staffing rather
-than silently substituting; existing authority does not imply a new route.
+prerequisite.
+
+## Preapproved availability backup
+
+For each delegated node, the staffing record names its exact
+primary and one preapproved backup. For both routes record host, provider,
+gateway/auth route, model, mode, required tools/capabilities, task-fit and
+availability observation with source, spend authorization, and why the route
+fits. A route that is unqualified, unavailable, or lacks current authority is
+not a ready backup; record the absence instead of fabricating one. Prefer a
+backup in a different availability-failure domain when evidence and authority
+support it. A second model on the same provider can cover model-specific loss,
+not a provider-wide outage.
+
+The approved brief covers the two exact routes and this switch condition. An
+availability failure is a known provider/model-unavailable, quota, rate-limit,
+cooldown, manual-off, or top-up state after applicable bounded retries; failed
+tests, poor output, ambiguous timeouts, auth errors, null metrics and credential
+presence require diagnosis rather than a switch. Refresh readiness, task fit,
+tools, privacy/data boundary, scope, quality floor, and spend authority before
+the coordinator visibly reassigns the affected node without another permission
+pause. Ensure the primary is terminal or stopped, preserve partial work and
+evidence, reconcile in-flight execution, and transfer exclusive ownership with
+a compact handoff. No third route, cycle, or parallel writer is allowed. If the
+backup is unavailable or needs new authority, pause only that node and its
+dependents while unrelated approved nodes continue. GLM remains fixed to
+`glm-5.3` and execute-only; an approved non-GLM backup may replace it, but no
+alternate GLM model is allowed. It is never a silent runner substitution.
+Generic Prompt it research consent remains unchanged: a pre-brief external
+review needs its explicitly approved bounded route and scope, and its backup
+preserves review/execute mode, tool restrictions, and reviewer independence.
 
 A required unready route gets a prerequisite node with the missing capability,
 owner, permitted qualification/repair scope and acceptance evidence. A configured
@@ -136,8 +167,9 @@ output location, authority and acceptance checks.
 
 Collect provenance, artifacts, validation results and unresolved issues in each
 handoff. A failure blocks dependents, not unrelated approved branches. Reuse
-owners for fixes within their approved route/scope; revise staffing before a
-material executor change. The coordinator integrates accepted branches and
-requires evidence on the integrated artifact, not merely successful isolated
-nodes. Independent findings inform final acceptance; no worker self-approves
-production actions or the complete outcome.
+owners for fixes within their approved route/scope. A material executor change
+needs revised staffing unless it is the documented one preapproved backup
+availability switch. The coordinator integrates accepted branches and requires
+evidence on the integrated artifact, not merely successful isolated nodes.
+Independent findings inform final acceptance; no worker self-approves production
+actions or the complete outcome.

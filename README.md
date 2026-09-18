@@ -215,7 +215,7 @@ brief. See the canonical
 
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.5.0**. It starts with outcome
+The canonical engineer plugin is version **1.5.1**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 
@@ -234,9 +234,11 @@ job. There is no target task count or fixed model lineup.
   or most-efficient credible fit using available evidence, with compatible
   developer preferences or stated surplus/usage constraints honored and tradeoffs
   recorded. Unknown costs stay unknown; no quota inspection or invented prices.
-  Explain every assignment. Propose
-  eligible alternatives for unavailable preferences before approval; never
-  silently substitute an approved executor. Tiny tasks stay tiny.
+  Explain every assignment. Propose eligible alternatives for unavailable
+  preferences before approval. Each delegated node also records
+  one approved backup or an explicit absence; a coordinator may visibly switch
+  only to that exact backup after a qualifying availability failure and a fresh
+  readiness/authority check. Tiny tasks stay tiny.
 - **Research helpers answer bounded questions.** Preserve source provenance,
   disagreements and unknowns. Require a distinct second opinion when meaningful
   uncertainty, high impact, design disagreement risk or an acceptance gate

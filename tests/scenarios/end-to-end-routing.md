@@ -114,10 +114,13 @@ The user approves the brief, browser-capable execute assignment, and one
 in-scope repair loop. Simulate exact-route dispatch, browser actions, evidence
 handoff, a failed assertion, retry on the same route, and final acceptance.
 Assert that a review-mode route cannot gain a connector by switching modes and
-that no route without the required browser capability is eligible. If the
-browser route becomes unavailable after approval, mark the node blocked and
-return for a staffing decision; do not fall back. Preserve Claude as the
-coordinator and show the exact reason for every blocked dependent node.
+that no route without the required browser capability is eligible. The approved
+row includes one browser-capable backup. If the primary becomes unavailable,
+refresh the backup's readiness, authority and browser capability, stop and
+preserve the primary, reconcile any in-flight work, then visibly reassign the
+node without another permission pause. If that backup is absent or blocked,
+pause the node and its dependents; do not add a third route. Preserve Claude as
+the coordinator and show the exact reason for every blocked dependent node.
 
 ## Evaluator assertions
 
@@ -131,7 +134,8 @@ After all cases, inspect the artifacts for:
   worktree/mode/capability constraints, handoffs, retries, review decisions,
   and acceptance or blocking;
 - no made-up prices, quota claims, provider equivalence, silent fallback,
-  provider-diversity staffing, or unauthorized dispatch;
+  provider-diversity staffing, unauthorized dispatch, third route, or backup
+  ownership collision;
 - single-provider continuity when no optional route clears the gates.
 
 Record evaluator/model, source revision, scenario inventory revision, artifact

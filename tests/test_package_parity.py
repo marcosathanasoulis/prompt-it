@@ -35,9 +35,9 @@ class PackageParityTests(unittest.TestCase):
         result = self.validate()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
-    def test_1_5_0_release_versions_are_aligned(self):
+    def test_1_5_1_release_versions_are_aligned(self):
         expected = {
-            'prompt-it': '1.5.0',
+            'prompt-it': '1.5.1',
             'prompt-it-readonly': '1.2.0',
         }
         marketplace = json.loads(
@@ -166,6 +166,64 @@ class PackageParityTests(unittest.TestCase):
         path = self.root / 'tests/scenarios/reuse-landscape.md'
         self.assertTrue(path.is_file())
         path.unlink()
+        self.assertNotEqual(self.validate().returncode, 0)
+
+    def test_preapproved_backup_contract_and_scenario_are_required(self):
+        scenario = self.root / 'tests/scenarios/approved-backups.md'
+        scenario_index = self.root / 'tests/scenarios/README.md'
+        self.assertTrue(scenario.is_file())
+        skill = self.root / 'plugins/prompt-it/skills/prompt-it/SKILL.md'
+        reference = skill.parent / 'references/task-graphs.md'
+        research_teams = skill.parent / 'references/research-teams.md'
+        expected = {
+            skill: (
+                'one preapproved backup', 'availability-failure switch',
+                'unless the one preapproved backup meets',
+            ),
+            reference: (
+                'one preapproved backup', 'availability failure',
+                'without another permission pause', 'primary is terminal or stopped',
+                'No third route, cycle, or parallel writer',
+                'generic or automatic GLM fallback', 'qualified non-GLM route',
+            ),
+            research_teams: (
+                'generic or automatic GLM fallback',
+                'exact preapproved non-GLM backup',
+                'does not expand pre-brief research scope',
+            ),
+            scenario: (
+                'one preapproved backup', 'every delegated node',
+                'coordinator remains unchanged', 'third route', 'partial work',
+            ),
+            scenario_index: (
+                'Use `approved-backups.md`',
+                "each delegated node's exact primary and one preapproved backup",
+                'coordinator remains unchanged',
+            ),
+        }
+        for path, contracts in expected.items():
+            normalized = ' '.join(path.read_text().split())
+            for contract in contracts:
+                with self.subTest(path=path.name, contract=contract):
+                    self.assertIn(contract, normalized)
+
+        self.assertNotIn(
+            'A route becoming unavailable blocks its nodes and requires a revised staffing decision',
+            ' '.join(skill.read_text().split()),
+        )
+        self.assertNotIn('every node has one primary', ' '.join(scenario.read_text().split()))
+
+        original = skill.read_text()
+        skill.write_text(original.replace(
+            'unless the one preapproved backup meets',
+            'unless a backup meets',
+            1,
+        ))
+        self.assertNotEqual(self.validate().returncode, 0)
+
+        scenario_index.write_text(scenario_index.read_text().replace(
+            'Use `approved-backups.md`', 'Use `availability-backups.md`', 1,
+        ))
         self.assertNotEqual(self.validate().returncode, 0)
 
     def test_reuse_reference_contract_is_required(self):

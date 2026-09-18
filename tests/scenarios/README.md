@@ -27,6 +27,11 @@ and browser work. It requires exact-route evidence, whole-session economics,
 fixed coordinator identity, and in-scope retry/review loops; it does not accept
 a provider-specific desired answer.
 
+Use `approved-backups.md` to evaluate an availability failure after approval:
+each delegated node's exact primary and one preapproved backup, the bounded
+visible reassignment, preserved partial work, and the absence of a third route
+or cycle. The coordinator remains unchanged.
+
 Afterward inspect the artifacts for:
 
 - Coverage of client health, action and easy test creation; explicit handling of missing runs, member readiness, existing alerts and preserved runner capabilities.
@@ -34,7 +39,7 @@ Afterward inspect the artifacts for:
 - Valid dependency IDs, no cycles, clear handoff outputs, acceptance checks and task-relative staffing from the supplied inventory. A fixed task count or model diversity alone is not success.
 - Separation of authoring, independent verification and integration evidence. Coordinator/frontier assignments need a concrete reason relative to eligible workers.
 - Required-but-unqualified lane readiness as planned work, without claimed readiness or unauthorized calls; optional missing Side Lane does not block the base brief. The explicit preference variant must not silently revert all execution to the coordinator.
-- Currently supplied model descriptions, tools, authority, context requirements and independence inform assignment reasons. Optional preferred models missing before approval receive an explicit proposed alternative; an approved executor is never silently changed. Claude uses the same evidence rules and GLM has only the fixed glm-5.3 choice when enabled.
+- Currently supplied model descriptions, tools, authority, context requirements and independence inform assignment reasons. Optional preferred models missing before approval receive an explicit proposed alternative. After approval, only the documented one preapproved backup may replace an unavailable delegated-node primary after a fresh readiness/authority check; Claude uses the same evidence rules and GLM has only the fixed glm-5.3 choice when enabled.
 - Tiny work stays tiny. Failed graph prerequisites block dependents while independent approved nodes may proceed within slots and existing authority. Strict review cannot gain a connector by switching mode.
 - Downstream spec artifacts remain derived from the approved canonical brief; they do not absorb staffing or authority, manufacture missing content, initialize tools, or become a reverse-sync source.
 

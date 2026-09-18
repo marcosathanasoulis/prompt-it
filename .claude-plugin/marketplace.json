@@ -10,7 +10,7 @@
       "name": "prompt-it",
       "source": "./plugins/prompt-it",
       "description": "Plan-before-work for engineers: subagent staffing, model lanes, tests-first, and the rules that keep parallel agents from colliding.",
-      "version": "1.5.0"
+      "version": "1.5.1"
     },
     {
       "name": "prompt-it-readonly",

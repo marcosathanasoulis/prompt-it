@@ -9,7 +9,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINEER_VERSION = "1.5.0"
+ENGINEER_VERSION = "1.5.1"
 PLUGIN = ROOT / "plugins" / "prompt-it"
 SKILL = PLUGIN / "skills" / "prompt-it" / "SKILL.md"
 READONLY_SKILL = ROOT / "plugins" / "prompt-it-readonly" / "skills" / "prompt-it" / "SKILL.md"
@@ -19,6 +19,8 @@ CLAUDE_MANIFEST = PLUGIN / ".claude-plugin" / "plugin.json"
 CODEX_MANIFEST = PLUGIN / ".codex-plugin" / "plugin.json"
 REUSE_SCENARIO = ROOT / "tests" / "scenarios" / "reuse-landscape.md"
 SPEC_EXPORT_SCENARIO = ROOT / "tests" / "scenarios" / "spec-artifact-exports.md"
+BACKUP_SCENARIO = ROOT / "tests" / "scenarios" / "approved-backups.md"
+SCENARIO_INDEX = ROOT / "tests" / "scenarios" / "README.md"
 REUSE_SCAN_CONTRACTS = (
     "Prompt It is explicitly invoked for a task of any size",
     "GitHub and relevant package registries",
@@ -80,6 +82,39 @@ SPEC_EXPORT_SKILL_CONTRACTS = (
     "Never let export change Prompt it approval, authority, staffing, coordinator identity, evidence provenance or proportionality.",
     "Refuse the export while a material open question remains unresolved.",
 )
+BACKUP_CONTRACTS = {
+    SKILL: (
+        "one preapproved backup",
+        "availability-failure switch",
+        "unless the one preapproved backup meets",
+    ),
+    SKILL.parent / "references" / "task-graphs.md": (
+        "one preapproved backup",
+        "availability failure",
+        "without another permission pause",
+        "primary is terminal or stopped",
+        "No third route, cycle, or parallel writer",
+        "generic or automatic GLM fallback",
+        "qualified non-GLM route",
+    ),
+    SKILL.parent / "references" / "research-teams.md": (
+        "generic or automatic GLM fallback",
+        "exact preapproved non-GLM backup",
+        "does not expand pre-brief research scope",
+    ),
+    BACKUP_SCENARIO: (
+        "one preapproved backup",
+        "every delegated node",
+        "coordinator remains unchanged",
+        "third route",
+        "partial work",
+    ),
+    SCENARIO_INDEX: (
+        "Use `approved-backups.md`",
+        "each delegated node's exact primary and one preapproved backup",
+        "coordinator remains unchanged",
+    ),
+}
 
 
 def fail(message: str) -> None:
@@ -111,6 +146,8 @@ def validate() -> None:
         REUSE_SCENARIO,
         SPEC_EXPORT_REFERENCE,
         SPEC_EXPORT_SCENARIO,
+        BACKUP_SCENARIO,
+        SCENARIO_INDEX,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:
@@ -198,6 +235,11 @@ def validate() -> None:
     for phrase in SPEC_EXPORT_SCENARIO_CONTRACTS:
         if phrase not in export_scenario_normalized:
             fail(f"spec-artifact export scenario is missing required contract: {phrase}")
+    for path, contracts in BACKUP_CONTRACTS.items():
+        normalized_backup = " ".join(path.read_text(encoding="utf-8").split())
+        for phrase in contracts:
+            if phrase not in normalized_backup:
+                fail(f"preapproved backup contract missing from {path.relative_to(ROOT)}: {phrase}")
     readonly_normalized = " ".join(READONLY_SKILL.read_text(encoding="utf-8").split())
     for phrase in READONLY_REUSE_SCAN_CONTRACTS:
         if phrase not in readonly_normalized:
