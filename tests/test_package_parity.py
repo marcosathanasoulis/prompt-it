@@ -1,6 +1,7 @@
 """Exercise canonical-package parity and reject host-specific drift offline."""
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -34,9 +35,9 @@ class PackageParityTests(unittest.TestCase):
         result = self.validate()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
-    def test_1_4_0_release_versions_are_aligned(self):
+    def test_1_5_0_release_versions_are_aligned(self):
         expected = {
-            'prompt-it': '1.4.0',
+            'prompt-it': '1.5.0',
             'prompt-it-readonly': '1.2.0',
         }
         marketplace = json.loads(
@@ -183,6 +184,104 @@ class PackageParityTests(unittest.TestCase):
             with self.subTest(contract=contract):
                 self.assertIn(contract, normalized)
         path.write_text(original.replace('Candidate URL and authoritative URL', '', 1))
+        self.assertNotEqual(self.validate().returncode, 0)
+
+    def test_spec_artifact_export_contract_is_required(self):
+        reference = (
+            self.root
+            / 'plugins/prompt-it/skills/prompt-it/references/spec-artifact-exports.md'
+        )
+        scenario = self.root / 'tests/scenarios/spec-artifact-exports.md'
+        self.assertTrue(reference.is_file())
+        self.assertTrue(scenario.is_file())
+
+        original = reference.read_text()
+        normalized = ' '.join(original.split())
+        contracts = (
+            'optional, one-way derived output',
+            'approved canonical Prompt it brief remains authoritative',
+            'material open question remains unresolved',
+            'no reverse sync or import',
+            'Invoke an upstream validator or consistency analyzer only when the exact invocation is included in the approved export node and current runtime authority permits it.',
+            'A derived artifact or detected drift must never directly update the canonical brief.',
+            'A `MODIFIED` requirement is a full replacement: carry the full new requirement body, every current scenario that survives the approved change, and the approved additions or edits.',
+            'Do not initialize or install Spec Kit or OpenSpec',
+            'staffing, authority, coordinator identity',
+            'Tiny tasks do not acquire heavyweight artifact directories by default.',
+        )
+        for contract in contracts:
+            with self.subTest(contract=contract):
+                self.assertIn(contract, normalized)
+
+        mutated = original.replace('The export is optional,', 'The export is', 1)
+        self.assertNotEqual(mutated, original)
+        reference.write_text(mutated)
+        self.assertNotEqual(self.validate().returncode, 0)
+
+    def test_spec_artifact_export_safety_contracts_reject_unsafe_mutations(self):
+        reference = (
+            self.root
+            / 'plugins/prompt-it/skills/prompt-it/references/spec-artifact-exports.md'
+        )
+        scenario = self.root / 'tests/scenarios/spec-artifact-exports.md'
+        cases = (
+            (
+                reference,
+                'Invoke an upstream validator or consistency analyzer only when the exact invocation is included in the approved export node and current runtime authority permits it.',
+                'Invoke an available upstream validator or consistency analyzer.',
+            ),
+            (
+                reference,
+                'A derived artifact or detected drift must never directly update the canonical brief.',
+                'Derived drift may directly update the canonical brief.',
+            ),
+            (
+                reference,
+                'A `MODIFIED` requirement is a full replacement: carry the full new requirement body, every current scenario that survives the approved change, and the approved additions or edits.',
+                'A `MODIFIED` requirement is a partial patch containing only the edited scenario.',
+            ),
+            (
+                scenario,
+                'current runtime authority permits the exact invocation',
+                'the validator is installed',
+            ),
+            (
+                scenario,
+                'does not directly update the canonical brief',
+                'updates the canonical brief',
+            ),
+        )
+        for path, safe, unsafe in cases:
+            with self.subTest(path=path.name, safe=safe):
+                original = path.read_text()
+                pattern = r'\s+'.join(re.escape(part) for part in safe.split())
+                mutated = re.sub(pattern, unsafe, original, count=1)
+                self.assertNotEqual(mutated, original)
+                path.write_text(mutated)
+                self.assertNotEqual(self.validate().returncode, 0)
+                path.write_text(original)
+
+    def test_canonical_skill_requires_the_spec_export_boundary(self):
+        skill = self.root / 'plugins/prompt-it/skills/prompt-it/SKILL.md'
+        original = skill.read_text()
+        normalized = ' '.join(original.split())
+        contracts = (
+            'If the approved brief includes an export',
+            'Treat every target artifact as one-way derived output',
+            'Never let export change Prompt it approval, authority, staffing, coordinator identity, evidence provenance or proportionality.',
+            'Refuse the export while a material open question remains unresolved.',
+        )
+        for contract in contracts:
+            with self.subTest(contract=contract):
+                self.assertIn(contract, normalized)
+
+        mutated = original.replace(
+            'Treat every target artifact as one-way derived output',
+            'Treat every target artifact as output',
+            1,
+        )
+        self.assertNotEqual(mutated, original)
+        skill.write_text(mutated)
         self.assertNotEqual(self.validate().returncode, 0)
 
     def test_readonly_edition_requires_a_reuse_first_scan(self):

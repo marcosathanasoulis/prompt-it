@@ -16,6 +16,11 @@ Use `reuse-landscape.md` to evaluate tiny and platform-sized explicit Prompt it
 requests, proportional search depth, required reuse evidence, offline gaps, and
 preserved approval and authority boundaries.
 
+Use `spec-artifact-exports.md` to evaluate optional one-way Spec Kit and
+OpenSpec exports after approval, including provenance, target-native field
+mapping, material-question refusal, small-task proportionality, capability
+classification and rejection of reverse sync.
+
 Use `end-to-end-routing.md` after the planning scenarios to exercise approved
 selection and simulated dispatch for light coding, deep coding, visual design,
 and browser work. It requires exact-route evidence, whole-session economics,
@@ -31,5 +36,6 @@ Afterward inspect the artifacts for:
 - Required-but-unqualified lane readiness as planned work, without claimed readiness or unauthorized calls; optional missing Side Lane does not block the base brief. The explicit preference variant must not silently revert all execution to the coordinator.
 - Currently supplied model descriptions, tools, authority, context requirements and independence inform assignment reasons. Optional preferred models missing before approval receive an explicit proposed alternative; an approved executor is never silently changed. Claude uses the same evidence rules and GLM has only the fixed glm-5.3 choice when enabled.
 - Tiny work stays tiny. Failed graph prerequisites block dependents while independent approved nodes may proceed within slots and existing authority. Strict review cannot gain a connector by switching mode.
+- Downstream spec artifacts remain derived from the approved canonical brief; they do not absorb staffing or authority, manufacture missing content, initialize tools, or become a reverse-sync source.
 
 Record evaluator/model, evaluated source revision, input variants, produced artifact paths, observed strengths/failures and any correction. Claims must reflect observed outputs; a passing package validator does not prove these behaviors. A failed scenario warrants a targeted correction and reevaluation, not a broad collection of new rules.

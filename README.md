@@ -144,7 +144,7 @@ The engineer plugin uses the same canonical `SKILL.md` in Codex and Claude
 Code. Product-private memory, connectors, authentication, and tools remain
 host-specific. Both loader snippets use the same gate and authorization block;
 projectless briefs use the current host's artifact location or writable `work/`
-directory. See the [1.4.0 release notes](docs/release-1.4.0.md) for validation
+directory. See the [1.5.0 release notes](docs/release-1.5.0.md) for validation
 and the held publication plan.
 
 ## Optional Governed Side Lane integration
@@ -198,9 +198,24 @@ verification. Prompt it does not vendor or duplicate Superpowers; the approved
 brief flows into the applicable Superpowers workflow without bypassing Prompt
 it's approval or authority gates.
 
+## Optional Spec Kit and OpenSpec exports
+
+After approval, an execution brief may be exported into an existing GitHub Spec
+Kit or OpenSpec workflow when that export is part of the approved scope. The
+brief remains canonical; target artifacts are one-way derivatives with source
+provenance and task-ID crosswalks. They do not carry or replace Prompt it
+staffing, authority, coordinator identity or approval.
+
+The compatibility contract maps only facts and decisions already present in
+the brief, refuses material unresolved questions, and keeps tiny tasks small.
+It does not install or initialize either tool, vendor templates, add a parser or
+task runner, replace upstream validation, or import target edits back into the
+brief. See the canonical
+[export reference](plugins/prompt-it/skills/prompt-it/references/spec-artifact-exports.md).
+
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.4.0**. It starts with outcome
+The canonical engineer plugin is version **1.5.0**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 

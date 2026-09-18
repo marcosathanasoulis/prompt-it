@@ -435,6 +435,17 @@ implementation edits, implementation worktree/branch creation, or execution-agen
 dispatch. Previously authorized bounded external review, including its documented
 disposable worktree and result artifacts, remains governed by its exact scope.
 
+## Optional downstream spec artifacts
+
+If the approved brief includes an export to an existing GitHub Spec Kit or
+OpenSpec workflow, read [Spec artifact exports](references/spec-artifact-exports.md).
+Treat every target artifact as one-way derived output from the approved
+canonical brief. Never let export change Prompt it approval, authority,
+staffing, coordinator identity, evidence provenance or proportionality. Refuse
+the export while a material open question remains unresolved. Do not initialize
+or install a target tool, import changes back into the brief, or recreate the
+target's templates, commands, validation or task execution.
+
 ## Proceed only after approval
 
 When the user says “go” or otherwise approves the brief and staffing:
