@@ -1,8 +1,8 @@
 {
   "name": "prompt-it",
   "displayName": "Prompt It",
-  "description": "Researches substantial tasks and drafts an evidence-backed execution brief before implementation, after asking first.",
-  "version": "1.5.1",
+  "description": "Performs automatic proportional planning for substantial tasks and drafts an evidence-backed execution brief before implementation. Small tasks plan and run; medium/large tasks ask Proceed? before starting.",
+  "version": "1.5.2",
   "author": {
     "name": "Marcos Athanasoulis"
   },

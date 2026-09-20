@@ -1,7 +1,7 @@
 {
   "name": "prompt-it",
-  "version": "1.5.1",
-  "description": "Research substantial tasks and draft an evidence-backed execution brief before implementation, after asking first.",
+  "version": "1.5.2",
+  "description": "Perform automatic proportional planning for substantial tasks and draft an evidence-backed execution brief before implementation. Small tasks plan and run; medium/large tasks ask Proceed? before starting.",
   "author": {
     "name": "Marcos Athanasoulis",
     "url": "https://github.com/marcosathanasoulis"
@@ -13,8 +13,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Prompt It",
-    "shortDescription": "Research and review the plan before work starts.",
-    "longDescription": "Ask before planning, research the approved task read-only, and produce an evidence-backed execution brief with explicit model staffing for approval.",
+    "shortDescription": "Plan automatically and review the plan before work starts.",
+    "longDescription": "Perform automatic proportional planning, research the approved task read-only, and produce an evidence-backed execution brief with explicit model staffing and economical Side Lane routing for approval.",
     "developerName": "Marcos Athanasoulis",
     "category": "Developer Tools",
     "capabilities": ["Read-only research", "Execution briefs", "Model staffing"],

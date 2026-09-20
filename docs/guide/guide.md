@@ -177,7 +177,7 @@ capability, and authorization. Never ask me to paste a secret into chat.
 
 You do not need to write a perfect specification. Try asking, “Help me write the prompt to do X.” The agent can help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
 
-This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/prompt-it), a public reusable planning skill. Its core idea is simple: for a substantial task, research and clarify first; approve a short plan; then do the work. You can use the same pattern without installing anything. Its no-install Claude.ai edition can be pasted into project instructions; its Codex and Claude Code editions add a reusable skill and a small gate that asks whether you want planning first.
+This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/prompt-it), a public reusable planning skill. Its core idea is simple: for a substantial task, research and clarify first; approve a short plan; then do the work. You can use the same pattern without installing anything. Its no-install Claude.ai edition can be pasted into project instructions; its Codex and Claude Code editions add a reusable skill that begins automatic proportional planning for new tasks while leaving questions, lookups, and follow-ups alone; small edits get a concise plan and proportional Side Lane assessment.
 
 **Vague request:** “Make our volunteer spreadsheet better.”
 
@@ -219,12 +219,16 @@ For the hands-on work in this guide, choose the standard **`prompt-it` plugin** 
 Install the standard Prompt It plugin from
 https://github.com/marcosathanasoulis/prompt-it for the AI app I am using.
 Read its current README first and check whether it is already installed.
-Use the product's supported plugin installation method. Add the matching
-“Prompt it?” gate from the repository's snippets folder to my personal
-instruction file, preserving existing instructions and avoiding duplicates.
-Explain what changed and whether I need a new session. Help me verify that
-it offers planning on a substantial task and waits for my approval before
-execution. I do not code, so handle the setup and explain any step I must do.
+Use the product's supported plugin installation method. Add or replace the
+matching automatic proportional planning loader in my personal instruction
+file: if an earlier Prompt It gate block exists, replace it; otherwise append
+the current loader. Preserve unrelated instructions and avoid duplicates.
+Explain what changed and whether I need a new session. Help me verify that it
+announces "Making a plan" on a substantial task, asks "Proceed?" once and
+waits for an affirmative answer before starting, and still lets me say
+"prompt it" to begin planning explicitly. One yes or go is enough; I do not
+need to approve twice. I do not code, so handle the setup and explain any step
+I must do.
 ```
 
 **Codex installation.** The agent can run these commands in the local terminal. If `codex` is unavailable, ask it to set up the supported CLI for your platform first. These are terminal commands, not text to paste as a normal chat request:
@@ -234,7 +238,7 @@ codex plugin marketplace add marcosathanasoulis/prompt-it --ref main
 codex plugin add prompt-it@prompt-it
 ```
 
-Then have the agent append the [Codex gate snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/agents-md-gate.md) to your personal `~/.codex/AGENTS.md`, or the project's `AGENTS.md` for just that project. The `~` means your home folder; let the agent resolve the right location on your system.
+Then have the agent add or replace the [Codex loader snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/agents-md-gate.md) in your personal `~/.codex/AGENTS.md` (or the project's `AGENTS.md` for just that project): replace any earlier Prompt It gate block if one exists, append the current loader only if none is present, and preserve unrelated instructions. The `~` means your home folder; let the agent resolve the right location on your system.
 
 **Claude Code installation.** In a Claude Code terminal session, enter these slash commands one at a time. They are Claude Code commands, not ordinary shell commands. If your desktop interface does not accept them, ask the agent to use the supported terminal installation flow:
 
@@ -243,9 +247,9 @@ Then have the agent append the [Codex gate snippet](https://github.com/marcosath
 /plugin install prompt-it@prompt-it
 ```
 
-Then have the agent append the [Claude Code gate snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate.md) to your personal `~/.claude/CLAUDE.md`, or the project's `CLAUDE.md`. For the read-only alternative, substitute `prompt-it-readonly@prompt-it` in the install command. Each product needs its own installation and instruction file.
+Then have the agent add or replace the [Claude Code loader snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate.md) in your personal `~/.claude/CLAUDE.md` (or the project's `CLAUDE.md`). For the read-only alternative, substitute `prompt-it-readonly@prompt-it` in the install command. Each product needs its own installation and instruction file.
 
-**Verify both parts.** The plugin provides the planning skill; the gate makes the agent offer it. Start a new task or session after installation. Ask: “Help me turn these volunteer notes into a report with a summary, action list, and checks for missing information.” It should ask **“Prompt it?”** Say **yes** to get a brief and model recommendation, review those, then say **go** when ready. On a separate substantial request, **no** should continue normally. If the question does not appear, ask the agent to check plugin discovery and the gate rather than installing duplicate copies.
+**Verify both parts.** The plugin provides the planning skill; the loader makes the agent begin it. Start a new task or session after installation. Ask: “Help me turn these volunteer notes into a report with a summary, action list, and checks for missing information.” For a medium or large task it should announce **“Making a plan,”** ask **“Proceed?”** once the brief is ready, and wait for an affirmative answer before starting. Saying **yes**, **go**, or another clear approval once is enough to proceed; you do not need to approve twice. For a small task it may plan briefly and run directly. If the planning behavior does not appear, ask the agent to check plugin discovery and the loader rather than installing duplicate copies.
 
 The [Prompt It installation instructions](https://github.com/marcosathanasoulis/prompt-it#install-in-codex) are the package-specific source of truth; see also [Codex plugins](https://learn.chatgpt.com/docs/plugins) and [Claude Code plugin installation](https://code.claude.com/docs/en/discover-plugins). Managed work accounts may require an administrator to make the plugin available.
 

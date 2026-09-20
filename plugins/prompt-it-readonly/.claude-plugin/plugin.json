@@ -1,8 +1,8 @@
 {
   "name": "prompt-it-readonly",
   "displayName": "Prompt It (read-only)",
-  "description": "Reviewable plans for research and analysis work, with a hard read-only posture. For people with code and data access who do not ship code.",
-  "version": "1.2.0",
+  "description": "Use when starting a substantial research or analysis task. Performs automatic proportional read-only planning and assessment; medium/large work asks Proceed? before any implementation. Read-only edition — never implementation or code changes.",
+  "version": "1.5.2",
   "author": {
     "name": "Marcos Athanasoulis"
   },

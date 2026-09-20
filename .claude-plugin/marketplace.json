@@ -4,19 +4,19 @@
     "name": "Marcos Athanasoulis",
     "url": "https://github.com/marcosathanasoulis"
   },
-  "description": "Make Claude draft a reviewable plan before it starts work \u2014 and ask first, so it never gets in the way.",
+  "description": "Make Claude draft a reviewable plan before it starts work \u2014 automatically for substantial tasks, so it never gets in the way.",
   "plugins": [
     {
       "name": "prompt-it",
       "source": "./plugins/prompt-it",
-      "description": "Plan-before-work for engineers: subagent staffing, model lanes, tests-first, and the rules that keep parallel agents from colliding.",
-      "version": "1.5.1"
+      "description": "Automatic proportional planning for engineers: subagent staffing, model lanes, tests-first, and the rules that keep parallel agents from colliding.",
+      "version": "1.5.2"
     },
     {
       "name": "prompt-it-readonly",
       "source": "./plugins/prompt-it-readonly",
-      "description": "Read-only edition for analysts, PMs and researchers with code and data access. Same planning loop, nothing that writes.",
-      "version": "1.2.0"
+      "description": "Read-only edition for analysts, PMs and researchers with code and data access. Same automatic proportional planning loop, nothing that writes.",
+      "version": "1.5.2"
     }
   ]
 }

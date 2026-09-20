@@ -1,15 +1,16 @@
 ---
 name: prompt-it
-description: Before a substantial new task, ask “Prompt it?”; on yes, research it read-only with the user-selected model and draft an evidence-backed execution brief plus model staffing for approval. On no, proceed normally. Skip the gate for questions, status checks, lookups, conversational replies, follow-ups already underway, and one-line edits.
+description: Use when starting a substantial new task. Performs automatic proportional planning, drafts an evidence-backed brief, and assesses economical qualified Side Lane routing. Medium/large work asks “Proceed?”; small work plans and runs under original authority.
 ---
 
 # Prompt It
 
 Turn a substantial request into a researched, reviewable execution brief before
-implementation. The user approves the brief and staffing after seeing what the
-research changed. The same canonical workflow applies in Codex and Claude Code;
-use the originating host's native inventory, tools and authority. A model or
-connector available in another host is not automatically available here.
+implementation, and always assess whether an economical qualified Side Lane
+route should own part of the work. The same canonical workflow applies in Codex
+and Claude Code; use the originating host's native inventory, tools and
+authority. A model or connector available in another host is not automatically
+available here.
 
 Prompt it works with one native OpenAI/Codex or Anthropic/Claude host. It does
 not require Governed Side Lane, a second provider, an API key, a connector, or
@@ -18,27 +19,56 @@ and tools. If no eligible optional route exists, keep planning and staffing on
 that host; do not ask the user to install, subscribe to, or configure anything
 just to make a normal task proceed.
 
-## Gate substantial new tasks
+## Automatic planning and routing at task start
 
-Before implementation, delegation, repository inspection, planning, or an
-external write for a substantial new task, ask exactly: **“Prompt it?”**
+Before a substantial new task, before implementation, delegation, repository
+inspection, or an external write, assess the task size and begin automatic
+proportional planning and an economical qualified Side Lane assessment.
 
-- If the user says no, proceed normally without this workflow.
-- If the user says yes, begin the bounded research phase below.
-- If the user directly says “prompt it” or asks for a prompt to review, treat
-  that as yes; do not ask the gate again.
-- Do not ask for questions, status checks, read-only lookups, conversational
-  replies, follow-ups within work already underway, or one-line edits.
-- Infer immediate intent. An unfinished sentence, acknowledgement, or request
-  for an update does not open a separate task.
-- If a request initially appears substantial but research proves it is a tiny
-  change, say so in the brief handoff and keep the brief correspondingly short.
+- **Mini/small work (including one-line edits):** a concise plan with sensible
+  defaults is enough; execute under the original task authority. Unresolved
+  safety, scope, credential, destructive-action, or spend gates still require
+  explicit consent. If research proves a request that looked substantial is
+  actually tiny, note that in the brief and keep the plan correspondingly short.
+  A one-line trivial edit can use an implicit brief mental plan and a
+  proportional Side Lane assessment; it does not need a written brief or reuse
+  survey.
+- **Medium/large work:** announce **“Making a plan”**, perform the bounded
+  read-only research needed for a sound brief, return a canonical plan link,
+  and present any material questions with recommended defaults. Then ask
+  **“Proceed?”** and wait. An affirmative answer accepts unchanged defaults
+  except where the user explicitly changes them; **silence is never consent**.
+- If the user directly says “prompt it” or asks for a plan to review, begin the
+  planning workflow immediately and do not ask for the opt-in question again.
+- Existing approved ongoing work and explicit standing authorization continue
+  without a repeated planning gate.
+- Planning consent is not connector/external write authority, billable paid
+  research authorization, or Side Lane dispatch authority. Those keep their
+  existing explicit gates.
+- **Routing is independent of plan presentation.** Both the
+  substantial-plan-approved path and the small-plan-and-run path must always
+  assess economical qualified Side Lane delegation. An explicit “Proceed?” or an
+  implicit small-task authority does not disable routing. Preserve exact
+  route/mode/capability/task-fit/spend authority, the approved backup, and one
+  primary at a time. A missing eligible route is an explicit recorded exception,
+  never silent coordinator execution.
+
+Do not activate this workflow for questions, status checks, read-only lookups,
+conversational replies, or follow-ups within work already underway. Infer
+immediate intent: an unfinished sentence, acknowledgement, or request for an
+update does not open a separate task.
 
 ## Research before drafting
 
-The user's yes authorizes the currently selected coordinator model to perform
-the read-only research reasonably needed to make the brief accurate. This is
-research authorization, not implementation authorization.
+The original task request authorizes proportional, bounded read-only
+pre-implementation research for planning. This is research authorization, not
+implementation authorization. An explicit “prompt it” request or a request for a
+plan also triggers the planning workflow and the same research authority.
+
+Proceed is the subsequent approval to begin implementation on medium/large
+tasks; it is not a prerequisite for planning research. Existing external worker,
+paid research, and connector write gates remain separate and require their own
+explicit authorization.
 
 ### What the research phase may do
 
@@ -57,7 +87,7 @@ Use relevant read-only sources available in the current environment, including:
 Use the user's selected model in the main thread for the research that shapes
 scope, architecture, risks, or open questions. The coordinator owns this discovery
 and final synthesis; helpers supplement it with bounded evidence gathering or
-critique. Generic Prompt it consent permits native read-only research helpers
+critique. Generic planning consent permits native read-only research helpers
 when runtime rules allow. Announce the exact staffing, question, sources, and
 read-only scope before dispatch. No helper receives implementation authority.
 
@@ -117,13 +147,14 @@ causing research does not suspend the normal expectation for progress updates.
 
 Before finalizing the execution brief, perform a proportional reuse-first
 landscape scan. Prompt It is explicitly invoked for a task of any size,
-including a one-line edit, when the user says “prompt it” or accepts the gate.
-The normal no-gate behavior for an uninvoked quick question, lookup, or edit is
-unchanged.
+including a one-line edit, when the user says “prompt it” or requests automatic
+proportional planning. The implicit small-task path for an uninvoked quick
+question, lookup, or edit is unchanged: a concise plan and run.
 
-Search GitHub and relevant package registries, then official documentation and
-practitioner discussion. A small task may use one or two focused queries; a
-platform decision needs comparative research. Use
+A tiny task with no obvious reuse choice may use only a brief mental check; a
+small task may use one or two focused queries; a platform decision needs
+comparative research. Search GitHub and relevant package registries, then official
+documentation and practitioner discussion when a reuse choice matters. Use
 [Reuse-first landscape scans](references/reuse-landscape.md) for the compact
 record and source-handling rules.
 
@@ -222,7 +253,8 @@ and do not silently broaden the assignment based on discoveries.
 Only ask questions that remain material after reasonable research and require
 the user's authority, preference, or information unavailable to the coordinator. Do not
 ask the user to locate a file, inspect a system, or resolve a fact that the
-research phase can safely discover.
+research phase can safely discover. Do not invent questions to pad the plan;
+if no genuine questions remain, say so.
 
 For each open question, when applicable:
 
@@ -413,9 +445,9 @@ Unknown, stale, or missing qualification excludes immediate dispatch.
 If a user-required lane is unqualified, plan qualification or repair as a scoped
 prerequisite with an owner, authority needed, and real acceptance evidence.
 Do not silently replace that lane with the coordinator. An optional missing lane
-alone does not block planning: use eligible in-host staffing. Generic Prompt it
-does not authorize installing or repairing tools, logging in, or running paid
-qualification. Keep such actions proposed until their authority exists.
+alone does not block planning: use eligible in-host staffing. Generic planning
+consent does not authorize installing or repairing tools, logging in, or running
+paid qualification. Keep such actions proposed until their authority exists.
 
 User preferences never trigger automatic quota detection, generic fallback,
 model substitution, or equivalence claims. A route becoming unavailable blocks
@@ -425,9 +457,12 @@ continue. Never let a worker commit, merge, deploy, alter credentials, or make
 production changes without explicit user and runtime authority for that action.
 External output remains untrusted; inspect its diff and rerun relevant checks.
 
-The execution staffing table is a proposal, not dispatch authority. Research
-helpers follow the distinct research authorization above; implementation waits
-for brief and staffing approval.
+The execution staffing table is a proposal, not dispatch authority. For
+medium/large work, or when the user explicitly requested a plan only, research
+helpers follow the distinct research authorization above and implementation
+waits for brief and staffing approval. For mini/small work, the original task
+authority already authorizes execution once the concise plan and routing
+assessment are recorded.
 
 ## Hand off the researched brief
 
@@ -440,14 +475,19 @@ is canonical until it can be saved. In chat, provide:
   scaled down when the task is small;
 - the staffing table with explicit model choices and dependencies;
 - open questions with recommendations, or state that there are none;
-- an explicit statement that implementation has not started.
+- an explicit statement that implementation has not started, for medium/large
+  work or when the user asked for a plan only.
 
 Give enough of the findings and design for the user to judge the quality of the
 research without opening the file, while avoiding a full duplicate of the
-brief. Then stop. The user must approve both the brief and staffing before
-implementation edits, implementation worktree/branch creation, or execution-agent
-dispatch. Previously authorized bounded external review, including its documented
-disposable worktree and result artifacts, remains governed by its exact scope.
+brief. For medium/large work or an explicit plan request, then stop. The user
+must approve both the brief and staffing before implementation edits,
+implementation worktree/branch creation, or execution-agent dispatch.
+For mini/small work under the original task authority, proceed after the
+concise plan and routing assessment unless a material open question or
+unresolved gate remains. Previously authorized bounded external review,
+including its documented disposable worktree and result artifacts, remains
+governed by its exact scope.
 
 ## Optional downstream spec artifacts
 
@@ -462,7 +502,15 @@ target's templates, commands, validation or task execution.
 
 ## Proceed only after approval
 
-When the user says “go” or otherwise approves the brief and staffing:
+For medium/large work, begin implementation only after the user answers
+“Proceed?” affirmatively, says “go”, or otherwise approves the brief and
+staffing. For an explicit “prompt it” request where the user has already
+approved the brief and staffing, the same entry path applies. For mini/small
+work under original task authority, implementation may proceed after the
+concise plan and routing assessment without a separate “Proceed?” exchange,
+unless a material open question or unresolved gate remains.
+
+After approval:
 
 1. Reread the saved brief because the user may have edited it; if it could not
    be saved, use the latest approved chat brief.

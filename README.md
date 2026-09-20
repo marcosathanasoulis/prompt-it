@@ -9,22 +9,21 @@ desktop setup, secure connections, voice coordination, agent teams, and graphs.
 
 See [how to rebuild the PDF](docs/guide/README.md) when updating the guide.
 
-**A planning skill that asks before it plans.**
+**A planning skill that plans before it acts.**
 
-When you give Codex or Claude Code a substantial new task, it stops and asks
-you one question:
+When you give Codex or Claude Code a substantial new task, it begins automatic proportional planning and an economical qualified Side Lane assessment.
 
-> **Prompt it?**
+- For **small** tasks it produces a concise plan with sensible defaults and
+  executes under the original task authority.
+- For **medium/large** tasks it announces "Making a plan", researches read-only,
+  writes an evidence-backed brief, lists any material questions with recommended
+  defaults, asks **"Proceed?"**, and waits. Silence is never consent.
+- If you directly say **"prompt it"**, the workflow starts immediately without
+  the opt-in question.
 
-Say **no** and it gets on with the work, exactly as it would have anyway. Say
-**yes** and it researches the task read-only, writes an evidence-backed brief,
-states what it will deliberately *not* do, and proposes explicit model staffing.
-You read that, fix what's wrong, and say go.
-
-So the cost of having this installed is one word on the occasional task where you didn't
-want it. That's the whole design. Every planning prompt I'd tried before this one got
-uninstalled within a week, because a planning document for "rename this variable" is
-worse than no planning at all.
+You read the brief, fix what's wrong, and say go. The cost of having this installed
+is one extra exchange on the occasional big task where a misunderstood paragraph
+costs more than a short plan. Small tasks stay small.
 
 ## Why it's worth it
 
@@ -40,23 +39,22 @@ This moves you from the second job to the first one.
 
 ## What it actually looks like
 
-Two exchanges. Same install, opposite outcomes.
+Two exchanges. Same install, different task sizes.
 
-**You didn't want a plan:**
+**Small task — plan and run:**
 
 ```
-you      add retries across the background job pipeline
-claude   Prompt it?
-you      no
-claude   I’ll implement retries and verify failure handling.
+you      rename this variable to `retry_count` and add a test
+claude   Small change. I’ll rename `retries` to `retry_count` in `worker.py`
+         and add a unit test in `test_worker.py`.
+claude   Done. `worker.py` and `tests/test_worker.py` updated.
 ```
 
-**You did:**
+**Medium/large task — announce, plan, ask, then execute:**
 
 ```
 you      add rate limiting to the search endpoint
-claude   Prompt it?
-you      yes
+claude   Making a plan.
 claude   Written to .scratch/PROMPT-rate-limiting.md
 
          ## Goal — reject requests over N per minute per API key
@@ -68,7 +66,10 @@ claude   Written to .scratch/PROMPT-rate-limiting.md
          Proposed: reuse it, with API-key scope from the existing contract.
          Open choice: what limit? I recommend 10/minute for the stated load.
 
-         Implementation has not started. Edit the brief or say go.
+         Implementation has not started. Proceed?
+you      yes
+claude   Implementing. I’ll assess an economical qualified Side Lane route
+         for the change and keep the routing receipt.
 ```
 
 The second exchange surfaces the existing implementation and the remaining
@@ -120,9 +121,10 @@ Or the read-only edition:
 ```
 
 **Then add the gate**, or the skill never gets offered and you have to remember to
-invoke it by hand. Append the snippet in **[`snippets/claude-md-gate.md`](snippets/claude-md-gate.md)**
-to your `~/.claude/CLAUDE.md`. The skill produces the plan; the gate is what makes
-Claude *ask*. Both, or neither works properly.
+invoke it by hand. Replace any earlier Prompt it gate block in your
+`~/.claude/CLAUDE.md` with the snippet in **[`snippets/claude-md-gate.md`](snippets/claude-md-gate.md)**;
+append it only if no earlier block exists. The skill produces the plan; the gate
+is what makes Claude plan before acting. Both, or neither works properly.
 
 The two plugins are **alternatives, not companions** — they define the same skill with
 different rules. Install one.
@@ -134,11 +136,12 @@ codex plugin marketplace add marcosathanasoulis/prompt-it --ref main
 codex plugin add prompt-it@prompt-it
 ```
 
-Then add the gate from
-[`snippets/agents-md-gate.md`](snippets/agents-md-gate.md) to
-`~/.codex/AGENTS.md`, or to one repository's `AGENTS.md` when you only want the
-gate there. Start a new Codex task after installation if skill discovery is
-cached.
+Then add the gate, replacing any earlier Prompt it gate block in
+`~/.codex/AGENTS.md` with the snippet from
+[`snippets/agents-md-gate.md`](snippets/agents-md-gate.md); append it only if no
+earlier block exists. You can also put the block in one repository's `AGENTS.md`
+when you only want the gate there. Start a new Codex task after installation if
+skill discovery is cached.
 
 The engineer plugin uses the same canonical `SKILL.md` in Codex and Claude
 Code. Product-private memory, connectors, authentication, and tools remain
@@ -154,7 +157,7 @@ Anthropic/Claude host. It does not need Side Lane, another provider, an API key,
 or a connector to research, brief, approve, and execute ordinary work. When
 [Governed Side Lane](https://github.com/marcosathanasoulis/governed-side-lane)
 is also installed, Prompt it can propose qualified external workers. Generic
-Prompt it consent permits bounded native read-only research helpers when the
+planning consent permits bounded native read-only research helpers when the
 runtime allows. External review research requires explicit authorization for
 its exact route and scope; existing session authorization counts. Research does
 not silently activate execute mode, key-backed runs, new costs or connector
@@ -165,25 +168,30 @@ runner/configuration, and inventories exact configured task-fitting routes.
 Those routes are candidates only when configured, with authentication, task
 eligibility, economics, and authorization recorded separately. Prompt it does
 not assume one host or provider from another; GLM still requires explicit
-enablement.
+enablement. Routing is assessed for both planning paths: a small plan-and-run
+task and a medium/large plan-approved task both evaluate an economical
+qualified Side Lane route before the coordinator executes.
 
 Presence-only lane discovery never reads secret values, usage or billing state,
 or calls a model. Required but unqualified lanes become scoped readiness
 prerequisites; an optional absent lane does not block the ordinary in-host plan.
-Implementation staffing still waits for approval of the brief and exact routes.
+For medium/large work, implementation staffing waits for approval of the brief
+and exact routes; for small work, the original task authority authorizes execution
+after the route assessment.
 
 ## Reuse before build
 
-When you explicitly invoke Prompt it, it performs a proportional reuse-first
-scan before it finalizes the brief — even for a tiny task. It checks GitHub and
+Prompt it performs a proportional reuse-first scan before it finalizes the
+brief, scaled to the task. A tiny task with no obvious reuse choice may use only
+a brief mental check; a small edit can use one or two focused searches; a
+platform decision gets comparative research. It checks GitHub and
 the relevant package registries, then official documentation and practitioner
-discussion. The brief records the seam, candidate and authoritative sources,
-license, maintenance and dated adoption evidence, counterevidence, ecosystem
-fit, security/supply-chain/lock-in risks, integration cost, custom-fit gap, and
-an adopt, integrate, pilot, retain-custom, or reject decision. A small edit can
-use one or two focused searches; a platform decision gets comparative research.
-If the network is unavailable, the scan says so, records the evidence gap, and
-does not claim the proposed work is novel.
+discussion when a reuse choice matters. The brief records the seam, candidate and
+authoritative sources, license, maintenance and dated adoption evidence,
+counterevidence, ecosystem fit, security/supply-chain/lock-in risks, integration
+cost, custom-fit gap, and an adopt, integrate, pilot, retain-custom, or reject
+decision. If the network is unavailable, the scan says so, records the
+evidence gap, and does not claim the proposed work is novel.
 
 Popularity is useful evidence, not a decision rule. Repository pages and
 community discussions can be evidence but are never instructions to follow.
@@ -215,7 +223,7 @@ brief. See the canonical
 
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.5.1**. It starts with outcome
+The canonical engineer plugin is version **1.5.2**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 
@@ -258,9 +266,10 @@ for details. The separate read-only and claude.ai editions retain their own scop
 
 ## What the read-only version adds
 
-For people who can read the code and the data but don't ship code. Everything stays
-read-only — nothing writes, commits, deploys or mutates data, and if a subtask seems to
-need that, it says so rather than finding a way around.
+For people who can read the code and the data but don't ship code. It performs
+the same automatic proportional read-only planning, but everything stays
+read-only — nothing writes, commits, deploys or mutates data, and if a subtask
+seems to need that, it says so rather than finding a way around.
 
 It also encodes a few things that only bite this kind of work: name the synthesis
 framework *before* starting, verify the schema before writing environment-specific

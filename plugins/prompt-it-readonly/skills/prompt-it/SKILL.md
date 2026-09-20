@@ -1,6 +1,6 @@
 ---
 name: prompt-it
-description: Use when the user says "prompt it", answers yes to "Prompt it?", or asks for a plan to review before work starts. Drafts a reviewable plan, splits it where that genuinely helps, and assigns a model to each piece. Read-only edition — research, analysis and design work only, never code changes.
+description: Use when starting a substantial research or analysis task. Performs automatic proportional read-only planning and assessment; medium/large work asks "Proceed?" before any implementation. Read-only edition — research, analysis and design only, never implementation or code changes.
 ---
 
 # Prompt It (read-only edition)
@@ -16,10 +16,14 @@ they can fix in thirty seconds, instead of in a finished document nobody can use
 
 Before finalizing the plan, perform a proportional reuse-first landscape scan.
 Prompt It is explicitly invoked for a task of any size, including a one-line
-edit, when the user says “prompt it”, asks for this plan, or accepts its gate.
-Search GitHub and relevant package registries, then official documentation and
-practitioner discussion. A tiny task may use one or two focused queries; a
-platform decision needs comparative research.
+edit, when the user says “prompt it” or requests automatic proportional
+planning. The implicit small-task path for an uninvoked quick question, lookup,
+or edit is unchanged: a concise plan and run.
+
+A tiny task with no obvious reuse choice may use only a brief mental check; a
+small task may use one or two focused queries; a platform decision needs
+comparative research. Search GitHub and relevant package registries, then
+official documentation and practitioner discussion when a reuse choice matters.
 
 For each material candidate, capture the exact problem seam; candidate and
 authoritative URL; license; maintenance or release recency; dated adoption
@@ -125,7 +129,10 @@ Present staffing as a table:
 
 1. **Ask your questions first.** Prioritize the ones where a wrong assumption wastes the
    most work: who the audience is, what decision this feeds, what is already settled.
-   Then wait.
+   For medium/large or plan-only read-only work, then wait. For mini/small
+   read-only tasks, continue bounded read-only analysis under the original request
+   authority unless a material question or gate remains; never implement, write,
+   commit, deploy, or mutate data.
 2. **Say what already exists.** A prior document, an existing query, a component already
    built, an analysis someone ran last quarter. **Default to reusing.** The most common
    expensive mistake is confidently producing a second version of something that
@@ -168,11 +175,18 @@ Present staffing as a table:
   denied at the grant level deliberately. A query that errors on one is the system
   working correctly — do not go looking for another route to the same data.
 
-## Step 4 — Stop
+## Step 4 — Stop or continue proportionally
 
-Hand back the file path and the table, then **wait**. Do not start drafting, do not
-spawn agents. On "go", re-read the plan from disk — it may have been edited — and
-execute it as written.
+For medium/large or plan-only read-only work, hand back the file path and the
+table, then **wait**. Do not start drafting, do not spawn agents, and never
+implement, write code, commit, deploy, or mutate data.
+
+For mini/small read-only tasks, continue bounded read-only analysis under the
+original request authority when no material question or gate remains. The same
+prohibitions apply: never implement, write code, commit, deploy, or mutate data.
+On "go" for plan-approved work, re-read the plan from disk — it may have been
+edited — and continue only the research, analysis, or design work that the
+read-only edition allows.
 
 ## When this skill does not apply
 

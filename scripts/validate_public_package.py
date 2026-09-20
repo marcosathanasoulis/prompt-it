@@ -9,7 +9,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINEER_VERSION = "1.5.1"
+ENGINEER_VERSION = "1.5.2"
 PLUGIN = ROOT / "plugins" / "prompt-it"
 SKILL = PLUGIN / "skills" / "prompt-it" / "SKILL.md"
 READONLY_SKILL = ROOT / "plugins" / "prompt-it-readonly" / "skills" / "prompt-it" / "SKILL.md"
@@ -200,7 +200,7 @@ def validate() -> None:
         if not isinstance(source, str) or (ROOT / source).resolve() != PLUGIN.resolve():
             fail(f"{label} marketplace must resolve the canonical prompt-it package")
 
-    for name, version in (("prompt-it", ENGINEER_VERSION), ("prompt-it-readonly", "1.2.0")):
+    for name, version in (("prompt-it", ENGINEER_VERSION), ("prompt-it-readonly", ENGINEER_VERSION)):
         entries = [item for item in claude_market["plugins"] if item.get("name") == name]
         manifest = load_json(ROOT / "plugins" / name / ".claude-plugin" / "plugin.json")
         if len(entries) != 1 or entries[0].get("version") != version or manifest.get("version") != version:

@@ -35,10 +35,10 @@ class PackageParityTests(unittest.TestCase):
         result = self.validate()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
-    def test_1_5_1_release_versions_are_aligned(self):
+    def test_1_5_2_release_versions_are_aligned(self):
         expected = {
-            'prompt-it': '1.5.1',
-            'prompt-it-readonly': '1.2.0',
+            'prompt-it': '1.5.2',
+            'prompt-it-readonly': '1.5.2',
         }
         marketplace = json.loads(
             (self.root / '.claude-plugin/marketplace.json').read_text())
