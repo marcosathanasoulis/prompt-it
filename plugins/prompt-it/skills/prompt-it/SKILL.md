@@ -327,7 +327,10 @@ For an installed qualifying route, compare the supplied full-session economics,
 including task tokens, tool charges when known, handoff/review/correction
 overhead, and the user's declared marginal plan state. Do not mistake a
 configured candidate for a zero-cost route, or treat unknown rates/overhead as
-zero. Select the least-expensive *qualified* fit only when its session evidence
+zero. A route verified as covered by a subscription the user already pays has a
+known `$0` additional usage cost — distinct from an unknown price and from a
+zero-cost provider key, and not a claim that every OAuth or hosted route is
+free, since some are metered. Select the least-expensive *qualified* fit only when its session evidence
 is comparable; otherwise record the uncertainty and use the best evidenced fit.
 
 For each frontier or coordinator execution assignment, explain why an eligible

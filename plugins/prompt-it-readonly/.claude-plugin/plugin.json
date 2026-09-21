@@ -2,7 +2,7 @@
   "name": "prompt-it-readonly",
   "displayName": "Prompt It (read-only)",
   "description": "Use when starting a substantial research or analysis task. Performs automatic proportional read-only planning and assessment; medium/large work asks Proceed? before any implementation. Read-only edition — never implementation or code changes.",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "author": {
     "name": "Marcos Athanasoulis"
   },

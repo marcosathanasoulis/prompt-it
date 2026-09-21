@@ -12,8 +12,13 @@ same provider-neutral fit and evidenced cost/efficiency basis as execution
 workers. Honor compatible explicit developer preferences or stated surplus/usage
 constraints and record tradeoffs. Missing cost evidence or empirical task
 history is measurement absence, not a hard spend gate when existing authority
-already covers the bounded route. Report it as unknown, not zero; do not invent a
-cheapest or fully-qualified claim. This selection rule still grants no
+already covers the bounded route. Report the history as unavailable, not as
+zero, and never rewrite it to zero; do not invent a
+cheapest or fully-qualified claim. A route verified as included in a
+subscription the user already pays has a known `$0` additional usage cost, which
+is not an unknown price and not a zero-cost provider key, and its coverage is
+route-specific — some OAuth or hosted routes are metered. This selection rule
+still grants no
 external-call authority on its own.
 
 ## Before dispatch

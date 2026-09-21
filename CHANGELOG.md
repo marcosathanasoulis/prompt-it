@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.5 - 2026-09-21
+
+- Separate a verified included subscription from unknown pricing. A route verified as covered by a subscription the user already pays has a known `$0` additional usage cost, which is neither an unknown price nor a zero-cost provider key, and it does not make every OAuth or hosted route free — coverage is route-specific and some are metered. A missing empirical task median for an otherwise authorized task is measurement absence: report the history as unavailable, never rewrite it to zero, and do not alert solely because it is missing.
+
 ## 1.5.4 - 2026-09-21
 
 - Clarify that missing cost evidence or empirical task history is measurement absence, not a hard spend gate, when existing authority already covers the bounded research route. Report unknown values as unknown, not zero, and do not invent cheapest or fully-qualified claims.
