@@ -41,11 +41,19 @@ commands and gates rather than inventing flags or alternate routes.
 ## Source and mode boundaries
 
 Choose modes from actual tool requirements. Strict external review cannot use
-MCP/connectors or secrets. Connector evidence stays with the authorized
-coordinator or a qualified native read-only helper whose source access is
-already authorized; generic helper consent does not grant connector access.
-Supply only the bounded shareable evidence that a review lane is authorized to
-receive. Never promote review to execute merely to obtain connector access.
+MCP/connectors or secrets; preserve that contract where the task explicitly
+requires it. An authorized bounded source-research task may use an execute
+harness with an exact route, capabilities, read roots, and a brief or
+report-only output scope, when existing explicit execution, delegation, and
+spend authority covers it and the task performs no implementation or external
+writes. Read-only scope does not mean strict review-mode-only. Connector
+evidence stays with the authorized coordinator, a qualified native read-only
+helper, or the authorized execute harness; generic helper consent does not grant
+connector access. Supply only the bounded shareable evidence that a lane is
+authorized to receive. Never promote review to execute merely to obtain
+connector access, and never relabel an execute lane as a sandbox. Generic
+helper consent does not introduce per-node approval or authorize new costs,
+external dispatch, or arbitrary worktree writes.
 
 Generic Prompt it does not activate external execute mode, key-backed calls,
 new costs or GLM. Only the fixed `glm-5.3` route may be staffed when

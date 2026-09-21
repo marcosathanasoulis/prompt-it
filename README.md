@@ -172,6 +172,14 @@ enablement. Routing is assessed for both planning paths: a small plan-and-run
 task and a medium/large plan-approved task both evaluate an economical
 qualified Side Lane route before the coordinator executes.
 
+An authorized bounded source-research task may use a Side Lane execute harness
+with an exact route, capabilities, read roots, and a brief or report-only output
+scope, when existing explicit execution, delegation, and spend authority covers
+it and no implementation or external writes are made. Read-only scope does not
+mean strict review-mode-only; preserve the strict review no-secret/no-MCP
+contract where explicitly required. For optional pooled routing, see the
+Governed Side Lane OmniRoute add-on guide.
+
 Presence-only lane discovery never reads secret values, usage or billing state,
 or calls a model. Required but unqualified lanes become scoped readiness
 prerequisites; an optional absent lane does not block the ordinary in-host plan.
@@ -223,7 +231,7 @@ brief. See the canonical
 
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.5.2**. It starts with outcome
+The canonical engineer plugin is version **1.5.3**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 

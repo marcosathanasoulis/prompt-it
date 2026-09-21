@@ -9,7 +9,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINEER_VERSION = "1.5.2"
+ENGINEER_VERSION = "1.5.3"
 PLUGIN = ROOT / "plugins" / "prompt-it"
 SKILL = PLUGIN / "skills" / "prompt-it" / "SKILL.md"
 READONLY_SKILL = ROOT / "plugins" / "prompt-it-readonly" / "skills" / "prompt-it" / "SKILL.md"
@@ -113,6 +113,34 @@ BACKUP_CONTRACTS = {
         "Use `approved-backups.md`",
         "each delegated node's exact primary and one preapproved backup",
         "coordinator remains unchanged",
+    ),
+}
+RESEARCH_EXECUTE_CONTRACTS = {
+    SKILL: (
+        "authorized bounded source-research task",
+        "execute harness with an exact route",
+        "read roots",
+        "brief or report-only output",
+        "no implementation or external writes",
+        "Read-only scope does not mean strict review-mode-only",
+        "Preserve the strict review no-secret/no-MCP contract",
+        "Generic planning consent alone",
+        "no new external dispatch",
+        "coordinator owns the research question and final synthesis",
+        "no forced expensive coordinator research",
+        "does not introduce per-node approval",
+    ),
+    SKILL.parent / "references" / "research-teams.md": (
+        "authorized bounded source-research task",
+        "execute harness with an exact route",
+        "report-only output",
+        "Read-only scope does not mean strict review-mode-only",
+        "Generic helper consent does not introduce per-node approval",
+    ),
+    SKILL.parent / "references" / "task-graphs.md": (
+        "authorized bounded source-research task",
+        "execute harness with an exact route",
+        "report-only output",
     ),
 }
 
@@ -240,6 +268,11 @@ def validate() -> None:
         for phrase in contracts:
             if phrase not in normalized_backup:
                 fail(f"preapproved backup contract missing from {path.relative_to(ROOT)}: {phrase}")
+    for path, contracts in RESEARCH_EXECUTE_CONTRACTS.items():
+        normalized_research = " ".join(path.read_text(encoding="utf-8").split())
+        for phrase in contracts:
+            if phrase not in normalized_research:
+                fail(f"research-execute contract missing from {path.relative_to(ROOT)}: {phrase}")
     readonly_normalized = " ".join(READONLY_SKILL.read_text(encoding="utf-8").split())
     for phrase in READONLY_REUSE_SCAN_CONTRACTS:
         if phrase not in readonly_normalized:

@@ -133,6 +133,11 @@ alternate GLM model is allowed. It is never a silent runner substitution.
 Generic Prompt it research consent remains unchanged: a pre-brief external
 review needs its explicitly approved bounded route and scope, and its backup
 preserves review/execute mode, tool restrictions, and reviewer independence.
+An authorized bounded source-research task may use an execute harness with an
+exact route, capabilities, read roots, and a brief or report-only output scope
+when existing explicit execution, delegation, and spend authority covers it and
+the task performs no implementation or external writes; read-only scope does not
+mean strict review-mode-only.
 
 A required unready route gets a prerequisite node with the missing capability,
 owner, permitted qualification/repair scope and acceptance evidence. A configured

@@ -84,12 +84,15 @@ Use relevant read-only sources available in the current environment, including:
   it in scope and existing permissions, privacy rules, and project instructions
   allow that access.
 
-Use the user's selected model in the main thread for the research that shapes
-scope, architecture, risks, or open questions. The coordinator owns this discovery
-and final synthesis; helpers supplement it with bounded evidence gathering or
-critique. Generic planning consent permits native read-only research helpers
-when runtime rules allow. Announce the exact staffing, question, sources, and
-read-only scope before dispatch. No helper receives implementation authority.
+The coordinator owns the research question and final synthesis. Keep the
+user's selected model in the main thread for the judgment that shapes scope,
+architecture, risks, or open questions; helpers may perform bounded read-only
+evidence gathering or analysis under existing authority when a qualified,
+economical route is available. Generic planning consent permits native read-only
+research helpers when runtime rules allow; it does not authorize an external
+review or any provider-key run without its own explicit bounded route and scope.
+Announce the exact staffing, question, sources, and read-only scope before
+dispatch. No helper receives implementation authority.
 
 When research benefits from helpers or an independent second opinion, read
 [Research teams](references/research-teams.md). External review research needs
@@ -106,6 +109,19 @@ Generic research consent does **not** authorize:
   to people, credential changes, or destructive operations;
 - exposing secret values, private payloads, or unnecessary sensitive data;
 - a read that violates repository preflight, customer, privacy, or access rules.
+
+An authorized bounded source-research task may use an execute harness with an
+exact route, capabilities, read roots, and a brief or report-only output scope,
+provided it performs no implementation or external writes and existing explicit
+execution, delegation, and spend authority covers it. Read-only scope does not
+mean strict review-mode-only. Preserve the strict review no-secret/no-MCP
+contract where the task explicitly requires it, and never relabel an execute
+lane as a sandbox. Generic planning consent alone grants no new external
+dispatch, costs, execute authority, or arbitrary worktree writes. The
+coordinator owns the research question and final synthesis, but may delegate
+evidence gathering or analysis to an economical qualified route under existing
+authority; no forced expensive coordinator research is required when such a
+route qualifies. This authority does not introduce per-node approval.
 
 Explicit authorization for a qualified external review run may include only the
 documented disposable review worktree and captured result artifacts that its

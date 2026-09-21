@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3 - 2026-09-21
+
+- Fix research-routing references to distinguish read-only scope from strict review-mode-only; an authorized bounded source-research task may use an execute harness with exact route, capabilities, read roots, and report-only output.
+- Add optional OmniRoute add-on guide and link it from Side Lane and Prompt it integration.
+- Add offline regression checks for the updated research/execute contract.
+
 ## 1.5.2 - 2026-09-19
 
 - Replace the initial `Prompt it?` opt-in question with automatic proportional
