@@ -10,8 +10,11 @@ The selected coordinator still investigates the scope-shaping seams and owns
 architecture and synthesis. Available slots alone do not justify a team. Choose research candidates on the
 same provider-neutral fit and evidenced cost/efficiency basis as execution
 workers. Honor compatible explicit developer preferences or stated surplus/usage
-constraints and record tradeoffs. Missing cost evidence is unknown; do not query
-quotas or invent prices. This selection rule grants no external-call authority.
+constraints and record tradeoffs. Missing cost evidence or empirical task
+history is measurement absence, not a hard spend gate when existing authority
+already covers the bounded route. Report it as unknown, not zero; do not invent a
+cheapest or fully-qualified claim. This selection rule still grants no
+external-call authority on its own.
 
 ## Before dispatch
 

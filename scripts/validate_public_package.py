@@ -9,7 +9,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINEER_VERSION = "1.5.3"
+ENGINEER_VERSION = "1.5.4"
 PLUGIN = ROOT / "plugins" / "prompt-it"
 SKILL = PLUGIN / "skills" / "prompt-it" / "SKILL.md"
 READONLY_SKILL = ROOT / "plugins" / "prompt-it-readonly" / "skills" / "prompt-it" / "SKILL.md"

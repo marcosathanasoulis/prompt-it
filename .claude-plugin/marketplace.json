@@ -10,13 +10,13 @@
       "name": "prompt-it",
       "source": "./plugins/prompt-it",
       "description": "Automatic proportional planning for engineers: subagent staffing, model lanes, tests-first, and the rules that keep parallel agents from colliding.",
-      "version": "1.5.3"
+      "version": "1.5.4"
     },
     {
       "name": "prompt-it-readonly",
       "source": "./plugins/prompt-it-readonly",
       "description": "Read-only edition for analysts, PMs and researchers with code and data access. Same automatic proportional planning loop, nothing that writes.",
-      "version": "1.5.3"
+      "version": "1.5.4"
     }
   ]
 }

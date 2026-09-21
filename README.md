@@ -231,7 +231,7 @@ brief. See the canonical
 
 ## What the engineer version adds
 
-The canonical engineer plugin is version **1.5.3**. It starts with outcome
+The canonical engineer plugin is version **1.5.4**. It starts with outcome
 coverage and executable work packages, then chooses available agents for each
 job. There is no target task count or fixed model lineup.
 

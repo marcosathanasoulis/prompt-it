@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.4 - 2026-09-21
+
+- Clarify that missing cost evidence or empirical task history is measurement absence, not a hard spend gate, when existing authority already covers the bounded research route. Report unknown values as unknown, not zero, and do not invent cheapest or fully-qualified claims.
+
 ## 1.5.3 - 2026-09-21
 
 - Fix research-routing references to distinguish read-only scope from strict review-mode-only; an authorized bounded source-research task may use an execute harness with exact route, capabilities, read roots, and report-only output.
