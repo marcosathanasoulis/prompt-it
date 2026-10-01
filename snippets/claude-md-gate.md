@@ -13,34 +13,39 @@ is present. Create the file if it does not exist. Preserve unrelated global inst
 ```markdown
 ## Working mode: automatic proportional planning
 
-Before a substantial new task, begin automatic proportional planning and an
-economical qualified Side Lane assessment.
+Before a substantial new task, use the installed Prompt it skill and its saved
+Ask first or Just go mode. At first setup ask which mode the user wants, save it
+with the skill's `scripts/mode.py`, and explain that they can say “switch Prompt
+it to Ask first” or “switch Prompt it to Just go” mid-session. A direct mode
+request changes the current task's next gate immediately.
 
-- **Mini/small work (including one-line edits):** produce a concise plan with
-  sensible defaults, then execute under the original task authority. Unresolved
-  safety, scope, credential, destructive-action, or spend gates still require
-  explicit consent. A one-line trivial edit can use an implicit brief mental plan
-  and a proportional Side Lane assessment.
-- **Medium/large work or an explicit plan request:** announce "Making a plan",
-  research read-only, return a canonical plan link and any material questions
-  with recommended defaults, then ask `Proceed?` and wait. Silence is never
-  consent. Write the evidence-backed brief and staffing, then stop for execution approval.
-- A direct "prompt it" request begins planning immediately; the request itself
-  authorizes bounded read-only research.
+- **Ask first:** ask “Prompt it for this task?” before full research. If yes, announce “Making a plan”,
+  research and write the evidence-backed brief and staffing, then ask `Proceed?`
+  and wait for approval of both. Silence is never consent.
+- **Just go:** research, write and show the proportional brief and staffing,
+  ask only genuinely blocking questions, and execute with documented defaults
+  under the original task authority.
+- A plan-only request stops at the brief in either mode.
+- A direct “prompt it” request satisfies Ask first's opt-in, not its plan approval.
 - In the engineer edition, native read-only helpers follow runtime rules;
   external research requires explicit bounded authority (reuse existing
   authorization). The read-only edition retains its own rules.
 - Skip automatic planning for questions, status checks, lookups, conversational
   replies, and follow-ups already underway.
-- Planning consent does not authorize connector/external writes, billable paid
-  research, or Side Lane dispatch; those keep their existing explicit gates.
-- Always assess an economical qualified Side Lane route before substantial
-  execution; accepting or skipping a plan does not disable routing. Small work
-  uses a proportional Side Lane assessment under existing authority. Preserve
-  exact route/mode/capability/task-fit/spend authority, the approved backup, and
-  one primary at a time. A missing eligible route is an explicit recorded
-  exception, never silent coordinator execution. Public packages do not impose a
-  global eligible-route percentage mandate.
+- Planning never grants external writes, billable research, purchases,
+  destructive action, or credentials. Preserve every separate authority gate
+  and stronger repository rule. Side Lane dispatch — local or governed —
+  keeps its own permission and authority contract from the installed Side
+  Lane skill; this planning gate does not restate or substitute for it.
+- At staffing time, with the private local-direct Side Lane package installed,
+  use its shared selector. With the public Governed Side Lane package installed
+  instead, use its own `check-capabilities`/`recommend` flow rather than the
+  shared selector, which it does not have. Without either, assess verified
+  local Claude Code, Codex, Devin, and Gemini access plus native agents; never
+  infer readiness from CLI presence. Record exact model fit, capabilities,
+  authority, and one qualified backup where available. A missing eligible
+  route is an explicit recorded exception.
+
 ```
 
 Put the block in a project-level `CLAUDE.md` instead when the gate should apply

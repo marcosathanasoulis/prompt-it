@@ -1,8 +1,8 @@
 {
   "name": "prompt-it",
   "displayName": "Prompt It",
-  "description": "Performs automatic proportional planning for substantial tasks and drafts an evidence-backed execution brief before implementation. Small tasks plan and run; medium/large tasks ask Proceed? before starting.",
-  "version": "1.5.5",
+  "description": "Performs automatic proportional planning for substantial tasks and drafts an evidence-backed execution brief before implementation. Ask first or Just go mode controls implementation approval.",
+  "version": "1.5.8",
   "author": {
     "name": "Marcos Athanasoulis"
   },

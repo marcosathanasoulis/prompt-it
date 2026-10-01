@@ -48,7 +48,13 @@ Descriptions are candidate-selection evidence, not demonstrated performance or
 route qualification. Do not hardcode a permanent ranking or infer capability
 from a model name alone.
 
-Use this compact rubric for each node:
+Use this compact rubric to explain task fit. When the private local-direct
+package's shared selector is installed, its decision controls ranking. When
+the public governed package is installed instead, its own
+`check-capabilities`/`recommend` decision controls ranking; the governed core
+has no shared selector of its own. Either way, do not score or rerank
+candidates again with this table. Standalone, the LLM chooses among models
+with verified local access. With only one verified candidate, use that one.
 
 | Decision | Evidence to consider |
 |---|---|
@@ -56,7 +62,7 @@ Use this compact rubric for each node:
 | Context fit | Required sources and handoff size, known context-window limits, continuity needed; mark unknown limits rather than inventing them |
 | Operational fit | Available tools, exact host/identity, provider/model, gateway when applicable, mode, authority and demonstrated route readiness |
 | Independence | Whether a reviewer authored the work or can provide a distinct evidence-based critique |
-| Efficiency and preference fit | Least-cost/most-efficient credible fit using supplied evidence; explicit developer preferences or stated surplus/usage constraints, with tradeoffs recorded |
+| Preference fit | Explicit developer preferences or stated surplus/usage constraints, with tradeoffs recorded; unknown cost remains unknown |
 
 For example, **if currently available and supported by supplied evidence**, GPT-6
 Astra may fit complex high-ambiguity architecture, consequential integration or
@@ -78,13 +84,15 @@ availability. The documented exact preapproved backup may instead be a
 qualified non-GLM route after an availability failure. Its execute-only
 constraint remains; it cannot substitute for review-mode research.
 
-Routing is provider/company-neutral. For ordinary work choose the least-cost or
-most-efficient currently available candidate that credibly satisfies the
-reasoning, tools, authority, context and quality requirements. Honor explicit
-developer preferences or stated surplus/usage constraints when compatible,
-including preferences for Codex or Claude, and record the tradeoff. Never query
-quotas or invent numerical prices, cost rankings or efficiency estimates. When
-cost evidence is absent, label it unknown and use evidenced efficiency and fit.
+Routing is provider/company-neutral. With the private local-direct package
+installed, use the shared selector's decision and receipt; do not copy its
+quota, cost, or quality ranking here. With the public governed package
+installed instead, use its own `check-capabilities`/`recommend` decision and
+receipt; it has no shared selector of its own. Standalone, choose by task fit
+among verified local models,
+honoring compatible user preferences. Record the reason and any known cost
+tradeoff; unknown cost or quota stays unknown. Do not invent numerical prices,
+cost rankings, or efficiency estimates.
 
 Every assignment needs a task-specific reason. Explain coordinator/frontier
 execution relative to eligible bounded workers: no capable eligible worker is a
@@ -116,7 +124,9 @@ backup in a different availability-failure domain when evidence and authority
 support it. A second model on the same provider can cover model-specific loss,
 not a provider-wide outage.
 
-The approved brief covers the two exact routes and this switch condition. An
+The brief covers the two exact routes and this switch condition — approved by
+the user in Ask first, or shown and covered by the original task authority in
+Just go. An
 availability failure is a known provider/model-unavailable, quota, rate-limit,
 cooldown, manual-off, or top-up state after applicable bounded retries; failed
 tests, poor output, ambiguous timeouts, auth errors, null metrics and credential
@@ -127,8 +137,8 @@ pause. Ensure the primary is terminal or stopped, preserve partial work and
 evidence, reconcile in-flight execution, and transfer exclusive ownership with
 a compact handoff. No third route, cycle, or parallel writer is allowed. If the
 backup is unavailable or needs new authority, pause only that node and its
-dependents while unrelated approved nodes continue. GLM remains fixed to
-`glm-5.3` and execute-only; an approved non-GLM backup may replace it, but no
+dependents while unrelated authorized nodes continue. GLM remains fixed to
+`glm-5.3` and execute-only; an authorized non-GLM backup may replace it, but no
 alternate GLM model is allowed. It is never a silent runner substitution.
 Generic Prompt it research consent remains unchanged: a pre-brief external
 review needs its explicitly approved bounded route and scope, and its backup
@@ -162,19 +172,25 @@ chain without inventing timing estimates. Verify:
 Resolve defects before presenting the brief. A larger table or more model names
 does not compensate for hidden work or missing evidence.
 
-## Schedule after approval
+## Schedule after authorization
 
-Only dispatch a node when the coordinator has accepted every prerequisite
-output, its authority is present, and its route is qualified. Honor concurrency
-limits and exclusive ownership; graph independence is not permission to exceed
-runtime limits. Each worker receives the accepted contracts, bounded sources,
-output location, authority and acceptance checks.
+Only dispatch a node once its staffing has cleared the mode's own gate — the
+user's explicit approval of the brief and staffing in Ask first, or the
+original task authority once Just go has shown the brief and staffing and
+resolved only the genuinely blocking open questions — and the coordinator has
+accepted every prerequisite output and confirmed the route is qualified.
+Neither mode adds a second per-node approval prompt on top of that gate; Side
+Lane dispatch keeps its own separate permission and authority contract
+regardless of mode. Honor concurrency limits and exclusive ownership; graph
+independence is not permission to exceed runtime limits. Each worker receives
+the accepted contracts, bounded sources, output location, authority and
+acceptance checks.
 
 Collect provenance, artifacts, validation results and unresolved issues in each
-handoff. A failure blocks dependents, not unrelated approved branches. Reuse
-owners for fixes within their approved route/scope. A material executor change
-needs revised staffing unless it is the documented one preapproved backup
-availability switch. The coordinator integrates accepted branches and requires
-evidence on the integrated artifact, not merely successful isolated nodes.
-Independent findings inform final acceptance; no worker self-approves production
-actions or the complete outcome.
+handoff. A failure blocks dependents, not unrelated authorized branches. Reuse
+owners for fixes within their authorized route/scope. A material executor
+change needs revised staffing unless it is the documented one preapproved
+backup availability switch. The coordinator integrates accepted branches and
+requires evidence on the integrated artifact, not merely successful isolated
+nodes. Independent findings inform final acceptance; no worker self-approves
+production actions or the complete outcome.

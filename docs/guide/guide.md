@@ -177,7 +177,7 @@ capability, and authorization. Never ask me to paste a secret into chat.
 
 You do not need to write a perfect specification. Try asking, “Help me write the prompt to do X.” The agent can help make the request precise before it starts. A good brief says what outcome you want, what material it may use, what it must protect, and how you will recognize a good result.
 
-This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/prompt-it), a public reusable planning skill. Its core idea is simple: for a substantial task, research and clarify first; approve a short plan; then do the work. You can use the same pattern without installing anything. Its no-install Claude.ai edition can be pasted into project instructions; its Codex and Claude Code editions add a reusable skill that begins automatic proportional planning for new tasks while leaving questions, lookups, and follow-ups alone; small edits get a concise plan and proportional Side Lane assessment.
+This approach is inspired by [Prompt It](https://github.com/marcosathanasoulis/prompt-it), a public reusable planning skill. Its core idea is simple: for a substantial task, research and clarify first, then write a short brief before doing the work. You choose how approval works: in **Ask first** mode you approve the brief before implementation; in **Just go** mode the agent shows the brief and proceeds under your existing authority, pausing only for choices research could not settle. You can use the same pattern without installing anything. Its no-install Claude.ai edition can be pasted into project instructions; its Codex and Claude Code editions add a reusable skill that begins automatic proportional planning for new tasks while leaving questions, lookups, and follow-ups alone; small edits get a concise plan and proportional Side Lane assessment.
 
 **Vague request:** “Make our volunteer spreadsheet better.”
 
@@ -211,7 +211,7 @@ This prompt sets expectations. The app's permission mode controls what the agent
 
 ### Install Prompt It without being a coder
 
-For the hands-on work in this guide, choose the standard **`prompt-it` plugin** in either Codex or Claude Code. The repository calls this the “engineer” edition, but you do not need to write code: it helps your agent plan work, choose models, and carry out an approved brief. Choose **`prompt-it-readonly`** in Claude Code only if you want research and analysis without changes to files or systems. Install one edition per product, not both. The paste-in Claude.ai edition is for ordinary chat projects; it is not the plugin for a coding agent.
+For the hands-on work in this guide, choose the standard **`prompt-it` plugin** in either Codex or Claude Code. The repository calls this the “engineer” edition, but you do not need to write code: it helps your agent plan work, choose models, and carry out the brief — either after you approve it (**Ask first**) or under your existing authority once it is shown (**Just go**). Choose **`prompt-it-readonly`** in Claude Code only if you want research and analysis without changes to files or systems. Install one edition per product, not both. The paste-in Claude.ai edition is for ordinary chat projects; it is not the plugin for a coding agent.
 
 **Easiest route: ask your agent to install it.** Open a local Codex task or the Code tab in Claude desktop, then paste this setup request. Installation changes the agent's setup; you can have it apply only to this project or to your personal setup across projects.
 
@@ -223,12 +223,21 @@ Use the product's supported plugin installation method. Add or replace the
 matching automatic proportional planning loader in my personal instruction
 file: if an earlier Prompt It gate block exists, replace it; otherwise append
 the current loader. Preserve unrelated instructions and avoid duplicates.
-Explain what changed and whether I need a new session. Help me verify that it
-announces "Making a plan" on a substantial task, asks "Proceed?" once and
-waits for an affirmative answer before starting, and still lets me say
-"prompt it" to begin planning explicitly. One yes or go is enough; I do not
-need to approve twice. I do not code, so handle the setup and explain any step
-I must do.
+Explain what changed and whether I need a new session. Ask which approval
+mode I want, Ask first or Just go, save my choice, and explain that I can say
+"switch Prompt it to Ask first" or "switch Prompt it to Just go" at any time,
+including mid-task. Help me verify that in Ask first it asks "Prompt it for
+this task?" before research, then announces "Making a plan," shows the brief
+and staffing, asks "Proceed?" once, and waits for an affirmative answer before
+starting; in Just go it announces "Making a plan," shows the brief and
+staffing, and proceeds under my existing authority once shown, asking only
+questions that would otherwise block safe or faithful execution. Either mode
+still lets me say "prompt it" to begin planning explicitly. In Ask first there
+are two separate gates, each needing exactly one answer: the opt-in question
+before research, and then one yes or go approving both the brief and staffing
+together; I do not need to approve the brief and staffing separately or answer
+either gate twice. I do not code, so handle the setup and explain any step I
+must do.
 ```
 
 **Codex installation.** The agent can run these commands in the local terminal. If `codex` is unavailable, ask it to set up the supported CLI for your platform first. These are terminal commands, not text to paste as a normal chat request:
@@ -247,9 +256,11 @@ Then have the agent add or replace the [Codex loader snippet](https://github.com
 /plugin install prompt-it@prompt-it
 ```
 
-Then have the agent add or replace the [Claude Code loader snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate.md) in your personal `~/.claude/CLAUDE.md` (or the project's `CLAUDE.md`). For the read-only alternative, substitute `prompt-it-readonly@prompt-it` in the install command. Each product needs its own installation and instruction file.
+Then have the agent add or replace the [Claude Code loader snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate.md) in your personal `~/.claude/CLAUDE.md` (or the project's `CLAUDE.md`). For the read-only alternative, substitute `prompt-it-readonly@prompt-it` in the install command and use the [read-only loader snippet](https://github.com/marcosathanasoulis/prompt-it/blob/main/snippets/claude-md-gate-readonly.md) instead — it has no Ask first/Just go mode. Each product needs its own installation and instruction file.
 
-**Verify both parts.** The plugin provides the planning skill; the loader makes the agent begin it. Start a new task or session after installation. Ask: “Help me turn these volunteer notes into a report with a summary, action list, and checks for missing information.” For a medium or large task it should announce **“Making a plan,”** ask **“Proceed?”** once the brief is ready, and wait for an affirmative answer before starting. Saying **yes**, **go**, or another clear approval once is enough to proceed; you do not need to approve twice. For a small task it may plan briefly and run directly. If the planning behavior does not appear, ask the agent to check plugin discovery and the loader rather than installing duplicate copies.
+**Verify both parts (standard edition).** This check is for the standard `prompt-it` (engineer) edition, the only one with Ask first/Just go mode switching; if you installed `prompt-it-readonly`, skip to the read-only check below instead. The plugin provides the planning skill; the loader makes the agent begin it. Start a new task or session after installation. Ask: “Help me turn these volunteer notes into a report with a summary, action list, and checks for missing information.” In **Ask first**, it should ask “Prompt it for this task?” before research, then announce **“Making a plan,”** show the brief and staffing, ask **“Proceed?”** once, and wait for an affirmative answer before starting — even for a small task. In **Just go**, it should announce **“Making a plan,”** show the brief and staffing, then proceed under your existing authority once the brief is shown, asking only questions that would otherwise block safe or faithful execution. Ask first has two separate gates, each needing exactly one answer: the opt-in question before research, and then saying **yes**, **go**, or another clear approval once for the brief and staffing together; you do not need to approve the brief and staffing separately or answer either gate twice. Say “switch Prompt it to Ask first” or “switch Prompt it to Just go” at any time, including mid-task, to change which gate applies next. If the planning behavior does not appear, ask the agent to check plugin discovery and the loader rather than installing duplicate copies.
+
+**Verify the read-only edition.** `prompt-it-readonly` has no mode file and no Ask first/Just go choice — skip the checks above. Ask the same volunteer-notes question instead. For medium/large or plan-only work, the agent should draft a plan file, present the goal, staffing table, and open questions, then wait for your approval before any further work. For a small task it should continue bounded read-only analysis directly. It should never implement, write code, commit, deploy, or mutate data — that boundary holds regardless of what you ask.
 
 The [Prompt It installation instructions](https://github.com/marcosathanasoulis/prompt-it#install-in-codex) are the package-specific source of truth; see also [Codex plugins](https://learn.chatgpt.com/docs/plugins) and [Claude Code plugin installation](https://code.claude.com/docs/en/discover-plugins). Managed work accounts may require an administrator to make the plugin available.
 
@@ -313,7 +324,7 @@ Useful agent work follows a loop: plan, act, test, inspect evidence, improve, th
 
 ```mermaid
 flowchart LR
-  P[Plan: approved brief] --> A[Act on a copy]
+  P[Plan: brief, approved or shown] --> A[Act on a copy]
   A --> T[Test objective checks]
   T -->|Pass| I[Inspect evidence and human quality]
   I -->|Accept| D[Done]

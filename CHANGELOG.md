@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.5.8 - 2026-09-30
+
+- When the public governed Side Lane package ships its `model-select` skill,
+  Prompt it uses that skill to rank eligible routes by expected cost per
+  successful task. The ranking is cited in staffing and stays advice under
+  the existing eligibility and authority gates. The read-only edition is
+  version-aligned and has no content change.
+
+## 1.5.7 - 2026-09-26
+
+- Add per-harness Ask first and Just go approval modes, first-use setup, and
+  mid-session switching. Both retain research, necessary questions, a brief,
+  staffing, and separate action/dispatch gates.
+- With the private local-direct Side Lane package installed, use its shared
+  selector and full qualified route inventory. With the public Governed Side
+  Lane package installed instead, use its `check-capabilities`/`recommend`
+  flow rather than the shared selector. Without either, staff verified local
+  Claude, Codex, Devin, or Gemini access according to task fit.
+- Add ten offline real-task scenario checks.
+
+## 1.5.6 - 2026-09-26
+
+- Let an installed local Side Lane skill supply a shared model-selector decision for staffing, using requester-bound local access and nonzero included-capacity opportunity cost. Keep the public planning workflow usable without that optional selector and preserve its exact-route and authority gates.
+
 ## 1.5.5 - 2026-09-21
 
 - Separate a verified included subscription from unknown pricing. A route verified as covered by a subscription the user already pays has a known `$0` additional usage cost, which is neither an unknown price nor a zero-cost provider key, and it does not make every OAuth or hosted route free — coverage is route-specific and some are metered. A missing empirical task median for an otherwise authorized task is measurement absence: report the history as unavailable, never rewrite it to zero, and do not alert solely because it is missing.

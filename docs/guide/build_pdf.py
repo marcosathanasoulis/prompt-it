@@ -224,7 +224,7 @@ class Diagram(Flowable):
         if self.kind == "loop":
             top = 154
             mid = top + 20
-            self.box(0, top, 76, "Plan\napproved brief")
+            self.box(0, top, 76, "Plan\napproved or shown")
             self.box(105, top, 76, "Act\non a copy")
             self.box(210, top, 76, "Test\nobjective checks")
             self.box(315, top, 76, "Inspect\nevidence, quality")

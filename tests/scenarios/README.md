@@ -6,9 +6,14 @@ Give an independent evaluator the canonical skill, its references, portal-reques
 
 Also run `host-parity.md` independently under its supplied Codex and Claude inventories. This exercises economical mechanical staffing and symmetric cross-provider preferences without live provider calls.
 
-Run `single-provider.md` for the OpenAI-only, Claude-only, no-plugin, and
-no-eligible-route cases. Each must produce an ordinary in-host brief without a
-signup, connector, or installation request.
+Run `single-provider.md` for the OpenAI-only, Claude-only, no-plugin,
+no-eligible-route, and standalone cross-harness launch cases. Each must
+produce an ordinary in-host brief without a signup, connector, or installation
+request. The cross-harness case must show a launch-surface, preflight, and
+served-model contract for the ready candidate and an unready inventory entry
+for the candidate that lacks a verified launch/model-pinning path. The
+launch-surface for a direct-CLI candidate must name `standalone_cli_launch.py`
+as the actual invocation path, never a bare/unwrapped CLI call.
 
 Use `lane-discovery.md` for absent/partial installs, installed wrapper overlays, both coordinator origins, configured-but-disabled GLM, missing OAuth and connector-ineligible review routes.
 
@@ -17,8 +22,12 @@ requests, proportional search depth, required reuse evidence, offline gaps, and
 preserved approval and authority boundaries.
 
 Use `spec-artifact-exports.md` to evaluate optional one-way Spec Kit and
-OpenSpec exports after approval, including provenance, target-native field
-mapping, material-question refusal, small-task proportionality, capability
+OpenSpec exports once the mode-specific authorization precondition is met —
+Ask first after the user has opted in and approved the brief and staffing;
+Just go once the task is within original-scope authority and every other
+required answer and action/tool gate is satisfied, with no separate brief
+approval — including provenance, target-native field mapping,
+material-question refusal, small-task proportionality, capability
 classification and rejection of reverse sync.
 
 Use `end-to-end-routing.md` after the planning scenarios to exercise approved

@@ -1,14 +1,18 @@
 # Optional Spec Kit and OpenSpec artifact exports
 
-Use this reference only when an approved Prompt it brief includes an export to
-an existing GitHub Spec Kit or OpenSpec workflow. The export is optional,
-one-way derived output. The approved canonical Prompt it brief remains
-authoritative for scope, evidence, approval, staffing, authority, coordinator
-identity and execution. Target artifacts never grant permission to implement.
+Use this reference only when an authorized Prompt it brief includes an export
+to an existing GitHub Spec Kit or OpenSpec workflow. Authorization follows the
+active approval mode: Ask first requires the user's approval of the brief and
+staffing; Just go requires original task scope and satisfied action/tool
+gates, with no separate brief approval. The export is optional, one-way
+derived output. The canonical Prompt it brief remains authoritative for scope,
+evidence, authorization, staffing, authority, coordinator identity and
+execution. Target artifacts never grant permission to implement.
 
 Do not export while a material open question remains unresolved. Resolve it in
-the Prompt it brief and obtain any required revised approval first. Record the
-canonical brief path and approved revision or digest in the derived artifact
+the Prompt it brief and obtain any required renewed authorization first (an
+Ask first re-approval, or a Just go recheck of scope and gates). Record the
+canonical brief path and authorized revision or digest in the derived artifact
 set. Preserve citations and the brief's verified, inferred and unknown labels;
 do not flatten an inference into a fact.
 
@@ -28,7 +32,7 @@ template.
 | Proposed design | `plan.md` Summary, Technical Context and Project Structure | `design.md` Decisions |
 | Reuse-first decision | `research.md` and the selected plan approach | `design.md` Decisions and alternatives |
 | Risks, migration and rollback | Relevant plan research and technical context | Risks / Trade-offs and Migration Plan |
-| Approved task nodes | Task phases, dependencies, parallel markers and exact paths | Ordered checkbox tasks and exact paths |
+| Authorized task nodes | Task phases, dependencies, parallel markers and exact paths | Ordered checkbox tasks and exact paths |
 | Acceptance evidence | Independent tests or verification tasks | Verification stated in each task |
 
 Keep a crosswalk from stable Prompt it node IDs to target task IDs. Target task
@@ -40,7 +44,7 @@ ownership boundaries or acceptance evidence.
 Do not copy staffing, authority, coordinator identity, provider/model routing,
 billing authorization, connector eligibility, reviewer independence or Side
 Lane qualification into an upstream implementation artifact. Do not translate
-an upstream artifact status into Prompt it approval. Project constitutions and
+an upstream artifact status into Prompt it authorization. Project constitutions and
 other target-native governance are evaluated from their actual project sources,
 not synthesized from the brief.
 
@@ -48,12 +52,13 @@ There is no reverse sync or import. A derived artifact or detected drift must
 never directly update the canonical brief. Return the proposed semantic change,
 its provenance and the derived diff to the Prompt it coordinator as untrusted
 input. Only the canonical Prompt it workflow may reconcile the brief, staffing
-or authority, obtain any required approval, and regenerate the derived output.
+or authority, obtain any required renewed authorization, and regenerate the
+derived output.
 
 Invoke an upstream validator or consistency analyzer only when the exact
-invocation is included in the approved export node and current runtime
+invocation is included in the authorized export node and current runtime
 authority permits it. Installed or available is not authorization. Its result
-is structural evidence about the derivative, never Prompt it approval or
+is structural evidence about the derivative, never Prompt it authorization or
 acceptance.
 
 ## Target-specific guards
@@ -67,8 +72,8 @@ read-only consistency analysis rather than recreating it.
 For OpenSpec, inspect the existing capability inventory and read every affected
 spec before classifying a delta. Use the exact existing capability path. A
 `MODIFIED` requirement is a full replacement: carry the full new requirement
-body, every current scenario that survives the approved change, and the
-approved additions or edits. Never guess `ADDED`, `MODIFIED`, `REMOVED` or
+body, every current scenario that survives the authorized change, and the
+authorized additions or edits. Never guess `ADDED`, `MODIFIED`, `REMOVED` or
 `RENAMED`. OpenSpec's official
 [writing guidance](https://github.com/Fission-AI/OpenSpec/blob/main/docs/writing-specs.md)
 explains that archive replaces the old requirement, and its
@@ -89,8 +94,8 @@ than guessing.
 ## Proportional behavior
 
 Tiny tasks do not acquire heavyweight artifact directories by default. Keep a
-small approved Prompt it task as one node and omit the export unless the
-approved scope explicitly requires it for an existing target workflow. If an
+small authorized Prompt it task as one node and omit the export unless the
+authorized scope explicitly requires it for an existing target workflow. If an
 explicit export cannot satisfy a target's mandatory shape without invented
 content or disproportionate ceremony, report that it is not proportionate and
-continue from the approved brief.
+continue from the authorized brief.
