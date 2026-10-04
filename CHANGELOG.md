@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.5.9 - 2026-10-04
+
+- Model choice now follows one Auto Router order, with or without Side Lane: an explicit
+  request first, then a signed-in host with included usage, then metered models only when
+  nothing included can do the task, and never extra usage without authorization. When the
+  governed Side Lane core is installed, Prompt it cites its `side-lane auto-route`
+  decision. Without Side Lane, or when the user declines OpenRouter, Prompt it lists the
+  reachable models with strengths, weaknesses and relative cost and picks the cheapest
+  that fits. OpenRouter stays optional. The read-only edition is version-aligned and has
+  no content change.
+
 ## 1.5.8 - 2026-09-30
 
 - When the public governed Side Lane package ships its `model-select` skill,

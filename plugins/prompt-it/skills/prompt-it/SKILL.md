@@ -593,6 +593,33 @@ model request overrides ranking; if it requires metered use after included
 quota is unavailable, ask the requester to confirm the charge once unless
 the same request already confirmed this pinned metered execution.
 
+Model choice follows one Auto Router order, with or without Side Lane, using
+only the models this user can actually reach:
+
+1. An explicit model request wins.
+2. A signed-in host with included usage (Claude, Codex, or Devin/Gemini through
+   its own CLI) comes before any metered route, and needs no API key. Match the
+   model tier to the task (cheap and fast for mechanical work, strongest for
+   hard design or risky changes) rather than always using the top model.
+3. Metered models are used only when no included route can do the task, or when
+   the cost-effective metered model is clearly the better value. Use
+   OpenRouter's Auto Router for that choice when the user has a key. Never use
+   extra usage on a subscription unless the user authorized it for this run.
+4. Nothing reachable: say what to set up; do not guess.
+
+When the governed Side Lane core is installed, run its
+`side-lane auto-route --task "<one line>"` and cite the decision instead of
+re-deriving it (it is the same policy as the private local package's
+`side_lane_auto_route.py`, so do not copy the rules into the plan). Without
+Side Lane, or when the user declines OpenRouter, Prompt it itself is the
+chooser: it lists every model the user can reach on included usage with each
+model's strengths, weaknesses and relative cost, picks the cheapest that fits
+the task (a decision model is fine here), states the choice and one-line
+reason, and dispatches nothing. If the user has no OpenRouter
+key, mention once, and only when it would help, that a free OpenRouter account
+(key stored through the Side Lane setup wizard, never pasted into chat) is
+optional and lets cheaper models be used when included usage runs out.
+
 Prompt it's Ask first/Just go choice controls plan approval only. The
 following bridge/receipt handoff applies when the private local-direct
 package is the one installed; its own **Choose for me**/**I'll pick**
