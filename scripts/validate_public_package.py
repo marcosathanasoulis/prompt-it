@@ -9,7 +9,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINEER_VERSION = "1.5.9"
+ENGINEER_VERSION = "1.6.0"
 PLUGIN = ROOT / "plugins" / "prompt-it"
 SKILL = PLUGIN / "skills" / "prompt-it" / "SKILL.md"
 READONLY_SKILL = ROOT / "plugins" / "prompt-it-readonly" / "skills" / "prompt-it" / "SKILL.md"
@@ -42,9 +42,9 @@ REUSE_SCAN_CONTRACTS = (
     "and continue only with an explicit evidence gap",
     "one or two focused queries",
     "comparative research",
-    "Prompt it remains authoritative for evidence/reuse research, staffing, approval, and",
+    "Prompt it remains authoritative for evidence/reuse research, planning questions, staffing, approval, and",
     "external-route governance when invoked.",
-    "Superpowers supplies brainstorming, planning, TDD, debugging, worktree, review, and",
+    "supplies TDD, debugging, worktree, review, and verification workflows.",
     "verification workflows.",
     "Generic research consent does **not** authorize:",
     "The execution staffing table is a proposal, not dispatch authority.",

@@ -282,9 +282,11 @@ continue only with an explicit evidence gap in the brief.
 ### Composition with Superpowers
 
 When both are installed, Prompt it remains authoritative for evidence/reuse
-research, staffing, approval, and external-route governance when invoked.
-Superpowers supplies brainstorming, planning, TDD, debugging, worktree, review,
-and verification workflows. Prompt it does not vendor or duplicate Superpowers;
+research, planning questions, staffing, approval, and external-route governance
+when invoked. Do not also run Superpowers brainstorming or writing-plans for the
+same task: measured on real tasks, layering them on Prompt it added cost and time
+with no reduction in defects, and Prompt it already owns that step. Superpowers
+supplies TDD, debugging, worktree, review, and verification workflows. Prompt it does not vendor or duplicate Superpowers;
 the composition rule is mode-aware, matching
 [Begin authorized execution](#begin-authorized-execution): in Ask first, enter
 the applicable Superpowers workflow only after the user approves both the brief
@@ -375,6 +377,35 @@ For each open question, when applicable:
 
 Record material resolved questions as dated settled decisions. If no genuine
 questions remain, say so; do not manufacture approval theater.
+
+## Two-family question pass
+
+A measured comparison (six real tasks, plans implemented and scored against the
+issues later found in review) showed that planning with questions from two model
+families produced the fewest defects, better than a single model's plan and better
+than layering extra planning workflows on top. When both Claude Code and Codex are
+reachable here on **included** usage (never extra usage unless the user authorized
+it for the run), use that before presenting open questions:
+
+1. Do the usual bounded read-only research. Then ask the *other* family, read-only,
+   for its own list with this instruction and the user's request: "Find the
+   decisions in this request that are genuinely ambiguous or could send the work
+   down the wrong path (scope, defaults, who or what is affected, contracts and docs
+   that must change together, safety and rollout). Give each with a recommended
+   default, most important first. Settle everything else yourself and state it in one
+   line. Do not ask what the code already answers." In Claude Code run the Codex
+   side with `codex exec -s read-only`; in Codex run the Claude side with
+   `claude -p` limited to read-only tools. Use a strong model, since the top Codex
+   model was the best at spotting risks; the question pass is short and cheap.
+2. Merge the two lists with your own into one deduplicated list. Keep an item that
+   only one family raised if it could send the work the wrong way; do not invent
+   items neither raised; drop anything the repository already answers.
+3. Present that single list (with defaults) as the plan's open questions. Keep it
+   short: ask only what needs the user's authority or information.
+
+If only one family is reachable, skip the second pass and use your own list. This
+pass sends the task text only to the other local host's CLI. It is not Side Lane
+dispatch and grants no new authority.
 
 ## Decompose outcomes before choosing agents
 

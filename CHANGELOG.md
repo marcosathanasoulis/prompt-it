@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0 - 2026-10-05
+
+- Add a two-family question pass. When both Claude Code and Codex are reachable on included usage, Prompt it asks the other family, read-only, for its list of the genuinely ambiguous decisions and merges it with its own into one short question list with defaults. Measured on six real tasks (plans implemented and scored against the issues later found in review), this had the fewest defects and beat native planning on every task.
+- Prompt it no longer layers Superpowers brainstorming or writing-plans on top of its own planning: that added cost and time with no reduction in defects. Superpowers still supplies TDD, debugging, worktree, review and verification. The read-only edition is version-aligned and has no content change.
+
 ## 1.5.9 - 2026-10-04
 
 - Model choice now follows one Auto Router order, with or without Side Lane: an explicit

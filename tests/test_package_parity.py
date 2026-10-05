@@ -35,10 +35,10 @@ class PackageParityTests(unittest.TestCase):
         result = self.validate()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
-    def test_1_5_9_release_versions_are_aligned(self):
+    def test_1_6_0_release_versions_are_aligned(self):
         expected = {
-            'prompt-it': '1.5.9',
-            'prompt-it-readonly': '1.5.9',
+            'prompt-it': '1.6.0',
+            'prompt-it-readonly': '1.6.0',
         }
         marketplace = json.loads(
             (self.root / '.claude-plugin/marketplace.json').read_text())
@@ -186,9 +186,9 @@ class PackageParityTests(unittest.TestCase):
             'and continue only with an explicit evidence gap',
             'one or two focused queries',
             'comparative research',
-            'Prompt it remains authoritative for evidence/reuse research, staffing, approval, and',
+            'Prompt it remains authoritative for evidence/reuse research, planning questions, staffing, approval, and',
             'external-route governance when invoked.',
-            'Superpowers supplies brainstorming, planning, TDD, debugging, worktree, review, and',
+            'supplies TDD, debugging, worktree, review, and verification workflows.',
             'verification workflows.',
             'Generic research consent does **not** authorize:',
             'The execution staffing table is a proposal, not dispatch authority.',
