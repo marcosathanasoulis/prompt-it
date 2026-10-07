@@ -639,7 +639,8 @@ only the models this user can actually reach:
 4. Nothing reachable: say what to set up; do not guess.
 
 When the governed Side Lane core is installed, run its
-`side-lane auto-route --task "<one line>"` and cite the decision instead of
+`side-lane auto-route --task "<one line>"` (for a task graph, `--nodes nodes.json`, so
+every node is routed on its own rather than the whole job once) and cite the decision instead of
 re-deriving it (it is the same policy as the private local package's
 `side_lane_auto_route.py`, so do not copy the rules into the plan). Without
 Side Lane, or when the user declines OpenRouter, Prompt it itself is the

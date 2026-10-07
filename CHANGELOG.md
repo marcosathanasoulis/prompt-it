@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1 - 2026-10-07
+
+- Route each node of a task graph on its own (`side-lane auto-route --nodes`), not the whole job once, when the governed Side Lane core is installed. The read-only edition is version-aligned and has no content change.
+
 ## 1.6.0 - 2026-10-05
 
 - Add a two-family question pass. When both Claude Code and Codex are reachable on included usage, Prompt it asks the other family, read-only, for its list of the genuinely ambiguous decisions and merges it with its own into one short question list with defaults. Measured on six real tasks (plans implemented and scored against the issues later found in review), this had the fewest defects and beat native planning on every task.
